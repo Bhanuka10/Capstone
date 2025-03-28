@@ -44,6 +44,9 @@
     color: rgb(4, 4, 4);
     font-family: poppins;
 }
+.menu ul li:hover{
+    cursor: pointer;
+}
 .search{
     width: 250px;
     height: 43px;
@@ -97,4 +100,10 @@
     font-family: poppins;
     font-weight: 300;
     
+}
+.menu ul li.active{
+    padding-bottom: 2px;
+    border-bottom: 2px solid rgb(86, 84, 84);
+    transition: 0.3s;
+
 }
