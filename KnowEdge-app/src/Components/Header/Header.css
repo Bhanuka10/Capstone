@@ -1,0 +1,11 @@
+.header {
+    height: 28vw; /* Adjusted height for better visibility */
+    margin: 0 auto;
+    background:linear-gradient(to bottom,#25D3E9,#046673) ;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    position: relative;
+    max-width: 1050px;
+    border-radius: 20px;
+    opacity: 82%;
+    border-radius: 32px;
+}

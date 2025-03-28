@@ -26,6 +26,7 @@
     width: 55px;
     height: auto;
     vertical-align: top;
+    
 }
 .menu{
     margin-left: 20px;
@@ -83,14 +84,15 @@
     border: solid 1px;
 }
 .search-icon{
-    width: 37px;
-    height: 37px;
+    width: 20px;
+    height: 20px;
     position: absolute;
-    left: 210px;
-    top: 3px;
+    left: 208px;
+    top: 1px;
     background-color: #B8ECF4;
     padding: 10px 10px;
     border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
      
 }
 .search p{
