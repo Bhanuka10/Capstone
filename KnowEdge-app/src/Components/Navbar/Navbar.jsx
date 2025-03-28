@@ -3,7 +3,7 @@ import './Navbar.css';
 import { FaSearch } from "react-icons/fa";
 
 const Navbar = () => {
-    const [menu, setMenu] = useState('Home');
+    const [menu, setMenu] = useState('menu');
 
     return (
         <div className='navbar'>
