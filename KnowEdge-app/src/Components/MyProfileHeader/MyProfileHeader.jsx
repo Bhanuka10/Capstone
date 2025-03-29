@@ -1,5 +1,6 @@
 import React from 'react'
 import './MyProfileHeader.css'
+import userimage from '../../Images/Maria.jpg'
 
 const MyProfileHeader=() => {
   return (
@@ -14,10 +15,10 @@ const MyProfileHeader=() => {
 
         {/*user profile box*/}
         <div className='profile-box'>
-            <img src='C:\Users\ADMIN\Documents\GitHub\Capstone\KnowEdge-app\src\Images\Maria.jpg' alt='User' className='profile-image'></img>
+            <img src={userimage} alt='User' className='profile-image'></img>
             <h3 className='username'>Hello Maria!</h3>
             <p className='user-role'>Bla Bla</p>
-            
+
         </div>
       </div>
     </div>
