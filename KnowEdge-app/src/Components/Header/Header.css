@@ -9,3 +9,42 @@
     opacity: 82%;
     border-radius: 32px;
 }
+.header-left {
+    
+    max-width: 400px ; 
+    padding-left: 100px;
+    padding-top: 20px;
+    
+}
+.header-left-top{
+padding-bottom: 10px;
+}
+.header-left-top h1 {
+    font-family: poppins;
+    font-weight: 800;
+    color: aliceblue;
+    font-size: 55px;
+    padding-left: 15px;
+}
+.header-left-top p{
+    font-family: poppins, sans-serif;
+    font-weight: 300;
+    color: aliceblue;
+    font-size: 18px;
+    width: 300px;
+    font-style: italic;
+    text-align-last: center ;
+    padding-top: -100px; 
+}
+.header-left-bottom {
+    display: flex;
+    gap: 20px;
+}
+.header-left-bottom button {
+    padding: 6px 20px;
+    color: #032E3F;
+    font-family: poppins;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 20px;
+}
