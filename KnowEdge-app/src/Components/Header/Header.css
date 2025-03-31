@@ -48,6 +48,7 @@ padding-bottom: 0px;
     font-weight: 600;
     font-size: 16px;
     border-radius: 20px;
+    cursor: pointer;
 }
 .header-right {
     position: relative;
@@ -71,9 +72,7 @@ padding-bottom: 0px;
         filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.2));
 
 }
-.right-two{
 
-}
 .lady{
     position: absolute;
     width: 280px;
