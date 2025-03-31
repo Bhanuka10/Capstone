@@ -67,7 +67,9 @@ padding-bottom: 0px;
         width: 115px;
         height: auto;
         mix-blend-mode: multiply; /* Try overlay, soft-light, etc. */
-        opacity: 4; /* Adjust transparency */
+        opacity: 4; 
+        filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.2));
+
 }
 .right-two{
 
@@ -80,6 +82,7 @@ padding-bottom: 0px;
     left: 200px;
     bottom: -20px;
     left: 200px;
+    filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.9));
 }
 .robo-shadow{
     position: absolute;
@@ -90,5 +93,10 @@ padding-bottom: 0px;
     opacity: 0.3; 
 }
 .lady-shadow{
-    width: 100px;
+    width: 250px;
+    position: absolute;
+    top: 210px;
+    left: 210px;
+    opacity: 0.7;
+    filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.5));
 }

@@ -20,8 +20,8 @@ const Header = () => {
             <img className='robo-shadow' src="pngtree-round-gradient-black-shadow-png-image_4317601.png" alt="" />
             </div>
             <div className='right-two'>
+
             <img className='lady' src="young-woman-sitting-floor-with-laptop-white.png" alt="" />
-            <img className='lady-shadow' src="pngtree-round-gradient-black-shadow-png-image_4317601.png" alt="" />
             </div>
         </div>
     </div>
