@@ -6,8 +6,15 @@
     height: 80vh;
     width: 100%;
     margin: 0 auto;
+    opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-in-out;
     
 }
+.about.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 .about-header{
     font-family: poppins;
     font-weight: 800;

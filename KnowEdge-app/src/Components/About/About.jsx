@@ -1,9 +1,34 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './About.css';
 
 const About = () => {
+  const aboutRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect(); // Stop observing after first appearance
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (aboutRef.current) {
+      observer.observe(aboutRef.current);
+    }
+
+    return () => {
+      if (aboutRef.current) observer.unobserve(aboutRef.current);
+    };
+  }, []);
+
   return (
-    <div className='about'>
+    <div ref={aboutRef} className={`about ${isVisible ? 'visible' : ''}`}>
       <div className='about-header'>
         <h2>About us</h2>
       </div>
