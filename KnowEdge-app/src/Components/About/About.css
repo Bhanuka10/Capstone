@@ -1,0 +1,40 @@
+.about{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 100%;
+    margin: 0 auto;
+    
+}
+.about-header{
+    font-family: poppins;
+    font-weight: 800;
+    font-size: 40px;
+    color: #074D66;
+    text-align: center;
+    width: 500px;
+    
+
+}
+
+
+.about-content{
+    font-family: poppins;
+    font-weight: 400;
+    font-size: 17px;
+    color: #074D66;
+    max-width: 600px;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding-right: 30px;
+}
+.line{
+    width: 3px;
+    height: 250px;
+    background-color: #074D66;
+    border:0
+}
