@@ -11,20 +11,12 @@
     color: white;
     padding: 20px;
     border-radius: 10px;
-<<<<<<< Updated upstream
     text-align: left;
-=======
-    text-align: center;
->>>>>>> Stashed changes
     width: 65%;
     height: 350px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 .title{
     font-size: 24px;
     font-weight: bold;
