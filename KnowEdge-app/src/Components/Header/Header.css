@@ -8,4 +8,94 @@
     border-radius: 20px;
     opacity: 82%;
     border-radius: 32px;
+    display: flex;
+}
+.header-left {
+    
+    max-width: 450px ; 
+    padding-left: 150px;
+    padding-top: 20px;
+    
+}
+.header-left-top{
+padding-bottom: 0px;
+}
+.header-left-top h1 {
+    font-family: poppins;
+    font-weight: 800;
+    color: aliceblue;
+    font-size: 55px;
+    padding-left: 15px;
+}
+.header-left-top p{
+    font-family: poppins, sans-serif;
+    font-weight: 300;
+    color: aliceblue;
+    font-size: 18px;
+    width: 300px;
+    font-style: italic;
+    text-align-last: center ;
+    padding-top: -100px; 
+}
+.header-left-bottom {
+    display: flex;
+    gap: 20px;
+}
+.header-left-bottom button {
+    padding: 6px 20px;
+    color: #032E3F;
+    font-family: poppins;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.header-right {
+    position: relative;
+    width: 600px;
+    padding-left:80px ;
+}
+.right-one{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding-top: 200px;
+}
+.robo{
+    padding-left:40px ;
+        width: 115px;
+        height: auto;
+        mix-blend-mode: multiply; /* Try overlay, soft-light, etc. */
+        opacity: 4; 
+        filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.2));
+
+}
+
+.lady{
+    position: absolute;
+    width: 280px;
+    height: auto;
+    position: absolute;
+    left: 200px;
+    bottom: -20px;
+    left: 200px;
+    filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.9));
+}
+.robo-shadow{
+    position: absolute;
+    width: 100px;
+    height: auto;
+    left: 40px;
+    top: 260px;
+    opacity: 0.3; 
+}
+.lady-shadow{
+    width: 250px;
+    position: absolute;
+    top: 210px;
+    left: 210px;
+    opacity: 0.7;
+    filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.5));
 }
