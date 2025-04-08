@@ -1,17 +1,26 @@
 import React from 'react'
 import './MyProfileHeader.css'
 import userimage from '../../Images/Maria.jpg'
+import robotimage from '../../Images/Maria.jpg'
 
 const MyProfileHeader=() => {
   return (
     <div>
       <div className='profile-container'>
-        {/*knowedge box*/}
+        {/*SKILLFORGE box*/}
         <div className='knowedge-box'>
-            <h2 className='title'>KnowEdge</h2>
+          <div className='text-section'>
+            <h2 className='title'>SKILL FORGE</h2>
             <p className='subtitle'>Sharpen your knowledge with AI-powered guidance for a smarter learning journey</p>
-            <button className='chatbot-button'>Use Chatbot</button>
+            <button className='chatbot-button'>Use Chatbot</button> 
+            </div>
+
+            <div className='image-section'>
+            <img src={robotimage} alt='AI Bot' className='robot-image'/>  
+            </div>    
         </div>
+
+        
 
         {/*user profile box*/}
         <div className='profile-box'>

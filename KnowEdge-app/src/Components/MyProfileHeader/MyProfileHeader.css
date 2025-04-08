@@ -4,42 +4,62 @@
     align-items: center;
     max-width: 1100px;
     margin: 40px auto;
+    gap: 20px;
 }
 
 .knowedge-box{
     background: linear-gradient(to bottom,#25D3E9,#046673);
     color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: left;
-    width: 65%;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    width: 70%;
     height: 350px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
+.text-section{
+    max-width: 80%;
+}
+
 .title{
-    font-size: 24px;
+    font-size: 36px;
     font-weight: bold;
+    margin-bottom: 15px;
 }
 
 .subtitle{
-    font-size: 14px;
-    margin: 10px 0;
+    font-size: 16px;
+    margin-bottom: 20px;
+    margin-top: 20;
+    max-width: 90%;
+    line-height: 1.5;
 }
 
 .chatbot-button{
     background: white;
-    color: black;
+    color: #032E3F;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 10px 20px;
+    border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
     transition: 0.3s;
+    
 }
 
 .chatbot-button:hover{
     background: #0B5975;
+    color: white;
+}
+
+.image-section{
+    flex-shrink: 0;
+}
+
+.robot-image{
+    width: 120px;
     color: white;
 }
 
