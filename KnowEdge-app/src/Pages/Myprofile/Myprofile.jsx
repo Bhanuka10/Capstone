@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import Navbar from '../../Components/Navbar/Navbar';
+import MyProfileHeader from '../../Components/MyProfileHeader/MyProfileHeader';
 
 const Myprofile = () => {
   return (
-    <div>Myprofile</div>
-  )
-}
+    <div>
+      <MyProfileHeader />
+    </div>
+  );
+};
 
-export default Myprofile
+export default Myprofile;

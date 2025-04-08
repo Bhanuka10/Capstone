@@ -3,11 +3,13 @@ import Navbar from './Components/Navbar/Navbar';
 import Home from './Pages/Home/Home';
 import { Route, Routes } from 'react-router-dom';
 import Myprofile from './Pages/Myprofile/Myprofile';
+import MyProfileHeader from './Components/MyProfileHeader/MyProfileHeader';
 
 const App = () => {
   return (
     <div className='app'>
       <Navbar />
+      <MyProfileHeader />
       <Routes>
         <Route path="/" element={<Home />} /> 
         <Route path="/myprofile" element={<Myprofile />} />
@@ -16,4 +18,4 @@ const App = () => {
   );
 };
 
-export default App
+export default App;

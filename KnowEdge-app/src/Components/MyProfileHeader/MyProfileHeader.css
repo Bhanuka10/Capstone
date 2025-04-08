@@ -1,0 +1,92 @@
+.profile-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 40px auto;
+    gap: 20px;
+}
+
+.knowedge-box{
+    background: linear-gradient(to bottom,#25D3E9,#046673);
+    color: white;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    width: 70%;
+    height: 350px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.text-section{
+    max-width: 80%;
+}
+
+.title{
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.subtitle{
+    font-size: 16px;
+    margin-bottom: 20px;
+    margin-top: 20;
+    max-width: 90%;
+    line-height: 1.5;
+}
+
+.chatbot-button{
+    background: white;
+    color: #032E3F;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    
+}
+
+.chatbot-button:hover{
+    background: #0B5975;
+    color: white;
+}
+
+.image-section{
+    flex-shrink: 0;
+}
+
+.robot-image{
+    width: 120px;
+    color: white;
+}
+
+.profile-box{
+    background: #D9D9D9;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 25%;
+    height: 350px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.profile-image{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.username{
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.user-role{
+    font-size: 14px;
+    color: gray;
+}
