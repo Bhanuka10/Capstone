@@ -12,9 +12,10 @@
 }
 .header-left {
     
-    max-width: 450px ; 
-    padding-left: 150px;
+    max-width: 500px ; 
+    padding-left: 100px;
     padding-top: 20px;
+    
     
 }
 .header-left-top{
@@ -25,7 +26,9 @@ padding-bottom: 0px;
     font-weight: 800;
     color: aliceblue;
     font-size: 55px;
-    padding-left: 15px;
+    padding-left: 0px;
+    width: 400px;
+  
 }
 .header-left-top p{
     font-family: poppins, sans-serif;
