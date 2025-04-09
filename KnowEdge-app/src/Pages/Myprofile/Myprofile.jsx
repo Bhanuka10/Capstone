@@ -6,7 +6,8 @@ import ChatBotBanner from '../../Components/BannersMyProfile/ChatBotBanner';
 const Myprofile = () => {
   return (
     <div>
-      {/*<MyProfileHeader />*/}
+      
+      <MyProfileHeader />
       <ChatBotBanner/>
     </div>
   );
