@@ -12,8 +12,14 @@ const MyProfileHeader=() => {
           <div className='text-section'>
             <h2 className='title'>SKILL FORGE</h2>
             <p className='subtitle'>Sharpen your knowledge with AI-powered guidance for a smarter learning journey</p>
+
+            <div className='left-bottom'>
             <button className='chatbot-button'>Use Chatbot</button> 
             </div>
+
+            </div>
+            
+            
 
             <div className='image-section'>
             <img src={robotimage} alt='AI Bot' className='robot-image'/>  
