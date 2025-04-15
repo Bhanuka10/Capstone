@@ -25,7 +25,7 @@
 }
 
 .subheading{
-    font-size: 2rem;
+    font-size: 3rem;
     margin-bottom: 30px;
     font-weight: 300;
     background: linear-gradient(to right,#FFFFFF,#7E9BFB);
@@ -37,7 +37,8 @@
 .prompt-grid{
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 50px;
+    height: 200px;
     margin-bottom: 170px;
     margin-top: 100px;
     width: 100%;
