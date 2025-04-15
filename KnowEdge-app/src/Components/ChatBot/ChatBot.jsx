@@ -9,13 +9,19 @@ const ChatBot=() => {
 
 <div className='prompt-grid'>
     <div className='prompt-box'>Can you create step-by-step roadmap for becoming a full stack developer</div>
+    <div className='prompt-box'>How should I structure my daily study schedule to master AI and machine learing in 6 months?</div>
+<div className='prompt-box'>What are the essential topics I need to learn to become a cybersecurity expert?</div>
 </div>
 
-<div className='prompt-box'>How should I structure my daily study schedule to master AI and machine learing in 6 months?
-
+<div className='input-section'>
+  <input type='text' placeholder='Enter a prompt here' className='prompt-input'/>
+  <button className='generate-button'>Generate</button>
+  
 </div>
 
     </div>
+
+    
   )
 }
 

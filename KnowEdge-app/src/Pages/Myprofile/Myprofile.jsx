@@ -7,11 +7,8 @@ import ChatBot from '../../Components/ChatBot/ChatBot';
 const Myprofile = () => {
   return (
     <div>
-      <ChatBot/>
       
       
-      <MyProfileHeader />
-      <ChatBotBanner/>
     </div>
   );
 };

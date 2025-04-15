@@ -5,19 +5,27 @@ import { Route, Routes } from 'react-router-dom';
 import Myprofile from './Pages/Myprofile/Myprofile';
 import MyProfileHeader from './Components/MyProfileHeader/MyProfileHeader';
 import ChatBotBanner from './Components/BannersMyProfile/ChatBotBanner';
+import ChatBot from './Components/ChatBot/ChatBot';
 
 const App = () => {
   return (
     <div className='app'>
-      <Navbar />
-      <MyProfileHeader />
-      <ChatBotBanner/>
-      
-      <Routes>
+
+<Navbar />
+
+<Routes>
         <Route path="/" element={<Home />} /> 
         <Route path="/myprofile" element={<Myprofile />} />
         
       </Routes>
+
+
+      
+      <MyProfileHeader />
+      <ChatBotBanner/>
+      <ChatBot/>
+      
+      
     </div>
   );
 };
