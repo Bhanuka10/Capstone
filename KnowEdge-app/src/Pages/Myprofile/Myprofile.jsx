@@ -9,6 +9,9 @@ const Myprofile = () => {
     <div>
       <ChatBot/>
       
+      
+      <MyProfileHeader />
+      <ChatBotBanner/>
     </div>
   );
 };

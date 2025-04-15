@@ -12,9 +12,11 @@ const App = () => {
       <Navbar />
       <MyProfileHeader />
       <ChatBotBanner/>
+      
       <Routes>
         <Route path="/" element={<Home />} /> 
         <Route path="/myprofile" element={<Myprofile />} />
+        
       </Routes>
     </div>
   );

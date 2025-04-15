@@ -5,7 +5,7 @@ const Header = () => {
     <div className='header'>
         <div className='header-left'>
             <div className='header-left-top'>
-           <h1>KnowEdge</h1>
+           <h1>SKILL FORGEe</h1>
             <p>Sharpen Your Knowledge with AI-Powered Guidance for a Smarter Learning Journey</p>
         </div>
         <div className='header-left-bottom'>
