@@ -21,10 +21,6 @@ const App = () => {
 
 
       
-      <MyProfileHeader />
-      <ChatBotBanner/>
-      <ChatBot/>
-      
       
     </div>
   );
