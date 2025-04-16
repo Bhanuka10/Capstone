@@ -1,8 +1,12 @@
 import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Courses.css'
 
 const Courses = () => {
   return (
-    <div>
+    
+    <div className="Couses">
+        
         <ul class="nav nav-tabs">
   <li class="nav-item">
     <a class="nav-link active" aria-current="page" href="#">Active</a>
