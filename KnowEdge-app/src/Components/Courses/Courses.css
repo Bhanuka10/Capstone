@@ -10,7 +10,7 @@
 
 .courses-icon-left img,
 .courses-icon-right img {
-    width: 60px;
+    width: 40px;
     height: auto;
     cursor: pointer;
     transition: transform 0.3s ease, background-color 0.3s ease;
@@ -29,7 +29,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 25px;
+    gap: 70px;
 }
 
 .explore-box {
