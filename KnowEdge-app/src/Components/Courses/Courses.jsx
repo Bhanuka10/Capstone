@@ -21,13 +21,13 @@ const Courses = () => {
   return (
     <div className='courses'>
       <div className='courses-icon-left'>
-        <img
-          src="select-all.png"
-          alt="Select All"
-          className={selectedIcon === 'select-all' ? 'selected' : ''}
-          onClick={() => handleIconClick('select-all')}
-        />
-      </div>
+  <img
+    src="select-all.png"
+    alt="Select All"
+    className={`select-all ${selectedIcon === 'select-all' ? 'selected' : ''}`}
+    onClick={() => handleIconClick('select-all')}
+  />
+</div>
 
       <div className='courses-icon-right'>
         <img

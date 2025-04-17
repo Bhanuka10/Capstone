@@ -43,3 +43,15 @@
     font-family: Arial, sans-serif;
     font-size: 10px;
 }
+.select-all {
+    width: auto; 
+    height: 80px;
+
+}
+
+.courses-icon-left img.selected,
+.courses-icon-right img.selected {
+    background-color: #f0f8ff;
+    transform: scale(1.1);
+    border: 2px solid #007bff;
+}
