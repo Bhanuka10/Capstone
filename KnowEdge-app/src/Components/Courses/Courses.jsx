@@ -15,7 +15,7 @@ const Courses = () => {
 
     if (icon === 'domain') {
       const playlistId = 'PLoYCgNOIyGABDU532eesybur5HPBVfC1G';
-      const apiUrl = `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${playlistId}&key=${apiKey}`;
+      const apiUrl = `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=15&playlistId=${playlistId}&key=${apiKey}`;
 
       try {
         const response = await fetch(apiUrl);
@@ -24,8 +24,8 @@ const Courses = () => {
         setPlaylistItems(items);
 
         const videoIds = items.map(item => item.snippet.resourceId.videoId).join(',');
-
         const statsUrl = `https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoIds}&key=${apiKey}`;
+
         const statsResponse = await fetch(statsUrl);
         const statsData = await statsResponse.json();
 
@@ -35,7 +35,6 @@ const Courses = () => {
         });
 
         setVideoStats(statsMap);
-
       } catch (error) {
         console.error('Error fetching playlist:', error);
       }
@@ -73,34 +72,36 @@ const Courses = () => {
 
       {selectedIcon === 'domain' && playlistItems.length > 0 && (
         <div className='explore-box'>
-          <div className='playlist'>
-            {playlistItems.map((item) => {
-              const videoId = item.snippet.resourceId.videoId;
-              return (
-                <div key={item.id} className='playlist-item' onClick={() => handleVideoClick(videoId)}>
-                  <img src={item.snippet.thumbnails.medium.url} alt={item.snippet.title} />
-                  <div className='playlist-info'>
-                    <p className='playlist-title'>{item.snippet.title}</p>
-                    <p className='playlist-channel'>{item.snippet.videoOwnerChannelTitle}</p>
-                    <p className='playlist-views'>{videoStats[videoId] ? `${parseInt(videoStats[videoId]).toLocaleString()} views` : 'Loading views...'}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
 
           {selectedVideoId && (
             <div className='video-player'>
               <iframe
                 width="100%"
-                height="400"
-                src={`https://www.youtube.com/embed/${selectedVideoId}`}
+                height="450"
+                src={`https://www.youtube.com/embed/${selectedVideoId}?autoplay=1`}
                 title="YouTube video player"
                 frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
             </div>
           )}
+
+          <div className='playlist-row'>
+            {playlistItems.map((item) => {
+              const videoId = item.snippet.resourceId.videoId;
+              return (
+                <div key={item.id} className='playlist-card' onClick={() => handleVideoClick(videoId)}>
+                  <img src={item.snippet.thumbnails.medium.url} alt={item.snippet.title} />
+                  <div className='card-info'>
+                    <p className='card-title'>{item.snippet.title}</p>
+                    <p className='card-channel'>{item.snippet.videoOwnerChannelTitle}</p>
+                    <p className='card-views'>{videoStats[videoId] ? `${parseInt(videoStats[videoId]).toLocaleString()} views` : '...'}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
     </div>
