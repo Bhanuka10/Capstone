@@ -1,102 +1,76 @@
 .courses {
+    width: 90%;
+    margin: 0 auto;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90%;
-    margin: 0 auto;
-    padding: 20px;
   }
   
-  .courses-icon-left img,
-  .courses-icon-right img {
+  .courses-icon {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .courses-icon img {
     width: 60px;
     height: auto;
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
   }
   
-  .courses-icon-left img.selected,
-  .courses-icon-right img.selected {
+  .courses-icon img.selected {
     background-color: #f0f8ff;
     transform: scale(1.1);
     border: 2px solid #007bff;
   }
   
-  .courses-icon-right {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 25px;
-    margin: 20px 0;
-  }
-  
-  .explore-box {
+  .video-player-box {
     width: 100%;
+    max-width: 700px;
     background-color: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-  
-  .video-player {
-    margin-bottom: 25px;
     border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow: hidden;
   }
   
-  .playlist-row {
+  .video-top-section {
+    background-color: #CBEFFC;
+  }
+  
+  .video-title {
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    background-color: #CBEFFC;
+    text-align: left;
+  }
+  
+  .video-controls {
     display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding-bottom: 10px;
-    scrollbar-width: none; /* Firefox */
+    justify-content: space-between;
+    padding: 15px;
+    background: #f9f9f9;
   }
   
-  .playlist-row::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
-  }
-  
-  .playlist-card {
-    min-width: 320px;
-    flex-shrink: 0;
-    cursor: pointer;
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #fafafa;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .playlist-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-  }
-  
-  .playlist-card img {
-    width: 100%;
-    height: auto;
-  }
-  
-  .card-info {
-    padding: 10px 12px;
-  }
-  
-  .card-title {
-    font-size: 15px;
-    font-weight: 600;
-    color: #222;
-    margin-bottom: 5px;
-  }
-  
-  .card-channel {
+  .video-controls button {
+    padding: 10px 20px;
     font-size: 14px;
-    color: #555;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
   }
   
-  .card-views {
-    font-size: 13px;
-    color: #888;
+  .video-controls button:hover {
+    background-color: #0056b3;
   }
   
