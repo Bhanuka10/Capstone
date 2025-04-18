@@ -7,8 +7,9 @@ const Courses = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
   const icons = [
+    { key: 'select-all', src: 'select-all.png', playlistId: null },
     { key: 'domain', src: 'domain.png', playlistId: 'PLoYCgNOIyGABDU532eesybur5HPBVfC1G' },
-    { key: 'ai', src: 'ai.png', playlistId: 'PL6XklZ2rk8TMWcgpQ2dIY2DLzI2SLz3n4' },
+    { key: 'ai', src: 'ai.png', playlistId: 'PL6XklZ2rk8TMWcgpQ2dIY2SLz3n4' },
     { key: 'data-science', src: 'data-science.png', playlistId: 'PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF' },
     { key: 'game-development', src: 'game-development.png', playlistId: 'PL4cUxeGkcC9jLYyp2Aoh6hcWuxFDX6PBJ' },
     { key: 'mobile-development', src: 'mobile-development.png', playlistId: 'PLRAV69dS1uWSYbnsbTgkPoHmc3J1NAMcZ' },
@@ -21,6 +22,10 @@ const Courses = () => {
     setSelectedIcon(iconKey);
     setVideos([]);
     setCurrentVideoIndex(0);
+
+    if (iconKey === 'select-all') {
+      return;
+    }
 
     try {
       const res = await fetch(
@@ -52,16 +57,28 @@ const Courses = () => {
 
   return (
     <div className="courses">
-      <div className="courses-icon">
-        {icons.map((icon) => (
+      <div className="courses-icons">
+        <div className="select-all-icon">
           <img
-            key={icon.key}
-            src={icon.src}
-            alt={icon.key}
-            className={selectedIcon === icon.key ? 'selected' : ''}
-            onClick={() => handleIconClick(icon.key, icon.playlistId)}
+            src="select-all.png"
+            alt="select-all"
+            className={selectedIcon === 'select-all' ? 'selected' : ''}
+            onClick={() => handleIconClick('select-all', null)}
           />
-        ))}
+        </div>
+        <div className="other-icons">
+          {icons
+            .filter((icon) => icon.key !== 'select-all')
+            .map((icon) => (
+              <img
+                key={icon.key}
+                src={icon.src}
+                alt={icon.key}
+                className={selectedIcon === icon.key ? 'selected' : ''}
+                onClick={() => handleIconClick(icon.key, icon.playlistId)}
+              />
+            ))}
+        </div>
       </div>
 
       {currentVideo && (
