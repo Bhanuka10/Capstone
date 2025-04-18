@@ -3,77 +3,104 @@ import './Courses.css';
 
 const Courses = () => {
   const [selectedIcon, setSelectedIcon] = useState(null);
+  const [playlistItems, setPlaylistItems] = useState([]);
+  const [selectedVideoId, setSelectedVideoId] = useState(null);
+  const [videoStats, setVideoStats] = useState({});
 
-  const handleIconClick = (icon) => {
+  const apiKey = 'AIzaSyD-SJkFXqteSzaQPVUSqo5Lq3CaQh2j5pU';
+
+  const handleIconClick = async (icon) => {
     setSelectedIcon(icon);
+    setSelectedVideoId(null);
+
+    if (icon === 'domain') {
+      const playlistId = 'PLoYCgNOIyGABDU532eesybur5HPBVfC1G';
+      const apiUrl = `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${playlistId}&key=${apiKey}`;
+
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        const items = data.items || [];
+        setPlaylistItems(items);
+
+        const videoIds = items.map(item => item.snippet.resourceId.videoId).join(',');
+
+        const statsUrl = `https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoIds}&key=${apiKey}`;
+        const statsResponse = await fetch(statsUrl);
+        const statsData = await statsResponse.json();
+
+        const statsMap = {};
+        statsData.items.forEach(video => {
+          statsMap[video.id] = video.statistics.viewCount;
+        });
+
+        setVideoStats(statsMap);
+
+      } catch (error) {
+        console.error('Error fetching playlist:', error);
+      }
+    } else {
+      setPlaylistItems([]);
+    }
   };
 
-  const exploreData = {
-    'select-all': { color: '#007bff', text: 'Explore All Categories' },
-    domain: { color: '#28a745', text: 'Explore Domain' },
-    'game-development': { color: '#ffc107', text: 'Explore Game Development' },
-    'data-science': { color: '#17a2b8', text: 'Explore Data Science' },
-    ai: { color: '#6f42c1', text: 'Explore Artificial Intelligence' },
-    'mobile-development': { color: '#fd7e14', text: 'Explore Mobile Development' },
-    technology: { color: '#dc3545', text: 'Explore Technology' },
+  const handleVideoClick = (videoId) => {
+    setSelectedVideoId(videoId);
   };
 
   return (
     <div className='courses'>
       <div className='courses-icon-left'>
-  <img
-    src="select-all.png"
-    alt="Select All"
-    className={`select-all ${selectedIcon === 'select-all' ? 'selected' : ''}`}
-    onClick={() => handleIconClick('select-all')}
-  />
-</div>
-
-      <div className='courses-icon-right'>
         <img
-          src="domain.png"
-          alt="Domain"
-          className={selectedIcon === 'domain' ? 'selected' : ''}
-          onClick={() => handleIconClick('domain')}
-        />
-        <img
-          src="game-development.png"
-          alt="Game Development"
-          className={selectedIcon === 'game-development' ? 'selected' : ''}
-          onClick={() => handleIconClick('game-development')}
-        />
-        <img
-          src="data-science.png"
-          alt="Data Science"
-          className={selectedIcon === 'data-science' ? 'selected' : ''}
-          onClick={() => handleIconClick('data-science')}
-        />
-        <img
-          src="ai.png"
-          alt="AI"
-          className={selectedIcon === 'ai' ? 'selected' : ''}
-          onClick={() => handleIconClick('ai')}
-        />
-        <img
-          src="mobile-development.png"
-          alt="Mobile Development"
-          className={selectedIcon === 'mobile-development' ? 'selected' : ''}
-          onClick={() => handleIconClick('mobile-development')}
-        />
-        <img
-          src="technology.png"
-          alt="Technology"
-          className={selectedIcon === 'technology' ? 'selected' : ''}
-          onClick={() => handleIconClick('technology')}
+          src="select-all.png"
+          alt="Select All"
+          className={selectedIcon === 'select-all' ? 'selected' : ''}
+          onClick={() => handleIconClick('select-all')}
         />
       </div>
 
-      {selectedIcon && (
-        <div
-          className='explore-box'
-          style={{ backgroundColor: exploreData[selectedIcon].color }}
-        >
-          <p>{exploreData[selectedIcon].text}</p>
+      <div className='courses-icon-right'>
+        {['domain', 'game-development', 'data-science', 'ai', 'mobile-development', 'technology'].map(icon => (
+          <img
+            key={icon}
+            src={`${icon}.png`}
+            alt={icon.replace('-', ' ')}
+            className={selectedIcon === icon ? 'selected' : ''}
+            onClick={() => handleIconClick(icon)}
+          />
+        ))}
+      </div>
+
+      {selectedIcon === 'domain' && playlistItems.length > 0 && (
+        <div className='explore-box'>
+          <div className='playlist'>
+            {playlistItems.map((item) => {
+              const videoId = item.snippet.resourceId.videoId;
+              return (
+                <div key={item.id} className='playlist-item' onClick={() => handleVideoClick(videoId)}>
+                  <img src={item.snippet.thumbnails.medium.url} alt={item.snippet.title} />
+                  <div className='playlist-info'>
+                    <p className='playlist-title'>{item.snippet.title}</p>
+                    <p className='playlist-channel'>{item.snippet.videoOwnerChannelTitle}</p>
+                    <p className='playlist-views'>{videoStats[videoId] ? `${parseInt(videoStats[videoId]).toLocaleString()} views` : 'Loading views...'}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {selectedVideoId && (
+            <div className='video-player'>
+              <iframe
+                width="100%"
+                height="400"
+                src={`https://www.youtube.com/embed/${selectedVideoId}`}
+                title="YouTube video player"
+                frameBorder="0"
+                allowFullScreen
+              ></iframe>
+            </div>
+          )}
         </div>
       )}
     </div>

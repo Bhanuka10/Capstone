@@ -10,7 +10,7 @@
 
 .courses-icon-left img,
 .courses-icon-right img {
-    width: 40px;
+    width: 60px;
     height: auto;
     cursor: pointer;
     transition: transform 0.3s ease, background-color 0.3s ease;
@@ -29,29 +29,73 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 70px;
+    gap: 25px;
 }
 
 .explore-box {
     margin-top: 20px;
     width: 100%;
-    text-align: center;
-    background-color: #007bff;
-    color: white;
+    background-color: #f9f9f9;
     padding: 10px;
     border-radius: 10px;
-    font-family: Arial, sans-serif;
-    font-size: 10px;
-}
-.select-all {
-    width: auto; 
-    height: 80px;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.courses-icon-left img.selected,
-.courses-icon-right img.selected {
-    background-color: #f0f8ff;
-    transform: scale(1.1);
-    border: 2px solid #007bff;
+.playlist {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
+
+.playlist-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: box-shadow 0.3s ease;
+}
+
+.playlist-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.playlist-item img {
+    width: 120px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.playlist-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.playlist-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.playlist-channel {
+    font-size: 14px;
+    color: #666;
+}
+.video-player {
+    margin-top: 30px;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .playlist-views {
+    font-size: 13px;
+    color: #999;
+  }
+  
