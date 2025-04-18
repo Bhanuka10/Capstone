@@ -16,16 +16,14 @@ const Courses = () => {
     { key: 'technology', src: 'technology.png', playlistId: 'PLFjhmG6Y8eMqvksv0LTFFRjZ74d0sVYFx' },
   ];
 
-  const apiKey = 'AIzaSyD-SJkFXqteSzaQPVUSqo5Lq3CaQh2j5pU';
+  const apiKey = 'AIzaSyD-SJkFXqteSzaQPVUSqo5Lq3CaQh2j5pU'; // Replace with your actual API key
 
   const handleIconClick = async (iconKey, playlistId) => {
     setSelectedIcon(iconKey);
     setVideos([]);
     setCurrentVideoIndex(0);
 
-    if (iconKey === 'select-all') {
-      return;
-    }
+    if (iconKey === 'select-all' || !playlistId) return;
 
     try {
       const res = await fetch(
@@ -44,12 +42,12 @@ const Courses = () => {
   };
 
   const handleNext = () => {
-    setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
+    setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
   };
 
   const handlePrev = () => {
-    setCurrentVideoIndex((prevIndex) =>
-      prevIndex === 0 ? videos.length - 1 : prevIndex - 1
+    setCurrentVideoIndex((prev) =>
+      prev === 0 ? videos.length - 1 : prev - 1
     );
   };
 
@@ -97,10 +95,32 @@ const Courses = () => {
 
           <div className="video-controls">
             <button onClick={handlePrev}>⏮ Prev</button>
+            <button className="add-cart">Add to cart</button>
             <button onClick={handleNext}>Next ⏭</button>
+          </div>
+
+          <div className="video-thumbnails">
+            {videos.map((video, index) => (
+              <div
+                key={video.id}
+                className={`thumbnail-box ${index === currentVideoIndex ? 'active' : ''}`}
+                onClick={() => setCurrentVideoIndex(index)}
+              >
+                <img src={video.thumbnail} alt={video.title} />
+                <div className="thumbnail-title">{video.title}</div>
+                <div className="view-count">👁 1.2K views</div>
+              </div>
+            ))}
           </div>
         </div>
       )}
+
+      {/* Placeholder Playlist Rectangles */}
+      <div className="playlist-placeholders">
+        <div className="playlist-card">Future Playlist 1</div>
+        <div className="playlist-card">Future Playlist 2</div>
+        <div className="playlist-card">Future Playlist 3</div>
+      </div>
     </div>
   );
 };
