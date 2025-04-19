@@ -4,12 +4,34 @@ import { FaSearch } from "react-icons/fa";
 
 const Navbar = () => {
     const [menu, setMenu] = useState('menu');
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
 
     const handleScroll = (sectionId) => {
         setMenu(sectionId);
         const section = document.getElementById(sectionId);
         if (section) {
             section.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    const handleSearch = () => {
+        if (searchQuery.trim() !== '') {
+            // Simulate search results (replace this with actual search logic or API call)
+            const mockData = [
+                'Web Development',
+                'Data Science',
+                'Artificial Intelligence',
+                'Game Development',
+                'Mobile Development',
+                'Technology',
+            ];
+            const results = mockData.filter((item) =>
+                item.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+            setSearchResults(results);
+        } else {
+            setSearchResults([]);
         }
     };
 
@@ -20,8 +42,17 @@ const Navbar = () => {
                     <img src="DALL·E 2025-03-07 23.02.25 - A modern, sleek logo design combining the letters K and E in an elegant and creative way. The design should focus on a clean, minimalistic aesthetic w.png" alt="" />
                 </div>
                 <div className='search'>
-                    <p>Search for courses</p>
-                    <div className='search-icon'><FaSearch /></div>
+                    <input
+                        type="text"
+                        placeholder="Search for courses"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                    <div className='search-button'>
+                    <button className='search-icon' onClick={handleSearch}>
+                        <FaSearch />
+                    </button>
+                    </div>
                 </div>
                 <div className='menu'>
                     <ul>
@@ -39,8 +70,17 @@ const Navbar = () => {
                     <img src="av3cbfdc7ee86dab9a41d.png" alt="" />
                 </div>
             </div>
+            {searchResults.length > 0 && (
+                <div className='search-results'>
+                    <ul>
+                        {searchResults.map((result, index) => (
+                            <li key={index}>{result}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     );
-}
+};
 
 export default Navbar;
