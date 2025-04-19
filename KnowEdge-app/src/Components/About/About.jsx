@@ -28,8 +28,8 @@ const About = () => {
   }, []);
 
   return (
-    <div ref={aboutRef} className={`about ${isVisible ? 'visible' : ''}`}>
-      <div className='about-header'>
+    <div id="About" ref={aboutRef} className={`about ${isVisible ? 'visible' : ''}`} >
+      <div className='about-header' >
         <h2>About us</h2>
       </div>
       <div className='line'></div>

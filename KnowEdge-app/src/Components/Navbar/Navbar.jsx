@@ -1,9 +1,17 @@
-import React, { useState } from 'react';  // Add useState import
+import React, { useState } from 'react';
 import './Navbar.css';
 import { FaSearch } from "react-icons/fa";
 
 const Navbar = () => {
     const [menu, setMenu] = useState('menu');
+
+    const handleScroll = (sectionId) => {
+        setMenu(sectionId);
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <div className='navbar'>
@@ -17,9 +25,9 @@ const Navbar = () => {
                 </div>
                 <div className='menu'>
                     <ul>
-                        <li  className={menu === "Home" ? "active" : ""} onClick={() => setMenu("Home")}>Home</li>
-                        <li className={menu === "About" ? "active" : ""} onClick={() => setMenu("About")}>About</li>
-                        <li className={menu === "Contact" ? "active" : ""} onClick={() => setMenu("Contact")}>Contact</li>
+                        <li className={menu === "Home" ? "active" : ""} onClick={() => handleScroll("Home")}>Home</li>
+                        <li className={menu === "About" ? "active" : ""} onClick={() => handleScroll("About")}>About</li>
+                        <li className={menu === "Contact" ? "active" : ""} onClick={() => handleScroll("Contact")}>Contact</li>
                     </ul>
                 </div>
             </div>
