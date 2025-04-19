@@ -41,18 +41,37 @@
     display: flex;
     align-items: center;
     gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .menu ul li {
-    list-style: none;
     font-size: 19px;
     font-weight: 700;
     color: rgb(4, 4, 4);
     font-family: poppins;
+    cursor: pointer;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    position: relative;
 }
 
 .menu ul li:hover {
-    cursor: pointer;
+    color: #007bff; /* Change text color on hover */
+}
+
+.menu ul li.active {
+    color: #007bff; /* Active menu item color */
+    border-bottom: 2px solid #007bff; /* Underline for active menu item */
+}
+
+.menu ul li a {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit color from parent */
+}
+
+.menu ul li a:hover {
+    color: inherit; /* Keep hover effect consistent */
 }
 
 .search {
@@ -117,34 +136,35 @@
 .search-results ul li:hover {
     background-color: #f0f0f0;
 }
-.second{
+
+.second {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 30px;
 }
-.login-btn{
+
+.login-btn {
     background-color: #DAF5F8;
     color: black;
     padding: 5px 10px;
     border-radius: 20px;
 }
-.login-btn:hover{
+
+.login-btn:hover {
     background-color: #a0def5;
     color: black;
-    cursor: pointer;}
-    .login-btn button{
-        background-color: #DAF5F8;
-        color: black;
-        border: none;
-    }
-    .login-btn button:hover{
-        background-color: #a0def5;
-        color: black;
-        cursor: pointer;
-    }
-    .menu ul li.active {
-        border-bottom: 2px solid #007bff; 
-        color: #007bff; 
-        font-weight: bold; 
-    }
+    cursor: pointer;
+}
+
+.login-btn button {
+    background-color: #DAF5F8;
+    color: black;
+    border: none;
+}
+
+.login-btn button:hover {
+    background-color: #a0def5;
+    color: black;
+    cursor: pointer;
+}

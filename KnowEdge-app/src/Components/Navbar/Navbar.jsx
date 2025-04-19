@@ -1,23 +1,15 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 import { FaSearch } from "react-icons/fa";
+import { Link } from 'react-router-dom'; // Import Link for navigation
 
 const Navbar = () => {
     const [menu, setMenu] = useState('menu');
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
-    const handleScroll = (sectionId) => {
-        setMenu(sectionId);
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
     const handleSearch = () => {
         if (searchQuery.trim() !== '') {
-            // Simulate search results (replace this with actual search logic or API call)
             const mockData = [
                 'Web Development',
                 'Data Science',
@@ -35,6 +27,14 @@ const Navbar = () => {
         }
     };
 
+    const handleScrollToAbout = () => {
+        setMenu("About");
+        const aboutSection = document.getElementById("About");
+        if (aboutSection) {
+            aboutSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <div className='navbar'>
             <div className='first'>
@@ -49,16 +49,22 @@ const Navbar = () => {
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
                     <div className='search-button'>
-                    <button className='search-icon' onClick={handleSearch}>
-                        <FaSearch />
-                    </button>
+                        <button className='search-icon' onClick={handleSearch}>
+                            <FaSearch />
+                        </button>
                     </div>
                 </div>
                 <div className='menu'>
                     <ul>
-                        <li className={menu === "Home" ? "active" : ""} onClick={() => handleScroll("Home")}>Home</li>
-                        <li className={menu === "About" ? "active" : ""} onClick={() => handleScroll("About")}>About</li>
-                        <li className={menu === "Contact" ? "active" : ""} onClick={() => handleScroll("Contact")}>Contact</li>
+                        <li className={menu === "Home" ? "active" : ""} onClick={() => setMenu("Home")}>
+                            <Link to="/">Home</Link>
+                        </li>
+                        <li className={menu === "About" ? "active" : ""} onClick={handleScrollToAbout}>
+                            About
+                        </li>
+                        <li className={menu === "Contact" ? "active" : ""} onClick={() => setMenu("Contact")}>
+                            <Link to="/contact">Contact</Link>
+                        </li>
                     </ul>
                 </div>
             </div>
