@@ -29,6 +29,8 @@
     height: auto;
     vertical-align: top;
     cursor: pointer;
+    border: solid 2px #0f0f0f;
+    border-radius: 40px;
 }
 
 .menu {
@@ -115,3 +117,29 @@
 .search-results ul li:hover {
     background-color: #f0f0f0;
 }
+.second{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+.login-btn{
+    background-color: #DAF5F8;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+.login-btn:hover{
+    background-color: #a0def5;
+    color: black;
+    cursor: pointer;}
+    .login-btn button{
+        background-color: #DAF5F8;
+        color: black;
+        border: none;
+    }
+    .login-btn button:hover{
+        background-color: #a0def5;
+        color: black;
+        cursor: pointer;
+    }
