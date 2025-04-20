@@ -1,152 +1,48 @@
-.courses {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 85%;
-    margin: 0 auto;
-    padding: 20px;
-  }
+.Courses{
+  width: 100%;
+  height: 150vh;
+  margin: 0;
+
+}
+.Uper-bar{
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to right,#25D3E9,#03A6BC);
+ 
+  text-align: center;
+  justify-content: center;
+  align-items: center;
   
-  .courses-icons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    margin-bottom: 20px;
-  }
-  
-  .select-all-icon {
-    margin-right: 40px;
-  }
-  
-  .select-all-icon img,
-  .other-icons img {
-    width: 60px;
-    height: auto;
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .select-all-icon img.selected,
-  .other-icons img.selected {
-    background-color: #f0f8ff;
-    transform: scale(1.1);
-    border: 2px solid #007bff;
-  }
-  
-  .other-icons {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .video-player-box {
-    max-width: 500px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin-top: 30px;
-    width: 100%;
-  }
-  
-  .video-top-section {
-    background-color: #CBEFFC;
-  }
-  
-  .video-title {
-    padding: 15px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #000;
-    background-color: #CBEFFC;
-    text-align: center;
-  }
-  
-  .video-controls {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    background: #f9f9f9;
-  }
-  
-  .video-controls button {
-    padding: 10px 20px;
-    font-size: 14px;
-    background-color: #007bff;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .video-controls button:hover {
-    background-color: #0056b3;
-  }
-  
-  .video-thumbnails {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-    padding: 10px;
-    background: #f4faff;
-    border-radius: 8px;
-  }
-  
-  .thumbnail-box {
-    background-color: #ffffff;
-    border: 2px solid transparent;
-    border-radius: 10px;
-    padding: 10px;
-    cursor: pointer;
-    transition: 0.3s ease;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    text-align: center;
-  }
-  
-  .thumbnail-box.active {
-    border-color: #007bff;
-    transform: scale(1.05);
-  }
-  
-  .thumbnail-box img {
-    width: 100%;
-    border-radius: 6px;
-  }
-  
-  .thumbnail-title {
-    font-size: 14px;
-    font-weight: 600;
-    margin-top: 8px;
-    color: #333;
-  }
-  
-  .view-count {
-    font-size: 13px;
-    color: #777;
-    margin-top: 4px;
-  }
-  
-  .playlist-placeholders {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 30px;
-  }
-  
-  .playlist-card {
-    width: 200px;
-    height: 120px;
-    background-color: #CBEFFC;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #333;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  }
-  
+}
+.Uper-bar h1{
+  font-family: poppins;
+  font-weight: 800;
+  font-size: 50px;
+  color: #074D66
+}
+.icons-row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 200px;
+}
+.icons ul{
+  display: flex;
+  gap: 30px;
+  list-style-type: none;
+ margin-top: 50px;
+}
+.icons img{
+  width: 50px;
+  height: 50px;
+  margin: 0 10px;
+}
+.icons-ai img{
+  width: 70px;
+  height: auto;
+  margin: 0 10px;
+}
+.icons-ai{
+  margin-top: 40px;
+}
