@@ -46,3 +46,27 @@
 .icons-ai{
   margin-top: 40px;
 }
+.buttn {
+  margin-top: 30px;
+  margin-left: 60px;
+  
+  display: flex; /* Enable Flexbox for the buttons */
+  gap: 20px; /* Add gap between buttons */
+}
+
+.buttn button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #03A6BC;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.buttn button:hover {
+  background-color: #025f73;
+  color: #ffffff;
+}

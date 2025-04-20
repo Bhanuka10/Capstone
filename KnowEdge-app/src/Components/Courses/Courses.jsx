@@ -23,6 +23,11 @@ const Courses = () => {
       </ul>
       </div>
     </div>
+    <div className='buttn'>
+      <button>All</button>
+      <button>Paid</button>
+      <button>Free</button>
+    </div>
     </div>
   )
 }
