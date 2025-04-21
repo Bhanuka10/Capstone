@@ -28,6 +28,29 @@ const Courses = () => {
       <button>Paid</button>
       <button>Free</button>
     </div>
+    <div className='holevideo-container'>
+      <div className='video-row'>
+        <div className='first-box'>
+          <div className='second-box'>
+            <div className='video-img'>
+
+            </div>
+            <div className='thumnle'>
+              <h2>Hellow world</h2>
+
+            </div>
+            <p>View count</p>
+
+          </div>
+          <h3>availability</h3>
+          <button>add</button>
+
+        </div>
+        
+
+      </div>
+    </div>
+
     </div>
   )
 }
