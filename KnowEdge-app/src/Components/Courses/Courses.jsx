@@ -42,8 +42,10 @@ const Courses = () => {
             <p>View count</p>
 
           </div>
+          <div className='last'>
           <h3>availability</h3>
           <button>add</button>
+          </div>
 
         </div>
         
