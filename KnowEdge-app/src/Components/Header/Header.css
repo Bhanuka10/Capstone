@@ -102,3 +102,60 @@ padding-bottom: 0px;
     opacity: 0.7;
     filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.5));
 }
+/* General animation settings */
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(-50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes bounceIn {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* Apply animations */
+  .fade-in {
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  .slide-in {
+    animation: slideIn 1.5s ease-out;
+  }
+  
+  .bounce-in {
+    animation: bounceIn 1.5s ease-out;
+  }
+  
+  .button-animate {
+    animation: fadeIn 2s ease-in-out;
+    transition: transform 0.3s ease;
+  }
+  
+  .button-animate:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+  }
