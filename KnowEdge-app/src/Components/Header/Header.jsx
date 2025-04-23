@@ -17,7 +17,7 @@ const Header = () => {
       <div className='header-right'>
         <div className='right-one'>
           <img className='robo bounce-in' src="pngtree-3d-bot-ai-powered-marketing-and-notification-tools-png-image_9187783.png" alt="" />
-          <img className='robo-shadow fade-in' src="pngtree-round-gradient-black-shadow-png-image_4317601.png" alt="" />
+          {/* <img className='robo-shadow fade-in' src="pngtree-round-gradient-black-shadow-png-image_4317601.png" alt="" /> */}
         </div>
         <div className='right-two'>
           <img className='lady slide-in' src="young-woman-sitting-floor-with-laptop-white.png" alt="" />
