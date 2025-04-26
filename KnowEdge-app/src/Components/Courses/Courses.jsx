@@ -44,7 +44,7 @@ const Courses = () => {
           </div>
           <div className='last'>
           <h3>availability</h3>
-          <button>add</button>
+          <button className='add-btn'>add</button>
           </div>
 
         </div>
@@ -62,7 +62,7 @@ const Courses = () => {
           </div>
           <div className='last'>
           <h3>availability</h3>
-          <button>add</button>
+          <button className='add-btn'>add</button>
           </div>
 
         </div>
@@ -80,7 +80,7 @@ const Courses = () => {
           </div>
           <div className='last'>
           <h3>availability</h3>
-          <button>add</button>
+          <button className='add-btn'>add</button>
           </div>
 
         </div>
@@ -98,7 +98,7 @@ const Courses = () => {
           </div>
           <div className='last'>
           <h3>availability</h3>
-          <button>add</button>
+          <button className='add-btn'>add</button>
           </div>
 
         </div>

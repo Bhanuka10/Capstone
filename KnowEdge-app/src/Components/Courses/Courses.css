@@ -175,8 +175,19 @@
   color: red;
   
 }
-.last button{
+
+.add-btn{
   width: 50px;
   height: 20px;
-
+  border-radius: 6px;
+  color: #074D66;
+  border: #025f73 2px;
+  font-weight: 600;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add drop shadow */
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+.add-btn:hover {
+  background-color: #025f73;
+  color: #ffffff;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
 }
