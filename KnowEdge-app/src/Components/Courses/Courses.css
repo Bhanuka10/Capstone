@@ -197,6 +197,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .thumnle {
@@ -242,7 +243,7 @@
   height: 20px;
   border-radius: 6px;
   color: #074D66;
-  border: 2px solid #025f73;
+  border: 1px solid #025f73;
   font-weight: 600;
   background: white;
   cursor: pointer;
