@@ -1,39 +1,41 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Courses.css';
 
-const API_KEY = 'AIzaSyD-SJkFXqteSzaQPVUSqo5Lq3CaQh2j5pU';
-const PLAYLIST_ID = 'PLoYCgNOIyGABDU532eesybur5HPBVfC1G';
-const MAX_RESULTS = 20;
-
 const Courses = () => {
-  const [courses, setCourses] = useState([]);
+  const [videos, setVideos] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentVideoId, setCurrentVideoId] = useState(null);
   const containerRef = useRef(null);
   const backToTopBtnRef = useRef(null);
 
   useEffect(() => {
-    fetch(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${MAX_RESULTS}&playlistId=${PLAYLIST_ID}&key=${API_KEY}`)
-      .then(response => response.json())
-      .then(data => {
-        const fetchedCourses = data.items.map(item => ({
-          title: item.snippet.title,
-          thumbnail: item.snippet.thumbnails.medium.url,
-          videoId: item.snippet.resourceId.videoId,
-          viewCount: Math.floor(Math.random() * 10000) + 1000, // YouTube API needs another call for real views
-        }));
-        setCourses(fetchedCourses);
-      })
-      .catch(error => console.error('Error fetching YouTube playlist:', error));
+    fetchVideos();
   }, []);
+
+  const fetchVideos = async () => {
+    try {
+      const response = await fetch(
+        'https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=20&playlistId=PLoYCgNOIyGABDU532eesybur5HPBVfC1G&key=AIzaSyD-SJkFXqteSzaQPVUSqo5Lq3CaQh2j5pU'
+      );
+      const data = await response.json();
+      const fetchedVideos = data.items.map(item => ({
+        videoId: item.snippet.resourceId.videoId,
+        title: item.snippet.title,
+        thumbnail: item.snippet.thumbnails?.high?.url,
+      }));
+      setVideos(fetchedVideos);
+    } catch (error) {
+      console.error('Error fetching videos:', error);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
       const container = containerRef.current;
       if (container) {
         const { scrollTop, scrollHeight, clientHeight } = container;
-        if (scrollTop + clientHeight >= scrollHeight - 10) {
-          // You can implement load more videos if needed
+        if (scrollTop + clientHeight >= scrollHeight - 10) { 
+          // Can implement load more if you have pagination
         }
 
         if (scrollTop > 100) {
@@ -56,6 +58,10 @@ const Courses = () => {
     };
   }, []);
 
+  const backToTop = () => {
+    containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleVideoClick = (videoId) => {
     setCurrentVideoId(videoId);
     setIsPlaying(true);
@@ -64,10 +70,6 @@ const Courses = () => {
   const handleClosePlaybox = () => {
     setIsPlaying(false);
     setCurrentVideoId(null);
-  };
-
-  const backToTop = () => {
-    containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -100,20 +102,20 @@ const Courses = () => {
 
       <div className='holevideo-container' ref={containerRef}>
         <div className='video-row'>
-          {courses.map((course, index) => (
+          {videos.map((video, index) => (
             <div className='first-box' key={index}>
               <div className='second-box'>
-                <div className='video-img' onClick={() => handleVideoClick(course.videoId)}>
-                  <img src={course.thumbnail} alt="video thumbnail" style={{ width: '100%', height: '100%', borderRadius: '10px' }} />
+                <div className='video-img' onClick={() => handleVideoClick(video.videoId)}>
+                  <img src={video.thumbnail} alt="Thumbnail" className='thumbnail-img' />
                 </div>
                 <div className='thumnle'>
-                  <h2>{course.title}</h2>
+                  <h2>{video.title}</h2>
                 </div>
-                <p>Views: {course.viewCount}</p>
+                <p>Views: Public</p> {/* Can't fetch exact view count here without another API call */}
               </div>
               <div className='last'>
-                <h3>YouTube Free</h3>
-                <button className='add-btn'>add</button>
+                <h3>Free • YouTube</h3>
+                <button className='add-btn'>Add</button>
               </div>
             </div>
           ))}
@@ -121,27 +123,33 @@ const Courses = () => {
       </div>
 
       {/* Playbox */}
-      <div className={`playbox ${isPlaying ? 'show' : ''}`}>
-        {currentVideoId && (
-          <iframe
-            width="100%"
-            height="100%"
-            src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1`}
+      {isPlaying && (
+        <div className='playbox show'>
+          <iframe 
+            width="100%" 
+            height="100%" 
+            src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1`} 
+            title="YouTube video player"
             frameBorder="0"
             allow="autoplay; encrypted-media"
             allowFullScreen
-            title="Video player"
           ></iframe>
-        )}
-        <button className='close-btn' onClick={handleClosePlaybox}>Close</button>
-      </div>
+          <button className='close-btn' onClick={handleClosePlaybox}>
+            Close
+          </button>
+        </div>
+      )}
 
       {/* Back to Top Button */}
-      <button className='back-to-top' onClick={backToTop} ref={backToTopBtnRef}>
+      <button 
+        className='back-to-top' 
+        onClick={backToTop} 
+        ref={backToTopBtnRef}
+      >
         Back to Top
       </button>
     </div>
   );
-}
+};
 
 export default Courses;
