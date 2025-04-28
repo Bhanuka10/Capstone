@@ -1,24 +1,42 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Courses.css';
 
+const API_KEY = 'AIzaSyD-SJkFXqteSzaQPVUSqo5Lq3CaQh2j5pU';
+const PLAYLIST_ID = 'PLoYCgNOIyGABDU532eesybur5HPBVfC1G';
+const MAX_RESULTS = 20;
+
 const Courses = () => {
-  const [courses, setCourses] = useState(Array(8).fill(0)); // Start with 8 courses
-  const [isPlaying, setIsPlaying] = useState(false); // State to track if a course is playing
-  const [currentCourse, setCurrentCourse] = useState(null); // Track which course is being played
-  const containerRef = useRef(null); // Ref to the holevideo-container
-  const backToTopBtnRef = useRef(null); // Ref for the Back to Top button
+  const [courses, setCourses] = useState([]);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentVideoId, setCurrentVideoId] = useState(null);
+  const containerRef = useRef(null);
+  const backToTopBtnRef = useRef(null);
+
+  useEffect(() => {
+    fetch(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${MAX_RESULTS}&playlistId=${PLAYLIST_ID}&key=${API_KEY}`)
+      .then(response => response.json())
+      .then(data => {
+        const fetchedCourses = data.items.map(item => ({
+          title: item.snippet.title,
+          thumbnail: item.snippet.thumbnails.medium.url,
+          videoId: item.snippet.resourceId.videoId,
+          viewCount: Math.floor(Math.random() * 10000) + 1000, // YouTube API needs another call for real views
+        }));
+        setCourses(fetchedCourses);
+      })
+      .catch(error => console.error('Error fetching YouTube playlist:', error));
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       const container = containerRef.current;
       if (container) {
         const { scrollTop, scrollHeight, clientHeight } = container;
-        if (scrollTop + clientHeight >= scrollHeight - 10) { 
-          loadMoreCourses();
+        if (scrollTop + clientHeight >= scrollHeight - 10) {
+          // You can implement load more videos if needed
         }
 
-        // Show the back-to-top button when scrolling down
-        if (scrollTop > 100) { // Show button after scrolling 100px
+        if (scrollTop > 100) {
           backToTopBtnRef.current.style.display = 'block';
         } else {
           backToTopBtnRef.current.style.display = 'none';
@@ -38,22 +56,18 @@ const Courses = () => {
     };
   }, []);
 
-  const loadMoreCourses = () => {
-    setCourses(prev => [...prev, ...Array(4).fill(0)]); // Add 4 more courses
+  const handleVideoClick = (videoId) => {
+    setCurrentVideoId(videoId);
+    setIsPlaying(true);
+  };
+
+  const handleClosePlaybox = () => {
+    setIsPlaying(false);
+    setCurrentVideoId(null);
   };
 
   const backToTop = () => {
     containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleCourseClick = (courseIndex) => {
-    setCurrentCourse(courseIndex);
-    setIsPlaying(true); // Set playing state to true when a course is clicked
-  };
-
-  const handleClosePlaybox = () => {
-    setIsPlaying(false); // Hide the playbox when closing
-    setCurrentCourse(null);
   };
 
   return (
@@ -85,49 +99,45 @@ const Courses = () => {
       </div>
 
       <div className='holevideo-container' ref={containerRef}>
-        
         <div className='video-row'>
-          {courses.map((_, index) => (
+          {courses.map((course, index) => (
             <div className='first-box' key={index}>
               <div className='second-box'>
-                {/* Trigger playbox when video-img is clicked */}
-                <div className='video-img' onClick={() => handleCourseClick(index)}></div>
-                <div className='thumnle'>
-                  <h2>Hello World {index + 1}</h2>
+                <div className='video-img' onClick={() => handleVideoClick(course.videoId)}>
+                  <img src={course.thumbnail} alt="video thumbnail" style={{ width: '100%', height: '100%', borderRadius: '10px' }} />
                 </div>
-                <p>View count</p>
+                <div className='thumnle'>
+                  <h2>{course.title}</h2>
+                </div>
+                <p>Views: {course.viewCount}</p>
               </div>
               <div className='last'>
-                <h3>availability</h3>
-                <button 
-                  className='add-btn'
-                >
-                  add
-                </button>
+                <h3>YouTube Free</h3>
+                <button className='add-btn'>add</button>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Playbox should only be visible when a course is playing */}
+      {/* Playbox */}
       <div className={`playbox ${isPlaying ? 'show' : ''}`}>
-        <h2>Playing Course {currentCourse + 1}</h2>
-        {/* You can add a video player or other content here */}
-        <button 
-          className='close-btn' 
-          onClick={handleClosePlaybox} // Close playbox
-        >
-          Close
-        </button>
+        {currentVideoId && (
+          <iframe
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1`}
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+            title="Video player"
+          ></iframe>
+        )}
+        <button className='close-btn' onClick={handleClosePlaybox}>Close</button>
       </div>
 
       {/* Back to Top Button */}
-      <button 
-        className='back-to-top' 
-        onClick={backToTop} 
-        ref={backToTopBtnRef}
-      >
+      <button className='back-to-top' onClick={backToTop} ref={backToTopBtnRef}>
         Back to Top
       </button>
     </div>
