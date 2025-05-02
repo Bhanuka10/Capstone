@@ -12,13 +12,11 @@ const Courses = () => {
   const containerRef = useRef(null);
   const backToTopBtnRef = useRef(null);
 
-  // Load view counts from localStorage
   const getStoredViewCounts = () => {
     const stored = localStorage.getItem('videoViewCounts');
     return stored ? JSON.parse(stored) : {};
   };
 
-  // Save view counts to localStorage
   const saveViewCounts = (counts) => {
     localStorage.setItem('videoViewCounts', JSON.stringify(counts));
   };
@@ -46,8 +44,7 @@ const Courses = () => {
     const handleScroll = () => {
       const container = containerRef.current;
       if (container) {
-        const { scrollTop } = container;
-        backToTopBtnRef.current.style.display = scrollTop > 100 ? 'block' : 'none';
+        backToTopBtnRef.current.style.display = container.scrollTop > 100 ? 'block' : 'none';
       }
     };
 
@@ -67,7 +64,6 @@ const Courses = () => {
     setIsPlaying(true);
     setCurrentVideoId(videoId);
 
-    // Increment view count and persist
     setCourses(prevCourses => {
       const updated = prevCourses.map(course =>
         course.videoId === videoId
@@ -75,7 +71,6 @@ const Courses = () => {
           : course
       );
 
-      // Update localStorage
       const updatedCounts = getStoredViewCounts();
       updatedCounts[videoId] = (updatedCounts[videoId] || 0) + 1;
       saveViewCounts(updatedCounts);
@@ -101,16 +96,16 @@ const Courses = () => {
 
       <div className='icons-row'>
         <div className='icons-ai'>
-          <img src="select-all.png" alt="" />
+          <img src="select-all.png" alt="All Courses" />
         </div>
         <div className='icons'>
           <ul>
-            <li><img src="domain.png" alt="" /></li>
-            <li><img src="game-development.png" alt="" /></li>
-            <li><img src="data-science.png" alt="" /></li>
-            <li><img src="ai.png" alt="" /></li>
-            <li><img src="mobile-development.png" alt="" /></li>
-            <li><img src="technology.png" alt="" /></li>
+            <li><img src="domain.png" alt="Domain" /></li>
+            <li><img src="game-development.png" alt="Game Dev" /></li>
+            <li><img src="data-science.png" alt="Data Science" /></li>
+            <li><img src="ai.png" alt="AI" /></li>
+            <li><img src="mobile-development.png" alt="Mobile Dev" /></li>
+            <li><img src="technology.png" alt="Technology" /></li>
           </ul>
         </div>
       </div>
