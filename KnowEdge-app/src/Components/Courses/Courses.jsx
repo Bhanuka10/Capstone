@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import './Courses.css';
 
 const API_KEY = 'AIzaSyD-SJkFXqteSzaQPVUSqo5Lq3CaQh2j5pU';
-const PLAYLIST_IDS = [
+const DOMAIN_PLAYLIST_IDS = [
   'PLoYCgNOIyGABDU532eesybur5HPBVfC1G',
   'PLTjRvDozrdlw0x_FcXItVVVVh-RP-5hdP',
-  'PLXNgqM9ig24c7IdumyymD9q3e2hsz9U1m' // New Playlist ID
+  'PLXNgqM9ig24c7IdumyymD9q3e2hsz9U1m'
 ];
 const MAX_RESULTS = 20;
 
@@ -25,43 +25,41 @@ const Courses = () => {
     localStorage.setItem('videoViewCounts', JSON.stringify(counts));
   };
 
-  useEffect(() => {
+  const fetchPlaylistVideos = async (playlistId) => {
+    const response = await fetch(
+      `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${MAX_RESULTS}&playlistId=${playlistId}&key=${API_KEY}`
+    );
+    const data = await response.json();
     const storedCounts = getStoredViewCounts();
+    return data.items.map(item => {
+      const videoId = item.snippet.resourceId.videoId;
+      return {
+        title: item.snippet.title,
+        thumbnail: item.snippet.thumbnails.medium.url,
+        videoId,
+        viewCount: storedCounts[videoId] || 0
+      };
+    });
+  };
 
-    const fetchPlaylistVideos = async (playlistId) => {
-      const response = await fetch(
-        `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${MAX_RESULTS}&playlistId=${playlistId}&key=${API_KEY}`
-      );
-      const data = await response.json();
-      return data.items.map(item => {
-        const videoId = item.snippet.resourceId.videoId;
-        return {
-          title: item.snippet.title,
-          thumbnail: item.snippet.thumbnails.medium.url,
-          videoId: videoId,
-          viewCount: storedCounts[videoId] || 0,
-        };
-      });
-    };
+  const loadDomainCourses = async () => {
+    try {
+      const allCourses = await Promise.all(DOMAIN_PLAYLIST_IDS.map(fetchPlaylistVideos));
+      setCourses(allCourses.flat().sort(() => Math.random() - 0.5));
+    } catch (error) {
+      console.error('Error loading courses:', error);
+    }
+  };
 
-    const fetchAllPlaylists = async () => {
-      try {
-        const allCourses = await Promise.all(PLAYLIST_IDS.map(fetchPlaylistVideos));
-        const mergedCourses = allCourses.flat(); // Merge all playlist items
-        setCourses(mergedCourses.sort(() => Math.random() - 0.5)); // Optional shuffle
-      } catch (error) {
-        console.error('Error fetching playlists:', error);
-      }
-    };
-
-    fetchAllPlaylists();
+  useEffect(() => {
+    loadDomainCourses();
   }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      const container = containerRef.current;
-      if (container) {
-        backToTopBtnRef.current.style.display = container.scrollTop > 100 ? 'block' : 'none';
+      if (containerRef.current) {
+        backToTopBtnRef.current.style.display =
+          containerRef.current.scrollTop > 100 ? 'block' : 'none';
       }
     };
 
@@ -76,6 +74,14 @@ const Courses = () => {
       }
     };
   }, []);
+
+  const handleIconClick = (icon) => {
+    if (icon === 'domain') {
+      loadDomainCourses();
+    } else {
+      setCourses([]); // Placeholder action
+    }
+  };
 
   const handleVideoClick = (videoId) => {
     setIsPlaying(true);
@@ -117,12 +123,24 @@ const Courses = () => {
         </div>
         <div className='icons'>
           <ul>
-            <li><img src="domain.png" alt="Domain" /></li>
-            <li><img src="game-development.png" alt="Game Dev" /></li>
-            <li><img src="data-science.png" alt="Data Science" /></li>
-            <li><img src="ai.png" alt="AI" /></li>
-            <li><img src="mobile-development.png" alt="Mobile Dev" /></li>
-            <li><img src="technology.png" alt="Technology" /></li>
+            <li onClick={() => handleIconClick('domain')}>
+              <img src="domain.png" alt="Domain" />
+            </li>
+            <li onClick={() => handleIconClick('game')}>
+              <img src="game-development.png" alt="Game Dev" />
+            </li>
+            <li onClick={() => handleIconClick('data')}>
+              <img src="data-science.png" alt="Data Science" />
+            </li>
+            <li onClick={() => handleIconClick('ai')}>
+              <img src="ai.png" alt="AI" />
+            </li>
+            <li onClick={() => handleIconClick('mobile')}>
+              <img src="mobile-development.png" alt="Mobile Dev" />
+            </li>
+            <li onClick={() => handleIconClick('tech')}>
+              <img src="technology.png" alt="Technology" />
+            </li>
           </ul>
         </div>
       </div>
