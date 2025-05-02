@@ -2,8 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import './Courses.css';
 
 const API_KEY = 'AIzaSyD-SJkFXqteSzaQPVUSqo5Lq3CaQh2j5pU';
-const PLAYLIST_ID = 'PLoYCgNOIyGABDU532eesybur5HPBVfC1G';
-const MAX_RESULTS = 20;
+const PLAYLIST_IDS = [
+  'PLoYCgNOIyGABDU532eesybur5HPBVfC1G',
+  'PLTjRvDozrdlw0x_FcXItVVVVh-RP-5hdP'
+];
+const MAX_RESULTS = 10;
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
@@ -22,22 +25,35 @@ const Courses = () => {
   };
 
   useEffect(() => {
-    fetch(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${MAX_RESULTS}&playlistId=${PLAYLIST_ID}&key=${API_KEY}`)
-      .then(response => response.json())
-      .then(data => {
-        const storedCounts = getStoredViewCounts();
-        const fetchedCourses = data.items.map(item => {
-          const videoId = item.snippet.resourceId.videoId;
-          return {
-            title: item.snippet.title,
-            thumbnail: item.snippet.thumbnails.medium.url,
-            videoId: videoId,
-            viewCount: storedCounts[videoId] || 0,
-          };
-        });
-        setCourses(fetchedCourses);
-      })
-      .catch(error => console.error('Error fetching YouTube playlist:', error));
+    const storedCounts = getStoredViewCounts();
+
+    const fetchPlaylistVideos = async (playlistId) => {
+      const response = await fetch(
+        `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${MAX_RESULTS}&playlistId=${playlistId}&key=${API_KEY}`
+      );
+      const data = await response.json();
+      return data.items.map(item => {
+        const videoId = item.snippet.resourceId.videoId;
+        return {
+          title: item.snippet.title,
+          thumbnail: item.snippet.thumbnails.medium.url,
+          videoId: videoId,
+          viewCount: storedCounts[videoId] || 0,
+        };
+      });
+    };
+
+    const fetchAllPlaylists = async () => {
+      try {
+        const allCourses = await Promise.all(PLAYLIST_IDS.map(fetchPlaylistVideos));
+        const mergedCourses = allCourses.flat();
+        setCourses(mergedCourses.sort(() => Math.random() - 0.5)); // shuffle
+      } catch (error) {
+        console.error('Error fetching playlists:', error);
+      }
+    };
+
+    fetchAllPlaylists();
   }, []);
 
   useEffect(() => {
