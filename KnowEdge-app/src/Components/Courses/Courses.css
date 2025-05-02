@@ -186,20 +186,29 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  padding-top: 0px;
+  overflow: hidden; /* Prevent thumbnail overflow */
 }
 
-
 .video-img {
-  width: 190px;
+  width: 100%;
   height: 110px;
   background-color: white;
-  margin: 10px auto 0 auto;
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden; /* Prevent image overflow */
 }
+
+.video-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Crop image to fit the container */
+  border-radius: 0;
+}
+
 
 .thumnle {
   max-width: 180px;
@@ -223,11 +232,11 @@
 
 .last {
   display: flex;
-  margin-top: 20px;
+  margin-top: 0px;
   margin-left: 5px;
   gap: 40px;
   width: 100%;
-  height: 20px;
+  height: 0px;
   justify-content: center;
   align-items: center;
 }

@@ -12,16 +12,31 @@ const Courses = () => {
   const containerRef = useRef(null);
   const backToTopBtnRef = useRef(null);
 
+  // Load view counts from localStorage
+  const getStoredViewCounts = () => {
+    const stored = localStorage.getItem('videoViewCounts');
+    return stored ? JSON.parse(stored) : {};
+  };
+
+  // Save view counts to localStorage
+  const saveViewCounts = (counts) => {
+    localStorage.setItem('videoViewCounts', JSON.stringify(counts));
+  };
+
   useEffect(() => {
     fetch(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${MAX_RESULTS}&playlistId=${PLAYLIST_ID}&key=${API_KEY}`)
       .then(response => response.json())
       .then(data => {
-        const fetchedCourses = data.items.map(item => ({
-          title: item.snippet.title,
-          thumbnail: item.snippet.thumbnails.medium.url,
-          videoId: item.snippet.resourceId.videoId,
-          viewCount: Math.floor(Math.random() * 10000) + 1000, // YouTube API needs another call for real views
-        }));
+        const storedCounts = getStoredViewCounts();
+        const fetchedCourses = data.items.map(item => {
+          const videoId = item.snippet.resourceId.videoId;
+          return {
+            title: item.snippet.title,
+            thumbnail: item.snippet.thumbnails.medium.url,
+            videoId: videoId,
+            viewCount: storedCounts[videoId] || 0,
+          };
+        });
         setCourses(fetchedCourses);
       })
       .catch(error => console.error('Error fetching YouTube playlist:', error));
@@ -31,16 +46,8 @@ const Courses = () => {
     const handleScroll = () => {
       const container = containerRef.current;
       if (container) {
-        const { scrollTop, scrollHeight, clientHeight } = container;
-        if (scrollTop + clientHeight >= scrollHeight - 10) {
-          // You can implement load more videos if needed
-        }
-
-        if (scrollTop > 100) {
-          backToTopBtnRef.current.style.display = 'block';
-        } else {
-          backToTopBtnRef.current.style.display = 'none';
-        }
+        const { scrollTop } = container;
+        backToTopBtnRef.current.style.display = scrollTop > 100 ? 'block' : 'none';
       }
     };
 
@@ -57,8 +64,24 @@ const Courses = () => {
   }, []);
 
   const handleVideoClick = (videoId) => {
-    setCurrentVideoId(videoId);
     setIsPlaying(true);
+    setCurrentVideoId(videoId);
+
+    // Increment view count and persist
+    setCourses(prevCourses => {
+      const updated = prevCourses.map(course =>
+        course.videoId === videoId
+          ? { ...course, viewCount: course.viewCount + 1 }
+          : course
+      );
+
+      // Update localStorage
+      const updatedCounts = getStoredViewCounts();
+      updatedCounts[videoId] = (updatedCounts[videoId] || 0) + 1;
+      saveViewCounts(updatedCounts);
+
+      return updated;
+    });
   };
 
   const handleClosePlaybox = () => {
@@ -104,13 +127,13 @@ const Courses = () => {
             <div className='first-box' key={index}>
               <div className='second-box'>
                 <div className='video-img' onClick={() => handleVideoClick(course.videoId)}>
-                  <img src={course.thumbnail} alt="video thumbnail" style={{ width: '100%', height: '100%', borderRadius: '10px' }} />
+                  <img src={course.thumbnail} alt="video thumbnail" />
                 </div>
                 <div className='thumnle'>
                   <h2>{course.title}</h2>
                 </div>
-                <p>Views: {course.viewCount}</p>
               </div>
+              <p>Views: {course.viewCount}</p>
               <div className='last'>
                 <h3>YouTube Free</h3>
                 <button className='add-btn'>add</button>
@@ -120,7 +143,6 @@ const Courses = () => {
         </div>
       </div>
 
-      {/* Playbox */}
       <div className={`playbox ${isPlaying ? 'show' : ''}`}>
         {currentVideoId && (
           <iframe
@@ -136,12 +158,11 @@ const Courses = () => {
         <button className='close-btn' onClick={handleClosePlaybox}>Close</button>
       </div>
 
-      {/* Back to Top Button */}
       <button className='back-to-top' onClick={backToTop} ref={backToTopBtnRef}>
         Back to Top
       </button>
     </div>
   );
-}
+};
 
 export default Courses;
