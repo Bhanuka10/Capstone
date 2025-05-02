@@ -4,9 +4,10 @@ import './Courses.css';
 const API_KEY = 'AIzaSyD-SJkFXqteSzaQPVUSqo5Lq3CaQh2j5pU';
 const PLAYLIST_IDS = [
   'PLoYCgNOIyGABDU532eesybur5HPBVfC1G',
-  'PLTjRvDozrdlw0x_FcXItVVVVh-RP-5hdP'
+  'PLTjRvDozrdlw0x_FcXItVVVVh-RP-5hdP',
+  'PLXNgqM9ig24c7IdumyymD9q3e2hsz9U1m' // New Playlist ID
 ];
-const MAX_RESULTS = 10;
+const MAX_RESULTS = 20;
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
@@ -46,8 +47,8 @@ const Courses = () => {
     const fetchAllPlaylists = async () => {
       try {
         const allCourses = await Promise.all(PLAYLIST_IDS.map(fetchPlaylistVideos));
-        const mergedCourses = allCourses.flat();
-        setCourses(mergedCourses.sort(() => Math.random() - 0.5)); // shuffle
+        const mergedCourses = allCourses.flat(); // Merge all playlist items
+        setCourses(mergedCourses.sort(() => Math.random() - 0.5)); // Optional shuffle
       } catch (error) {
         console.error('Error fetching playlists:', error);
       }
