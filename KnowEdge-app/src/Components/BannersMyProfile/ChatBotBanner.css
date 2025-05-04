@@ -8,12 +8,13 @@
     margin-left: auto;
     margin-right: auto;
     height: 80px;
+    background: linear-gradient(to right, #25D3E9, #03A6BC);
+    text-align: center;
     display: flex;
-    align-items: center;
     justify-content: center;
-    color: #074D66;
-
+    align-items: center;
 }
+
 
 .chatbot-banner h2{
   font-family: 'Poppins', sans-serif;
