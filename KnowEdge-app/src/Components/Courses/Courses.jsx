@@ -68,8 +68,8 @@ const Courses = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (containerRef.current) {
-        backToTopBtnRef.current.style.display =
-          containerRef.current.scrollTop > 100 ? 'block' : 'none';
+        const isAtTop = containerRef.current.scrollTop > 100;
+        backToTopBtnRef.current.style.display = isAtTop ? 'block' : 'none';
       }
     };
 
@@ -82,6 +82,20 @@ const Courses = () => {
       if (container) {
         container.removeEventListener('scroll', handleScroll);
       }
+    };
+  }, []);
+
+  useEffect(() => {
+    const handlePageChange = () => {
+      if (backToTopBtnRef.current) {
+        backToTopBtnRef.current.style.display = 'none';
+      }
+    };
+
+    window.addEventListener('popstate', handlePageChange);
+
+    return () => {
+      window.removeEventListener('popstate', handlePageChange);
     };
   }, []);
 
