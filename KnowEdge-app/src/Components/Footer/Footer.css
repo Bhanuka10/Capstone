@@ -20,3 +20,33 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.social-media-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
+}
+.footer-links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+    
+    
+}
+.footer-links ul {
+    gap: initial;
+}
+.footer-links ul li {
+    margin: 0 10px;
+    color: aliceblue;
+    font-family: poppins;
+    font-size: 12px;
+    font-weight: 600;
+}
+.social-media-icons img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
