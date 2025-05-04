@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
+    margin-left: 10px;
 }
 
 .logo img {
@@ -31,7 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 30px;
+    margin-left: 50px;
     
     
 }
@@ -45,8 +45,36 @@
     font-size: 12px;
     font-weight: 600;
 }
+.social-media{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    
+}
 .social-media-icons img {
     width: 30px;
     height: 30px;
     cursor: pointer;
+}
+.social-media h3{
+    color: aliceblue;
+    font-family: poppins;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    margin-top: 30px;
+
+}
+.social-media h2{
+    color: aliceblue;
+    font-family: poppins;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    margin-top: 20px;
 }

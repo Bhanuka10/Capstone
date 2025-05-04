@@ -21,7 +21,7 @@ const Footer = () => {
             <img src="/youtube.png" alt="YouTube" />
             <img src="/linkedin.png" alt="LinkedIn" />
         </div>
-        <h3>support@knowedge.com</h3>
+        <a href="http://"><h3>support@knowedge.com</h3></a>
         <h2>KnowEdge</h2>
     </div>
     <div className='footer-bottom'>
