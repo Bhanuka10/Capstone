@@ -56,6 +56,16 @@ const Courses = () => {
   }, []);
 
   useEffect(() => {
+    const storedCounts = getStoredViewCounts();
+    setCourses(prevCourses => {
+        return prevCourses.map(course => ({
+            ...course,
+            viewCount: storedCounts[course.videoId] || course.viewCount
+        }));
+    });
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       if (containerRef.current) {
         backToTopBtnRef.current.style.display =
