@@ -2,8 +2,8 @@ import React from 'react'
 import './Footer.css'
 const Footer = () => {
   return (
-    <div>
-        <div><img src="DALL·E 2025-03-07 23.02.25 - A modern, sleek logo design combining the letters K and E in an elegant and creative way. The design should focus on a clean, minimalistic aesthetic w.pngDALL·E 2025-03-07 23.02.25 - A modern, sleek logo design combining the letters K and E in an elegant and creative way. The design should focus on a clean, minimalistic aesthetic w.png" alt="" /></div>
+    <div className='footer'>
+        <div className='logo'><img src="/DALL·E 2025-03-07 23.02.25 - A modern, sleek logo design combining the letters K and E in an elegant and creative way. The design should focus on a clean, minimalistic aesthetic w.png" alt="Logo" /></div>
     <div>
         <ul>
         <li>Home </li>
@@ -15,11 +15,11 @@ const Footer = () => {
     </div>
     <div>
         <div>
-            <img src="instagram.png" alt="" />
-            <img src="facebook.png" alt="" />
-            <img src="tiktok.png" alt="" />
-            <img src="youtube.png" alt="" />
-            <img src="linkedin.png" alt="" />
+            <img src="/instagram.png" alt="Instagram" />
+            <img src="/facebook.png" alt="Facebook" />
+            <img src="/tiktok.png" alt="TikTok" />
+            <img src="/youtube.png" alt="YouTube" />
+            <img src="/linkedin.png" alt="LinkedIn" />
         </div>
         <h3>support@knowedge.com</h3>
         <h2>KnowEdge</h2>
