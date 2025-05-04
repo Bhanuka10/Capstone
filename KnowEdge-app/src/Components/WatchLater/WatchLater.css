@@ -1,0 +1,105 @@
+/* Main container for Watch Later */
+.watched-later {
+    padding: 40px 20px;
+    background: white;
+    text-align: center;
+  }
+  
+  /* Heading for Watch Later section */
+  .watched-title {
+    font-size: 24px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  
+  /* Container for all video cards (flex layout) */
+  .video-cards {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  /* Styling for each video card */
+  .video-card {
+    width: 220px;
+    border-radius: 12px;
+    background: #D8E5E7;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+  }
+  
+  /* Hover effect for video card */
+  .video-card:hover {
+    transform: scale(1.03);
+  }
+  
+  /* Video thumbnail image */
+  .video-img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Container for text and metadata under thumbnail */
+  .video-details {
+    padding: 10px;
+  }
+  
+  /* Title of the video */
+  .video-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  /* Layout for footer row inside card */
+  .video-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  
+  /* Label like "Free" */
+  .free-label {
+    color: green;
+    font-weight: bold;
+  }
+  
+  /* Star rating style */
+  .stars {
+    color: red;
+  }
+  
+  /* Add button style */
+  .add-btn {
+    padding: 4px 8px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Styling for views count text */
+  .views-count {
+    text-align: left;
+    font-size: 12px;
+    color: #555;
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+  
+  /* View More button at the bottom */
+  .view-more-btn {
+    margin-top: 30px;
+    padding: 8px 20px;
+    border: none;
+    background-color: #e0e0e0;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+  }
