@@ -1,0 +1,202 @@
+/* Dashboard.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(270deg, rgba(120, 255, 214, 0.65) 0%, rgba(0, 121, 145, 0.92) 100%);
+}
+
+.dashboard-container {
+    display: flex;
+    height: 100%;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #fff;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    margin-top:15px;
+    border-radius: 20px 20px 0 0;
+}
+
+.logo {
+    width:100%;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 130px;
+}
+
+.menu {
+    width: 100%;
+    display:grid;
+    row-gap: 50px;
+}
+
+.menu-item {
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+.menu-item.active {
+    border-radius: 8px 0px 0px 8px;
+    border: 1px solid #0D9488;
+    background: #2DD4C5;
+    width:70%;
+}
+
+.main-content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.search-bar {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    width: 300px;
+}
+
+.admin-profile {
+    font-weight: bold;
+}
+
+.title {
+    font-size: 2.5em;
+    margin-right: 80px;
+}
+
+.stats-cards {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 50px;
+    height: 180px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    flex: 1;
+}
+
+.card h2{
+    font-size: 2.8em;
+    margin-top: 0;
+}
+.card-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.5em;
+    /*margin-top: 10px;*/
+}
+
+.lower-section {
+    display: flex;
+    gap: 30px;
+    flex: 1;
+}
+
+.field-overview, .trending-courses {
+    border-radius: 40px;
+    background: rgba(201, 221, 230, 0.46);
+    padding: 20px;
+    padding-bottom:40px;
+    flex: 1;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.pie-chart{
+    height: 200px;
+    background-color: #c6f4ef;
+    border-radius: 50%;
+    margin: 20px auto;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #666;
+    transform:translateY(20px);
+}
+
+.field-overview .inner-box{
+    display:flex;
+}
+.legend {
+    display: flex;
+    justify-content: space-around;
+    font-size: 0.9em;
+    margin-right:20px;
+    flex-direction:column;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+
+.legend-color.it {
+    background-color: #00c9a7;
+}
+
+.legend-color.business {
+    background-color: #007e73;
+}
+
+
+.inner-box{
+    width:100%;
+    height:85%;
+    margin-top:30px;
+    border-radius: 40px;
+    background: #FFF;
+}
+.trending-courses table {
+    width: 91%;
+    border-collapse: collapse;
+    transform:translate(20px , 10px);
+    font-size: 0.85em;
+    border-radius:50px;
+}
+
+.trending-courses th, .trending-courses td {
+    text-align: left;
+    padding: 8px 12px;
+    /*border-bottom: 1px solid #ccc;*/
+}
+
+.trending-courses thead th {
+    background: rgba(149, 223, 209, 0.53);
+    padding: 10px;
+}
+
+/* Add border-radius to the first and last <th> for rounded corners */
+.trending-courses thead th:first-child {
+    border-top-left-radius: 20px;
+}
+
+.trending-courses thead th:last-child {
+    border-top-right-radius: 20px;
+}
