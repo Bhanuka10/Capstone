@@ -1,0 +1,170 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: outfit;
+    padding: 30px 30px;
+}
+
+.first {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    margin-left: 80px;
+}
+
+.logo img {
+    width: 70px;
+    height: auto;
+    vertical-align: top;
+    margin: none;
+    border-radius: 50px;
+    object-fit: cover;
+}
+
+.user-logo img {
+    width: 55px;
+    height: auto;
+    vertical-align: top;
+    cursor: pointer;
+    border: solid 2px #0f0f0f;
+    border-radius: 40px;
+}
+
+.menu {
+    margin-left: 20px;
+}
+
+.menu ul {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li {
+    font-size: 19px;
+    font-weight: 700;
+    color: rgb(4, 4, 4);
+    font-family: poppins;
+    cursor: pointer;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    position: relative;
+}
+
+.menu ul li:hover {
+    color: #007bff; /* Change text color on hover */
+}
+
+.menu ul li.active {
+    color: #007bff; /* Active menu item color */
+    border-bottom: 2px solid #007bff; /* Underline for active menu item */
+}
+
+.menu ul li a {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit color from parent */
+}
+
+.menu ul li a:hover {
+    color: inherit; /* Keep hover effect consistent */
+}
+
+.search {
+    width: 250px;
+    height: 43px;
+    background-color: #D9D9D9;
+    margin: auto 40px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    border-radius: 13px;
+}
+
+.search input {
+    width: 200px;
+    padding: 8px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 14px;
+    font-family: poppins;
+}
+
+.search-icon {
+    background-color: #DAF5F8;
+    margin-right: 10px;
+    border-radius: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-results {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.search-results ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+}
+
+.search-results ul li {
+    padding: 8px;
+    font-size: 14px;
+    font-family: poppins;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-results ul li:hover {
+    background-color: #f0f0f0;
+}
+
+.second {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.login-btn {
+    background-color: #DAF5F8;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.login-btn:hover {
+    background-color: #a0def5;
+    color: black;
+    cursor: pointer;
+}
+
+.login-btn button {
+    background-color: #DAF5F8;
+    color: black;
+    border: none;
+}
+
+.login-btn button:hover {
+    background-color: #a0def5;
+    color: black;
+    cursor: pointer;
+}

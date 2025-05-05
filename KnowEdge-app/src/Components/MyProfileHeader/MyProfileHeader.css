@@ -1,0 +1,119 @@
+.profile-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 40px auto;
+    gap: 20px;
+}
+
+.skillfordge-box{
+    background:linear-gradient(to bottom,#25D3E9,#046673) ;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    color: white;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    width: 70%;
+    height: 350px;
+    opacity: 95%;
+}
+
+.text-section{
+    max-width: 450px ; 
+    padding-left: 100px;
+    padding-top: 10px;
+}
+
+.text-section h2{
+    font-family: poppins;
+    font-weight: 800;
+    color: aliceblue;
+    font-size: 55px;
+    padding-left: 15px;
+}
+
+
+.left-bottom{
+    display: flex;
+    gap: 20px;
+}
+
+.subtitle{
+    font-family: poppins, sans-serif;
+    font-weight: 300;
+    color: aliceblue;
+    font-size: 18px;
+    width: 400px;
+    font-style: italic;
+    text-align-last: center ;
+    padding-top: -100px; 
+}
+
+.chatbot-button{
+    padding: 6px 20px;
+    color: #032E3F;
+    font-family: poppins;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    border: none;
+}
+
+.chatbot-button:hover{
+    background: #a7bbc2;
+    color: white;
+}
+
+.chatbot-button-wrapper{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px
+}
+
+.image-section{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.robot-image{
+    width: 300px;
+    height: auto;
+    object-fit: contain;
+    mix-blend-mode: multiply; /* Try overlay, soft-light, etc. */
+    
+}
+
+.profile-box{
+    background: #D9D9D9;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 25%;
+    height: 350px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.username{
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    font-family: poppins, sans-serif;
+}
+
+.content {
+    font-size: 14px;
+    color: gray;
+    align-items: center;
+}
+
+.profile-image{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
