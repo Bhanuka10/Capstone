@@ -32,6 +32,51 @@
 .comment-first-box{
     width: 350px;
     height: 250px; /* Set a fixed height to make the box visible */
-    background:rgb(130, 68, 68);
+    background:rgb(255, 255, 255);
     border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Added a subtle box shadow */
+}
+.id{
+    display: flex;
+    padding-top: 10px;
+    
+    
+}
+.id img{
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.id h2{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #820670;
+    justify-content: center;
+    align-items: center;
+    margin:0 auto;
+    display: flex;
+    text-decoration: underline;
+}
+.comment-text{
+    max-width: 90%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px auto;
+    border:  0.5px #565252;
+    background-color: rgb(249, 255, 255);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Added a subtle box shadow */
+ }
+ .comment-text p{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    color: #074D66;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
 }
