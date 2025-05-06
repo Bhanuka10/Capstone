@@ -1,29 +1,28 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Dashboard from "./Components/AdminPannel/dashboard";
+import AddCourse from "./Components/AdminAddCourses/AddCourse";
+import User from "./Components/AdminUser/User"
+import Feedback from "./Components/AdminFeedBack/Feedback"
 import Navbar from './Components/Navbar/Navbar';
 import Home from './Pages/Home/Home';
-import { Route, Routes } from 'react-router-dom';
 import Myprofile from './Pages/Myprofile/Myprofile';
-import MyProfileHeader from './Components/MyProfileHeader/MyProfileHeader';
-import ChatBotBanner from './Components/BannersMyProfile/ChatBotBanner';
-import ChatBot from './Components/ChatBot/ChatBot';
 
 const App = () => {
   return (
     <div className='app'>
 
-<Navbar />
+        <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/add-course" element={<AddCourse />} />
+            <Route path="/user-details" element={<User />} />
+            <Route path="/feedback" element={<Feedback />} />
+        </Routes>
 
-<Routes>
-        <Route path="/" element={<Home />} /> 
-        <Route path="/myprofile" element={<Myprofile />} />
-        
-      </Routes>
-
-
-      
-      
     </div>
   );
 };
+
+
 
 export default App;
