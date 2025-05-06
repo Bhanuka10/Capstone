@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import './dashboard.css';
+import AddCourse from "../AdminAddCourses/AddCourse";
 import { FaUser, FaBook, FaUsers, FaComments } from 'react-icons/fa';
 import { MdDashboard } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import SideBar from '../AdminSideBar/SideBar';
 
 const Dashboard = () => {
     const [activeMenu, setActiveMenu] = useState('dashboard'); // state for active item
@@ -12,23 +15,7 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-container">
-            <div className="sidebar">
-                <div className="logo">Expert Path</div>
-                <div className="menu">
-                    <div className={`menu-item ${activeMenu === 'dashboard' ? 'active' : ''}`} onClick={() => handleMenuClick('dashboard')}>
-                        <MdDashboard /> Dashboard
-                    </div>
-                    <div className={`menu-item ${activeMenu === 'users' ? 'active' : ''}`} onClick={() => handleMenuClick('users')}>
-                        <FaUsers /> Users
-                    </div>
-                    <div className={`menu-item ${activeMenu === 'courses' ? 'active' : ''}`} onClick={() => handleMenuClick('courses')}>
-                        <FaBook /> Courses
-                    </div>
-                    <div className={`menu-item ${activeMenu === 'feedback' ? 'active' : ''}`} onClick={() => handleMenuClick('feedback')}>
-                        <FaComments /> Feedback
-                    </div>
-                </div>
-            </div>
+            <SideBar activeMenu={activeMenu} onMenuClick={setActiveMenu} />
 
             <div className="main-content">
                 <div className="top-bar">
