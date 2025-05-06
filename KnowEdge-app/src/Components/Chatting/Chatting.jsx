@@ -5,6 +5,7 @@ import { MainContainer, ChatContainer, MessageList, Message, MessageInput, Typin
 const openai = new OpenAI({
     apiKey: import.meta.env.VITE_OPENAI_API_KEY,
   });
+//   const API_KEY=""
   
 const Chatting = () => {
     const [typing, setTyping] = React.useState(false);
