@@ -2,6 +2,10 @@ import React from 'react'
 import './Chatting.css'
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react'
+const openai = new OpenAI({
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+  });
+  
 const Chatting = () => {
     const [typing, setTyping] = React.useState(false);
     const [messages, setMessages] = React.useState([
@@ -23,6 +27,9 @@ const Chatting = () => {
         setMessages(newMessages);
 
         setTyping(true);
+        await processMessageToChatGPT(newMessages);
+    }
+    async function processMessageToChatGPT(chatMessages) {
     }
     return (
         <div>
@@ -45,3 +52,4 @@ const Chatting = () => {
 }
 
 export default Chatting
+
