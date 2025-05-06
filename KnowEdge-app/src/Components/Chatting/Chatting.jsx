@@ -3,6 +3,7 @@ import './Chatting.css'
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react'
 const Chatting = () => {
+    const [typing, setTyping] = React.useState(false);
     const [messages, setMessages] = React.useState([
         {
         message: "Hello, I'm here to help you with your learning journey!",
@@ -20,13 +21,17 @@ const Chatting = () => {
         }
         const newMessages = [...messages, newMessage]
         setMessages(newMessages);
+
+        setTyping(true);
     }
     return (
         <div>
             <div className='chatting-container'>
                 <MainContainer>
                     <ChatContainer>
-                        <MessageList> 
+                        <MessageList 
+                            typingIndicator={typing ? <TypingIndicator content="ChatGPT is typing" /> : null}
+                            >
                             {messages.map((message, i) => <Message key={i} model={message} />)}
 
                         </MessageList>
