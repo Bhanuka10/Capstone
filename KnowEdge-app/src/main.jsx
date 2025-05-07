@@ -1,9 +1,8 @@
+// main.jsx or index.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import App from './App';
 import Myprofile from './Pages/Myprofile/Myprofile';
 import Dashboard from "@/Components/AdminPannel/dashboard.jsx";
@@ -40,5 +39,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
 );

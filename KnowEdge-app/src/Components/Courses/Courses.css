@@ -6,7 +6,7 @@
 
 .Uper-bar {
   width: 100%;
-  height: 80px;
+  height: 100px;
   background: linear-gradient(to right, #25D3E9, #03A6BC);
   text-align: center;
   display: flex;
@@ -40,6 +40,7 @@
   width: 50px;
   height: 50px;
   margin: 0 10px;
+  cursor: pointer;
 }
 
 .icons-ai img {
@@ -74,9 +75,9 @@
 
 .holevideo-container {
   width: 80%;
-  height: 70vh;
-  background-color: rgb(0, 255, 110);
-  overflow-y: auto; /* Scroll inside */
+  height: 85vh;
+  
+  overflow-y: auto;
   margin: 0 auto;
   padding: 20px;
 }
@@ -85,13 +86,12 @@
   display: none;
 }
 
-/* Optional: You can also style the button to make it stand out */
 .back-to-top {
   position: fixed;
   bottom: 20px;
   right: 20px;
   background-color: #03A6BC;
-  color: #fff;
+  color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -99,13 +99,14 @@
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  display: none; /* Hidden by default */
+  display: none;
   z-index: 999;
 }
 
 .back-to-top:hover {
   background-color: #025f73;
 }
+
 .video-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -118,32 +119,33 @@
 
 @media (max-width: 768px) {
   .video-row {
-    grid-template-columns: repeat(2, 1fr); /* 2 courses per row on smaller screens */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 480px) {
   .video-row {
-    grid-template-columns: 1fr; /* 1 course per row on very small screens */
+    grid-template-columns: 1fr;
   }
 }
+
 .playbox {
   background-color: #025f73;
   height: 60vh;
   width: 80%;
   margin: 0 auto;
   border-radius: 10px;
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
-  top: 20%;  /* Position as you want */
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   padding: 20px;
-  z-index: 1000;  /* Ensure it's above other content */
+  z-index: 1000;
 }
 
 .playbox.show {
-  display: block; /* Show when 'show' class is added */
+  display: block;
 }
 
 .playbox .close-btn {
@@ -161,8 +163,6 @@
 .playbox .close-btn:hover {
   background-color: #ff3333;
 }
-
-
 
 .first-box {
   width: 200px;
@@ -186,19 +186,27 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  padding-top: 0px;
+  overflow: hidden;
 }
 
-
 .video-img {
-  width: 190px;
+  width: 100%;
   height: 110px;
   background-color: white;
-  margin: 10px auto 0 auto;
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+}
+
+.video-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
 }
 
 .thumnle {
@@ -223,11 +231,11 @@
 
 .last {
   display: flex;
-  margin-top: 20px;
+  margin-top: 0px;
   margin-left: 5px;
   gap: 40px;
   width: 100%;
-  height: 20px;
+  height: 0px;
   justify-content: center;
   align-items: center;
 }
@@ -258,22 +266,3 @@
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
-.load-more {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.load-more button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #03A6BC;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.load-more button:hover {
-  background-color: #025f73;
-}

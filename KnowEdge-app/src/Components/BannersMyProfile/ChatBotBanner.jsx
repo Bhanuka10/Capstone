@@ -4,7 +4,7 @@ import './ChatBotBanner.css'
 const ChatBotBanner = () => {
   return (
     <div className='chatbot-banner'>
-      <h2>Use Chatbot</h2>
+      <h1>Use Chatbot</h1>
     </div>
   )
 }
