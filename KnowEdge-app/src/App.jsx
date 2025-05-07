@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Dashboard from "./Components/AdminPannel/dashboard";
 import AddCourse from "./Components/AdminAddCourses/AddCourse";
 import User from "./Components/AdminUser/User"
@@ -11,20 +11,16 @@ import Myprofile from './Pages/Myprofile/Myprofile';
 const App = () => {
   return (
     <div className='app'>
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Myprofile />} />
-            <Route path="/dash" element={<Dashboard />} />
-            <Route path="/add-course" element={<AddCourse />} />
-            <Route path="/user-details" element={<User />} />
-            <Route path="/feedback" element={<Feedback />} />
-        </Routes>
-
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Myprofile />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/add-course" element={<AddCourse />} />
+        <Route path="/user-details" element={<User />} />
+        <Route path="/feedback" element={<Feedback />} />
+      </Routes>
     </div>
   );
 };
-
-
 
 export default App;

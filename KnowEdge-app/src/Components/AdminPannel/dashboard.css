@@ -1,14 +1,13 @@
 /* Dashboard.css */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(270deg, rgba(120, 255, 214, 0.65) 0%, rgba(0, 121, 145, 0.92) 100%);
-}
+
 
 .dashboard-container {
     display: flex;
     height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(270deg, rgba(120, 255, 214, 0.65) 0%, rgba(0, 121, 145, 
 }
 
 .sidebar {
