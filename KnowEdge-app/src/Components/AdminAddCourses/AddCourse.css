@@ -1,0 +1,59 @@
+.courses-section {
+    margin-top: 40px;
+}
+
+.table {
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.table-header,
+.table-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr 1fr 1fr;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.table-header {
+    font-weight: bold;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.edit,
+.delete {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.edit {
+    background-color: #e0e0e0;
+}
+
+.delete {
+    background: none;
+    font-size: 18px;
+}
+
+.add-course {
+    margin-top: 20px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 20px;
+    background-color: #1de9b6;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}

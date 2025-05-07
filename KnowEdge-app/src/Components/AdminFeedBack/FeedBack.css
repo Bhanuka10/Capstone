@@ -1,0 +1,70 @@
+.feedback-section {
+    margin-top: 40px;
+}
+
+
+.feedback-table {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    max-height: 600px;
+    overflow-y: auto;
+    font-family: sans-serif;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-table-header,
+.feedback-table-row {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    padding: 10px 15px;
+    align-items: center;
+}
+
+.table-header {
+    background-color: #e0f7f5;
+    font-weight: bold;
+}
+
+.cell {
+    padding: 5px 10px;
+}
+
+.email-cell {
+    flex: 1;
+    max-width: 150px;
+    word-break: break-word;
+}
+
+.message-cell {
+    flex: 2;
+    max-width: 600px;
+    transition: max-width 0.3s ease;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.message-cell.expanded {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: initial;
+}
+
+.action-cell {
+    flex: 0 0 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.view-btn {
+    background-color: #ccc;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 15px;
+    cursor: pointer;
+}
+
+.view-btn:hover {
+    background-color: #bbb;
+}
