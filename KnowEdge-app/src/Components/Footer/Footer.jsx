@@ -3,7 +3,7 @@ import './Footer.css'
 const Footer = () => {
   return (
     <div className='footer'>
-        <div className='logo'><img src="/DALL·E 2025-03-07 23.02.25 - A modern, sleek logo design combining the letters K and E in an elegant and creative way. The design should focus on a clean, minimalistic aesthetic w.png" alt="Logo" /></div>
+        <div className='logo-foot'><img src="/DALL·E 2025-03-07 23.02.25 - A modern, sleek logo design combining the letters K and E in an elegant and creative way. The design should focus on a clean, minimalistic aesthetic w.png" alt="Logo" /></div>
     <div className='footer-links'>
         <ul>
         <li>Home </li>
