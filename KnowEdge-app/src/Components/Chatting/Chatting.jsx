@@ -5,6 +5,7 @@ import { MainContainer, ChatContainer, MessageList, Message, MessageInput, Typin
 // const openai = new OpenAI({
 //     apiKey: import.meta.env.VITE_OPENAI_API_KEY,
 //   });
+const api_Key=""
   
 const Chatting = () => {
     const [typing, setTyping] = React.useState(false);
@@ -30,6 +31,32 @@ const Chatting = () => {
         await processMessageToChatGPT(newMessages);
     }
     async function processMessageToChatGPT(chatMessages) {
+        let apiMessages = chatMessages.map((messageObject) => {
+            let role ="";
+            if (messageObject.sender === "Chatgpt") {
+                role = "assistant"
+            }else {
+                role = "user"
+            }
+            return {role: role, content: messageObject.message}
+
+    });
+    const apiRequestBody = {
+        model: "gpt-3.5-turbo",
+        "messages" : [
+            ...apiMessages
+        ]
+    }
+    await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+            "Authorization": "Bearer" +API_Key,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(apiRequestBody)
+
+            
+        })
     }
     return (
         <div>
