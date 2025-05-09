@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Jaini+Purva&family=Outfit:wght@100..900&display=swap');
 .sidebar {
     min-height: 100vh;
     display: inline-flex;
@@ -47,6 +48,7 @@
 .bottom-item p {
     margin: 0;
     font-size: 12px;
+    font-family: 'Outfit', sans-serif;
 }
 
 .sidebar img {
