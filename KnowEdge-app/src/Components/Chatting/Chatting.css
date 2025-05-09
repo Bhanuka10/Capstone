@@ -4,91 +4,56 @@
     flex-direction: column;
     justify-content: space-between;
     background-color: #f0f4f9;
-    padding: 25px 15px;
+    padding: 25px 10px;
     box-sizing: border-box;
+    transition: width 0.3s ease;
+    overflow: hidden;
+}
+
+.sidebar.expanded {
+    width: 170px;
+}
+
+.sidebar.collapsed {
+    width: 50px; /* enough for icons only */
+}
+
+/* Make sure content doesn't break in collapsed state */
+.new-chat,
+.recent-entry,
+.bottom-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 50px;
+    color: #282828;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.new-chat {
+    justify-content: flex-start;
+    background-color: #e6eaf1;
+    font-size: 12px;
+    color: gray;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.new-chat p,
+.recent-entry p,
+.bottom-item p {
+    margin: 0;
+    font-size: 12px;
 }
 
 .sidebar img {
-    width: 16px;
+    width: 20px;
 }
-/* .top{
-    
-    width: 95%;
-} */
 
- .menu {
-
-    display: block;
-    margin-left: 0; /* Remove default margins */
-    align-self: flex-start; /* Aligns it to the start of flex container */
+.menu {
     cursor: pointer;
-    
-    
-}
-.new-chat {
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px auto;
-    background-color: #e6eaf1;
-    gap:10px;
-    width: 60%;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 12px;
-    color: gray;
-    margin-right: 60px;
-    
-}
-.recent{
-    display: flex;
-    flex-direction: column;
-}
-.recent-title{
-    margin-top: 30px;
-    margin-bottom: 20px;
-}
-.recent-entry{
-    
-    display: flex;
-    align-items: start;
-    gap: 10px;
-    padding: 10px;
-    padding-right:40px;
-    border-radius: 50px;
-    color: #282828;
-    cursor: pointer;
-}
-.recent-entry p{
-    font-size: 12px;
-    color: #282828;
-    margin: 0 auto
-}
-.recent-entry:hover{
-    background-color: #e6eaf1;
-}
-.bottom{
-    display: flex;
-    flex-direction: column;
-}
-.bottom-item{
-    padding-left: 6px;
-    padding-right: 6px;
-    display: flex;
-    align-items: start;
-    gap: 10px;
-    padding: 10px;
-    padding-right:40px;
-    border-radius: 50px;
-    color: #282828;
-    cursor: pointer;
-}
-.bottom-item p{
-    font-size: 15px;
-    color: #282828;
-    margin: 0 auto
-}
-.bottom-item:hover{
-    background-color: #e6eaf1;
+    margin-left: 10px;
 }
