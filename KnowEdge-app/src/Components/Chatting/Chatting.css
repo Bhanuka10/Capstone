@@ -1,5 +1,62 @@
-.chatting-container{
-    position: relative;
-    height: 800px;
-    width: 700px;
+.sidebar {
+    min-height: 100vh;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f0f4f9;
+    padding: 25px 15px;
+    box-sizing: border-box;
+}
+
+.sidebar img {
+    width: 16px;
+}
+/* .top{
+    
+    width: 95%;
+} */
+
+ .menu {
+
+    display: block;
+    margin-left: 0; /* Remove default margins */
+    align-self: flex-start; /* Aligns it to the start of flex container */
+    cursor: pointer;
+    width: 20px;
+    
+}
+.new-chat {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    background-color: #e6eaf1;
+    gap:10px;
+    width: 60%;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 12px;
+    color: gray;
+    margin-right: 60px;
+    
+}
+.recent{
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+}
+.recent-title{
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.recent-entry{
+    display: flex;
+    align-items: start;
+    gap: 5px;
+    padding: 10px;
+    padding-right:40px;
+    border-radius: 50px;
+    color: #282828;
+    cursor: pointer;
 }
