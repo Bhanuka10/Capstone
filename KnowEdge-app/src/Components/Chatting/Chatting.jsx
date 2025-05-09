@@ -21,15 +21,15 @@ const Chatting = () => {
         </div>
         </div>
         <div className='bottom'>
-            <div className="bottom-item recent-entry">
+            <div className="bottom-item ">
                 <img src={assets.question_icon} alt="" />
                 <p>Help</p>
             </div>
-            <div className="bottom-item recent-entry">
+            <div className="bottom-item ">
                 <img src={assets.history_icon} alt="" />
                 <p>Activity</p>
             </div>
-            <div className="bottom-item recent-entry">
+            <div className="bottom-item ">
                 <img src={assets.setting_icon} alt="" />
                 <p>Setings</p>
             </div>

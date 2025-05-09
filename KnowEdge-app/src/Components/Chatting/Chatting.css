@@ -22,7 +22,7 @@
     margin-left: 0; /* Remove default margins */
     align-self: flex-start; /* Aligns it to the start of flex container */
     cursor: pointer;
-    width: 20px;
+    
     
 }
 .new-chat {
@@ -42,7 +42,6 @@
     
 }
 .recent{
-    background-color: antiquewhite;
     display: flex;
     flex-direction: column;
 }
@@ -51,12 +50,45 @@
     margin-bottom: 20px;
 }
 .recent-entry{
+    
     display: flex;
     align-items: start;
-    gap: 5px;
+    gap: 10px;
     padding: 10px;
     padding-right:40px;
     border-radius: 50px;
     color: #282828;
     cursor: pointer;
+}
+.recent-entry p{
+    font-size: 12px;
+    color: #282828;
+    margin: 0 auto
+}
+.recent-entry:hover{
+    background-color: #e6eaf1;
+}
+.bottom{
+    display: flex;
+    flex-direction: column;
+}
+.bottom-item{
+    padding-left: 6px;
+    padding-right: 6px;
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    padding: 10px;
+    padding-right:40px;
+    border-radius: 50px;
+    color: #282828;
+    cursor: pointer;
+}
+.bottom-item p{
+    font-size: 15px;
+    color: #282828;
+    margin: 0 auto
+}
+.bottom-item:hover{
+    background-color: #e6eaf1;
 }
