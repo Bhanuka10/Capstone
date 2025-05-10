@@ -1,4 +1,5 @@
 import React from 'react';
+import './Myprofile.css';
 import Navbar from '../../Components/Navbar/Navbar';
 import MyProfileHeader from '../../Components/MyProfileHeader/MyProfileHeader';
 import ChatBotBanner from '../../Components/BannersMyProfile/ChatBotBanner';
@@ -12,8 +13,11 @@ const Myprofile = () => {
       
       <MyProfileHeader />
       <ChatBotBanner />
+      <div className='cha'>
+        <Chatting />
       <ChatBot />
-      <Chatting />
+      
+      </div>
     </div>
   );
 };

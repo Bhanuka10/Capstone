@@ -1,5 +1,61 @@
-.chatting-container{
-    position: relative;
-    height: 800px;
-    width: 700px;
+@import url('https://fonts.googleapis.com/css2?family=Jaini+Purva&family=Outfit:wght@100..900&display=swap');
+.sidebar {
+    min-height: 100vh;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f0f4f9;
+    padding: 25px 10px;
+    box-sizing: border-box;
+    transition: width 0.3s ease;
+    overflow: hidden;
+}
+
+.sidebar.expanded {
+    width: 170px;
+}
+
+.sidebar.collapsed {
+    width: 50px; /* enough for icons only */
+}
+
+/* Make sure content doesn't break in collapsed state */
+.new-chat,
+.recent-entry,
+.bottom-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 50px;
+    color: #282828;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.new-chat {
+    justify-content: flex-start;
+    background-color: #e6eaf1;
+    font-size: 12px;
+    color: gray;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.new-chat p,
+.recent-entry p,
+.bottom-item p {
+    margin: 0;
+    font-size: 12px;
+    font-family: 'Outfit', sans-serif;
+}
+
+.sidebar img {
+    width: 20px;
+}
+
+.menu {
+    cursor: pointer;
+    margin-left: 10px;
 }

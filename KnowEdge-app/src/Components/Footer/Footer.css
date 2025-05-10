@@ -1,24 +1,28 @@
 .footer{
     background-color: #027C80;
     width: 100%;
-    height: 30vh;
+    height: 27vh;
     margin: 0;
     padding: 0;
     display: flex;
+    
 }
-.logo{
+.logo-foot{
     padding-left: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 10px;
+    margin-left: 30px;
+   
+    
 }
 
-.logo img {
+.logo-foot img {
     width: 70px;
     height: auto;
     margin-top: 20px;
     margin-bottom: 20px;
+    border-radius: 50%;
 }
 .social-media-icons {
     display: flex;
