@@ -6,6 +6,8 @@ import ChatBotBanner from '../../Components/BannersMyProfile/ChatBotBanner';
 import ChatBot from '../../Components/ChatBot/ChatBot';
 import Chatting from '../../Components/Chatting/Chatting';
 import WatchLater from '../../Components/WatchLater/WatchLater';
+import Courses from '../../Components/Courses/Courses';
+import Footer from '../../Components/Footer/Footer';
 
 const Myprofile = () => {
   return (
@@ -19,8 +21,10 @@ const Myprofile = () => {
       <ChatBot />
       
       
+      
       </div>
-      <WatchLater/>
+      <Courses/>
+      <Footer/>
       <signIn/>
     </div>
   );

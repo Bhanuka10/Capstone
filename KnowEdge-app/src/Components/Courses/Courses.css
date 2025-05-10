@@ -273,7 +273,7 @@
 
 .watch-later-btn {
   padding: 10px 20px;
-  background-color: #2196f3;
+  background-color: #03A6BC;
   color: white;
   font-weight: bold;
   border: none;
@@ -282,5 +282,5 @@
 }
 
 .watch-later-btn:hover {
-  background-color: #1976d2;
+  background-color: #025f73;
 }
