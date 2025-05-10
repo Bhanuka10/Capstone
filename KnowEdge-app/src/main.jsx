@@ -11,6 +11,7 @@ import Dashboard from "@/Components/AdminPannel/dashboard.jsx";
 import AddCourse from "@/Components/AdminAddCourses/AddCourse.jsx";
 import User from "@/Components/AdminUser/User.jsx";
 import Feedback from "@/Components/AdminFeedBack/Feedback.jsx";
+import ContextProvider from './Context/Context';
 
 
 
@@ -53,6 +54,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ContextProvider>
+      <RouterProvider router={router} />
+    </ContextProvider>
   </React.StrictMode>
 );
