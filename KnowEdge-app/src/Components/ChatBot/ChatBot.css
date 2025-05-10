@@ -1,11 +1,11 @@
 .main{
     flex: 1;
-    max-height: 100vh;
+   min-height: 100vh;
     padding-bottom: 15vh;
     position: relative;
     background: linear-gradient(to bottom, #0B5975, #06212E);
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     
 }
 .nav{
@@ -56,7 +56,7 @@
     margin-top: -10px;
 }
 .main .card{
-    height: 100px;
+    height: 150px;
     padding: 20px;
      padding-top: 10px;
     border-radius: 10px;
@@ -83,11 +83,12 @@
 }
 .main-botom {
     position: absolute;
-    bottom: -30px; /* Moves it slightly down */
+    bottom: 40px; /* Moves it slightly down */
     width: 100%;
     max-width: 900px;
     padding: 0 20px;
     margin: auto;
+    
 }
 
 .serch-box{
@@ -111,4 +112,16 @@
     outline: none;
     padding: 8px;
     font-size: 16px;
+}
+.serch-box div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.main .bottom-info{
+    font-size: 13px;
+    margin: 15px auto;
+    text-align: center;
+    font-weight: 300;
+    color: #ede6f5;
 }
