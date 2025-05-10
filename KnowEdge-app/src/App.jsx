@@ -7,6 +7,7 @@ import Feedback from "./Components/AdminFeedBack/Feedback"
 import Navbar from './Components/Navbar/Navbar';
 import Home from './Pages/Home/Home';
 import Myprofile from './Pages/Myprofile/Myprofile';
+import WatchLater from './Components/WatchLater/WatchLater';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/add-course" element={<AddCourse />} />
         <Route path="/user-details" element={<User />} />
         <Route path="/feedback" element={<Feedback />} />
+        <Route path='/watchlater' element={<WatchLater/>}/>
       </Routes>
     </div>
   );

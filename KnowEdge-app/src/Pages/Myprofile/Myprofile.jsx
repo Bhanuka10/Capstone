@@ -21,6 +21,7 @@ const Myprofile = () => {
       
       </div>
       <WatchLater/>
+      <signIn/>
     </div>
   );
 };

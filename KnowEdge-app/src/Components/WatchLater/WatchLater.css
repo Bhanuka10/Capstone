@@ -1,105 +1,61 @@
-/* Main container for Watch Later */
-.watched-later {
-    padding: 40px 20px;
-    background: white;
-    text-align: center;
+.watch-later-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
   }
   
-  /* Heading for Watch Later section */
-  .watched-title {
-    font-size: 24px;
-    text-align: left;
+  h2 {
+    text-align: center;
     margin-bottom: 20px;
   }
   
-  /* Container for all video cards (flex layout) */
-  .video-cards {
-    display: flex;
-    justify-content: flex-start;
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    flex-wrap: wrap;
   }
   
-  /* Styling for each video card */
   .video-card {
-    width: 220px;
-    border-radius: 12px;
-    background: #D8E5E7;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
     transition: transform 0.2s ease;
   }
   
-  /* Hover effect for video card */
   .video-card:hover {
     transform: scale(1.03);
   }
   
-  /* Video thumbnail image */
-  .video-img {
-    width: 100%;
+  .video-card img {
+    max-width: 100%;
     height: auto;
-    border-bottom: 1px solid #ddd;
+    border-radius: 6px;
   }
   
-  /* Container for text and metadata under thumbnail */
-  .video-details {
-    padding: 10px;
+  .video-card h3 {
+    margin: 10px 0 5px;
+    font-size: 18px;
   }
   
-  /* Title of the video */
-  .video-title {
-    font-weight: bold;
+  .video-card p {
+    margin: 5px 0;
     font-size: 14px;
-    margin-bottom: 5px;
+    color: #555;
   }
-  
-  /* Layout for footer row inside card */
-  .video-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
-    margin-top: 8px;
-  }
-  
-  /* Label like "Free" */
-  .free-label {
-    color: green;
-    font-weight: bold;
-  }
-  
-  /* Star rating style */
-  .stars {
-    color: red;
-  }
-  
-  /* Add button style */
-  .add-btn {
-    padding: 4px 8px;
-    background: black;
+
+  .video-card button {
+    margin-top: 10px;
+    padding: 6px 12px;
+    background-color: #f44336;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
   }
   
-  /* Styling for views count text */
-  .views-count {
-    text-align: left;
-    font-size: 12px;
-    color: #555;
-    margin-top: 5px;
-    margin-left: 5px;
-  }
-  
-  /* View More button at the bottom */
-  .view-more-btn {
-    margin-top: 30px;
-    padding: 8px 20px;
-    border: none;
-    background-color: #e0e0e0;
-    color: black;
-    border-radius: 8px;
-    cursor: pointer;
+  .video-card button:hover {
+    background-color: #d32f2f;
   }

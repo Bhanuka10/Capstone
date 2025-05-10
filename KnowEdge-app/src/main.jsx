@@ -2,6 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import WatchLater from './Components/WatchLater/WatchLater';
 
 import App from './App';
 import Myprofile from './Pages/Myprofile/Myprofile';
@@ -10,7 +12,10 @@ import AddCourse from "@/Components/AdminAddCourses/AddCourse.jsx";
 import User from "@/Components/AdminUser/User.jsx";
 import Feedback from "@/Components/AdminFeedBack/Feedback.jsx";
 
+
+
 const router = createBrowserRouter([
+  
   {
     path: "/",
     element: <App />,
@@ -36,7 +41,15 @@ const router = createBrowserRouter([
     path: "/feedback",
     element: <Feedback />,
   },
+
+
+  {path: "/watchlater", 
+    element: <WatchLater/>
+    },
+
 ]);
+
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

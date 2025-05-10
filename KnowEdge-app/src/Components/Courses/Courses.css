@@ -266,3 +266,21 @@
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
+.watch-later-shortcut {
+  margin: 30px auto;
+  text-align: center;
+}
+
+.watch-later-btn {
+  padding: 10px 20px;
+  background-color: #2196f3;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.watch-later-btn:hover {
+  background-color: #1976d2;
+}
