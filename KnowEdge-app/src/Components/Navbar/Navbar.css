@@ -3,7 +3,10 @@
     align-items: center;
     justify-content: space-between;
     font-family: outfit;
-    padding: 30px 30px;
+    max-height: 150px;
+    align-items: center;
+   max-width: 90%;
+    margin: 30px auto;
 }
 
 .first {
@@ -13,6 +16,10 @@
 
 .logo {
     margin-left: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 .logo img {
@@ -34,7 +41,8 @@
 }
 
 .menu {
-    margin-left: 20px;
+    margin-left: 60px;
+
 }
 
 .menu ul {
@@ -145,20 +153,26 @@
 }
 
 .login-btn {
-    background-color: #DAF5F8;
+    background-color: #95e8f1;
     color: black;
     padding: 5px 10px;
     border-radius: 20px;
+    box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 0.6),
+                inset 2px 2px 5px rgba(0, 0, 0, 0.1),
+                4px 4px 8px rgba(0, 0, 0, 0.2),
+                -4px -4px 8px rgba(255, 255, 255, 0.5);
+    transition: box-shadow 0.3s ease;
 }
 
 .login-btn:hover {
-    background-color: #a0def5;
-    color: black;
-    cursor: pointer;
+    box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 0.8),
+                inset 2px 2px 5px rgba(0, 0, 0, 0.2),
+                6px 6px 10px rgba(0, 0, 0, 0.3),
+                -6px -6px 10px rgba(255, 255, 255, 0.6);
 }
 
 .login-btn button {
-    background-color: #DAF5F8;
+    background-color: #95e8f1;
     color: black;
     border: none;
 }
