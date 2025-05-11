@@ -1,14 +1,14 @@
 
 
 
-const {
+import {
   GoogleGenerativeAI,
   HarmCategory,
   HarmBlockThreshold,
-} = require("@google/generative-ai");
+} from "@google/generative-ai"
 
-const MODEL_NAME = "gemini-1.0-pro";
-const API_KEY = "AIzaSyDaXrF2grxwnEvNcv9cFy9AqlDP3x5ioLU"; // Replace with environment variable in production
+const MODEL_NAME = "gemini-2.5-pro-preview-05-06";
+const API_KEY = "AIzaSyD0mwYfme0Gf8zwtl_10ryXH0_HlVL1-84"; // Replace with environment variable in production
 
 async function runChat(prompt) {
   const genAI = new GoogleGenerativeAI(API_KEY);
