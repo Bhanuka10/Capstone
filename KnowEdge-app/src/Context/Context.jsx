@@ -1,22 +1,30 @@
-import React, { useState } from "react";
-import callGeminiFlash from "../Config/Gemini";
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "../Pages/Home/Home"; // Assuming Home component exists
+import Myprofile from "../Pages/Myprofile/Myprofile"; // Assuming Myprofile component exists
+import ChatBot from "../Components/ChatBot/ChatBot"; // ChatBot component
 
-const GeminiChat = () => {
-  const [input, setInput] = useState("");
-  const [response, setResponse] = useState("");
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />, // Home page
+  },
+  {
+    path: "/contact",
+    element: <Myprofile />, // Myprofile page
+  },
+  {
+    path: "/chatbot",
+    element: <ChatBot />, // ChatBot page
+  },
+]);
 
-  const handleSubmit = async () => {
-    const reply = await callGeminiFlash(input);
-    setResponse(reply);
-  };
-
+const ContextProvider = ({ children }) => {
   return (
-    <div>
-      <input value={input} onChange={(e) => setInput(e.target.value)} />
-      <button onClick={handleSubmit}>Send</button>
-      <p>{response}</p>
-    </div>
+    <RouterProvider router={router}>
+      {children}
+    </RouterProvider>
   );
 };
 
-export default GeminiChat;
+export default ContextProvider;
