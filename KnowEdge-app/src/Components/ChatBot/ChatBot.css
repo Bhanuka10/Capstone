@@ -127,3 +127,37 @@
     font-weight: 300;
     color: #ede6f5;
 }
+
+/* Updated styles for user and AI messages */
+.chat-response {
+    padding: 10px;
+    overflow-y: auto;
+    max-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ai-message {
+    align-self: flex-start; /* Align AI messages to the left */
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px; /* Increased font size */
+    max-width: 70%;
+    width: auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-message {
+    align-self: flex-end; /* Align user messages to the right */
+    background-color: #4b90ff;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px; /* Increased font size */
+    max-width: 70%;
+    width: auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
