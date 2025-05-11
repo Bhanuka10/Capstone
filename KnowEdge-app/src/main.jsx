@@ -2,7 +2,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { BrowserRouter } from 'react-router-dom';
 import WatchLater from './Components/WatchLater/WatchLater';
 
 import App from './App';
@@ -13,44 +12,39 @@ import User from "@/Components/AdminUser/User.jsx";
 import Feedback from "@/Components/AdminFeedBack/Feedback.jsx";
 import ContextProvider from './Context/Context';
 
-
-
-const router = createBrowserRouter([
-  
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/contact",
-    element: <Myprofile />,
-  },
-
-  {
-    path: "/",
-    element: <Dashboard />,
-  },
-  {
-    path: "/add-course",
-    element: <AddCourse />,
-  },
-  {
-    path: "/user-details",
-    element: <User />,
-  },
-  {
-    path: "/feedback",
-    element: <Feedback />,
-  },
-
-
-  {path: "/watchlater", 
-    element: <WatchLater/>
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
     },
-
-]);
-
-
+    {
+      path: "/contact",
+      element: <Myprofile />,
+    },
+    {
+      path: "/",
+      element: <Dashboard />,
+    },
+    {
+      path: "/add-course",
+      element: <AddCourse />,
+    },
+    {
+      path: "/user-details",
+      element: <User />,
+    },
+    {
+      path: "/feedback",
+      element: <Feedback />,
+    },
+    {
+      path: "/watchlater",
+      element: <WatchLater />,
+    },
+  ],
+  
+);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

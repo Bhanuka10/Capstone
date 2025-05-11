@@ -1,55 +1,44 @@
+// src/Config/Gemini.js
 
+import { GoogleGenAI } from "@google/genai";
 
+// Load API key from Vite environment variable
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
-import {
-  GoogleGenerativeAI,
-  HarmCategory,
-  HarmBlockThreshold,
-} from "@google/generative-ai"
+// Main function to call Gemini 2.0 Flash
+async function callGeminiFlash(promptText) {
+  const ai = new GoogleGenAI({ apiKey });
 
-const MODEL_NAME = "gemini-2.5-pro-preview-05-06";
-const API_KEY = "AIzaSyD0mwYfme0Gf8zwtl_10ryXH0_HlVL1-84"; // Replace with environment variable in production
-
-async function runChat(prompt) {
-  const genAI = new GoogleGenerativeAI(API_KEY);
-  const model = genAI.getGenerativeModel({ model: MODEL_NAME });
-
-  const generationConfig = {
-    temperature: 0.9,
-    topK: 1,
-    topP: 1,
-    maxOutputTokens: 2048,
+  const config = {
+    responseMimeType: "text/plain",
   };
 
-  const safetySettings = [
+  const model = "gemini-2.0-flash";
+
+  const contents = [
     {
-      category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-    {
-      category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-    {
-      category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
-    },
-    {
-      category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-      threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+      role: "user",
+      parts: [{ text: promptText }],
     },
   ];
 
-  const chat = model.startChat({
-    generationConfig,
-    safetySettings,
-    history: [],
-  });
+  try {
+    const response = await ai.models.generateContentStream({
+      model,
+      config,
+      contents,
+    });
 
-  const result = await chat.sendMessage(prompt);
-  const response = result.response;
-  console.log(response.text());
+    let result = "";
+    for await (const chunk of response) {
+      result += chunk.text;
+    }
+
+    return result;
+  } catch (error) {
+    console.error("Gemini API error:", error);
+    return "Something went wrong.";
+  }
 }
 
-export default runChat;
-
+export default callGeminiFlash;

@@ -14,6 +14,7 @@
     "@chatscope/chat-ui-kit-styles": "^1.4.0",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@google/genai": "^0.13.0",
     "@google/generative-ai": "^0.24.1",
     "axios": "^1.9.0",
     "bootstrap": "^5.3.5",
