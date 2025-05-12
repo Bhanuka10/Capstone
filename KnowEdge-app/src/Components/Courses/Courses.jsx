@@ -8,7 +8,10 @@ const API_KEY = 'AIzaSyD-SJkFXqteSzaQPVUSqo5Lq3CaQh2j5pU';
 const DOMAIN_PLAYLIST_IDS = [
   'PLoYCgNOIyGABDU532eesybur5HPBVfC1G',
   'PLTjRvDozrdlw0x_FcXItVVVVh-RP-5hdP',
-  'PLXNgqM9ig24c7IdumyymD9q3e2hsz9U1m'
+  'PLXNgqM9ig24c7IdumyymD9q3e2hsz9U1m',
+  'PLC3y8-rFHvwhIEc4I4YsRz5C7GOBnxSJY',
+  'PLC3y8-rFHvwjOKd6gdf4QtV1uYNiQnruI',
+  'PLC3y8-rFHvwhiQJD1di4eRVN30WWCXkg1'
 ];
 const MAX_RESULTS = 20;
 
