@@ -11,6 +11,7 @@ import AddCourse from "@/Components/AdminAddCourses/AddCourse.jsx";
 import User from "@/Components/AdminUser/User.jsx";
 import Feedback from "@/Components/AdminFeedBack/Feedback.jsx";
 import ContextProvider from './Context/Context';
+import { ChatProvider } from './Context/ChatContext';
 
 const router = createBrowserRouter(
   [
@@ -48,8 +49,10 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ContextProvider>
-      <RouterProvider router={router} />
-    </ContextProvider>
+    <ChatProvider> {/* Wrap the application with ChatProvider */}
+      <ContextProvider>
+        <RouterProvider router={router} />
+      </ContextProvider>
+    </ChatProvider>
   </React.StrictMode>
 );
