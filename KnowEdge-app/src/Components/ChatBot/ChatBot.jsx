@@ -63,7 +63,7 @@ const ChatBot = () => {
             onChange={(e) => setPrompt(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
           />
-          <div onClick={handleSend} style={{ cursor: 'pointer' }}>
+          <div onClick={handleSend} style={{ cursor: 'pointer' }} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && handleSend()}>
             <img src={assets.gallery_icon} alt="Gallery" />
             <img src={assets.mic_icon} alt="Mic" />
             <img src={assets.send_icon} alt="Send" />
