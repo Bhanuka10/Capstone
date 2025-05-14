@@ -148,20 +148,21 @@
   display: block;
 }
 
-.playbox .close-btn {
-  position: absolute;
-  bottom: 10px;
-  right: 20px;
-  padding: 5px 10px;
-  background-color: #ff5c5c;
+/* Adjusted the close button to appear below the video */
+.close-btn {
+  position: relative;
+  margin-top: 10px; /* Add spacing above the button */
+  background-color: red;
   color: white;
   border: none;
   border-radius: 5px;
+  width: 100px; /* Adjusted size */
+  height: 30px; /* Adjusted size */
+  font-size: 14px; /* Adjusted font size */
   cursor: pointer;
-}
-
-.playbox .close-btn:hover {
-  background-color: #ff3333;
+  display: block;
+  margin-left: auto;
+  margin-right: auto; /* Center the button */
 }
 
 .first-box {
@@ -266,3 +267,21 @@
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
+.watch-later-shortcut {
+  margin: 30px auto;
+  text-align: center;
+}
+
+.watch-later-btn {
+  padding: 10px 20px;
+  background-color: #03A6BC;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.watch-later-btn:hover {
+  background-color: #025f73;
+}

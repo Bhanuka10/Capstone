@@ -1,11 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Courses.css';
+import { Link } from 'react-router-dom';
+
+
 
 const API_KEY = 'AIzaSyD-SJkFXqteSzaQPVUSqo5Lq3CaQh2j5pU';
 const DOMAIN_PLAYLIST_IDS = [
   'PLoYCgNOIyGABDU532eesybur5HPBVfC1G',
   'PLTjRvDozrdlw0x_FcXItVVVVh-RP-5hdP',
-  'PLXNgqM9ig24c7IdumyymD9q3e2hsz9U1m'
+  'PLXNgqM9ig24c7IdumyymD9q3e2hsz9U1m',
+  'PLC3y8-rFHvwhIEc4I4YsRz5C7GOBnxSJY',
+  'PLC3y8-rFHvwjOKd6gdf4QtV1uYNiQnruI',
+  'PL1w1q3fL4pmg0ArGMe7-tZcDCYMvU0dG7',
+  'PL1w1q3fL4pmj9k1FrJ3Pe91EPub2_h4jF',
+  'PLTjRvDozrdlxEIuOBZkMAK5uiqp8rHUax',
+  'PLZPZq0r_RZOO1zkgO4bIdfuLpizCeHYKv',
+  'PLZPZq0r_RZOOxqHgOzPyCzIl4AJjXbCYt',
+  'PLZPZq0r_RZOONc3kkuRmBOlj67YAG6jqo',
+  'PLZPZq0r_RZOPoNttk9beDhO_Bu5DA-xwP',
+  'PLewGdhs0k9xG6TRPgHDO03kN0wTmehw_0'
+  
 ];
 const MAX_RESULTS = 20;
 
@@ -107,23 +121,49 @@ const Courses = () => {
     }
   };
 
-  const handleVideoClick = (videoId) => {
+  //add to watch later part
+
+  const handleAddToWatchLater = (course) => {
+    const stored = JSON.parse(localStorage.getItem('watchLater')) || [];
+    const exists = stored.find(item => item.videoId === course.videoId);
+  
+    if (!exists) {
+      stored.push(course);
+      localStorage.setItem('watchLater', JSON.stringify(stored));
+      alert(`${course.title} added to Watch Later`);
+    } else {
+      alert('Already added to Watch Later');
+    }
+  };
+
+  const handleVideoClick = async (videoId) => {
     setIsPlaying(true);
     setCurrentVideoId(videoId);
-
+  
     setCourses(prevCourses => {
       const updated = prevCourses.map(course =>
         course.videoId === videoId
           ? { ...course, viewCount: course.viewCount + 1 }
           : course
       );
-
+  
       const updatedCounts = getStoredViewCounts();
       updatedCounts[videoId] = (updatedCounts[videoId] || 0) + 1;
       saveViewCounts(updatedCounts);
-
+  
       return updated;
     });
+
+    
+  
+    
+  
+    try {
+      await setDoc(doc(db, "users", userId, "watchLater", videoId), courseData);
+      console.log("Video added to Watch Later.");
+    } catch (error) {
+      console.error("Error adding to Watch Later: ", error);
+    }
   };
 
   const handleClosePlaybox = () => {
@@ -190,7 +230,7 @@ const Courses = () => {
               <p>Views: {course.viewCount}</p>
               <div className='last'>
                 <h3>YouTube Free</h3>
-                <button className='add-btn'>add</button>
+                <button className='add-btn' onClick={()=>handleAddToWatchLater(course)}>Add</button>
               </div>
             </div>
           ))}
@@ -215,8 +255,16 @@ const Courses = () => {
       <button className='back-to-top' onClick={backToTop} ref={backToTopBtnRef}>
         Back to Top
       </button>
+
+      <div className="watch-later-shortcut">
+  <Link to="/watchlater">
+    <button className="watch-later-btn">Go to Watch Later</button>
+  </Link>
+</div>
+
     </div>
   );
+  
 };
 
 export default Courses;

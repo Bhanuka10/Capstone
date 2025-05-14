@@ -1,5 +1,12 @@
 .chatbot-banner{
-    bwidth: 100%;
+    background:linear-gradient(to bottom,#25D3E9,#03A6BC);
+    font-size: 50px;
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    /*max-width: 1100px;*/
+    margin-left: auto;
+    margin-right: auto;
     height: 80px;
     background: linear-gradient(to right, #25D3E9, #03A6BC);
     text-align: center;
@@ -7,11 +14,13 @@
     justify-content: center;
     align-items: center;
 }
-.chatbot-banner h1 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 800;
-    font-size: 50px;
-    color: #074D66;
+
+
+.chatbot-banner h1{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 50px;
+  color: #074D66;
 }
 
 

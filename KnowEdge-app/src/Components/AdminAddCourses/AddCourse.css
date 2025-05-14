@@ -1,6 +1,8 @@
-.courses-section {
-    margin-top: 40px;
+.courses-section h2{
+    position:relative;
+    left:-420px;
 }
+
 
 .table {
     margin-top: 20px;

@@ -35,8 +35,8 @@ const UserDashboard = () => {
                     </div>
                 </div>
 
-                <div className="User-section">
-                    <h2>All Users</h2>
+                <div className="admin-user-section">
+                    <h2 >All Users</h2>
                     <div className="user-table">
                         <div className="table-header">
                             <span>Email</span>
