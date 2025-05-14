@@ -256,6 +256,8 @@ const Courses = () => {
         Back to Top
       </button>
 
+
+
       <div className="watch-later-shortcut">
   <Link to="/watchlater">
     <button className="watch-later-btn">Go to Watch Later</button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from "./Components/AdminPannel/dashboard";
 import AddCourse from "./Components/AdminAddCourses/AddCourse";
 import User from "./Components/AdminUser/User"
@@ -12,6 +12,7 @@ import WatchLater from './Components/WatchLater/WatchLater';
 const App = () => {
   return (
     <div className='app'>
+      <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Myprofile />} />
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/feedback" element={<Feedback />} />
         <Route path='/watchlater' element={<WatchLater/>}/>
       </Routes>
+      </BrowserRouter>
     </div>
   );
 };
