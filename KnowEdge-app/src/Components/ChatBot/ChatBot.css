@@ -133,15 +133,20 @@
     padding: 10px;
     overflow-y: auto;
     max-height: 60vh;
+    width: 90%;
     display: flex;
+    margin: 0 auto;
+    margin-top: 20px;
     flex-direction: column;
     gap: 10px;
+   
+    
 }
 
 .ai-message {
     align-self: flex-start; /* Align AI messages to the left */
-    background-color: white;
-    color: black;
+    /* background-color: white; */
+    color: rgb(255, 255, 255);
     padding: 10px;
     border-radius: 10px;
     font-size: 18px; /* Increased font size */
@@ -152,10 +157,12 @@
 
 .user-message {
     align-self: flex-end; /* Align user messages to the right */
-    background-color: #4b90ff;
+    background-color: #0c5b78;
     color: white;
     padding: 10px;
-    border-radius: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10%;
     font-size: 16px; /* Increased font size */
     max-width: 70%;
     width: auto;
