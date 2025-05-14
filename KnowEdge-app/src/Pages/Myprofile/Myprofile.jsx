@@ -22,7 +22,7 @@ const Myprofile = () => {
       
       
       </div>
-      <Courses/>
+      <WatchLater />
       <Footer/>
       <signIn/>
     </div>

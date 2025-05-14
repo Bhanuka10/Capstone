@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Jaini+Purva&family=Outfit:wght@100..900&display=swap');
 .sidebar {
-    min-height: 100vh;
+    min-height: 80vh;
     display: inline-flex;
     flex-direction: column;
     justify-content: space-between;

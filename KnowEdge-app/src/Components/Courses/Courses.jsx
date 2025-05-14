@@ -8,7 +8,18 @@ const API_KEY = 'AIzaSyD-SJkFXqteSzaQPVUSqo5Lq3CaQh2j5pU';
 const DOMAIN_PLAYLIST_IDS = [
   'PLoYCgNOIyGABDU532eesybur5HPBVfC1G',
   'PLTjRvDozrdlw0x_FcXItVVVVh-RP-5hdP',
-  'PLXNgqM9ig24c7IdumyymD9q3e2hsz9U1m'
+  'PLXNgqM9ig24c7IdumyymD9q3e2hsz9U1m',
+  'PLC3y8-rFHvwhIEc4I4YsRz5C7GOBnxSJY',
+  'PLC3y8-rFHvwjOKd6gdf4QtV1uYNiQnruI',
+  'PL1w1q3fL4pmg0ArGMe7-tZcDCYMvU0dG7',
+  'PL1w1q3fL4pmj9k1FrJ3Pe91EPub2_h4jF',
+  'PLTjRvDozrdlxEIuOBZkMAK5uiqp8rHUax',
+  'PLZPZq0r_RZOO1zkgO4bIdfuLpizCeHYKv',
+  'PLZPZq0r_RZOOxqHgOzPyCzIl4AJjXbCYt',
+  'PLZPZq0r_RZOONc3kkuRmBOlj67YAG6jqo',
+  'PLZPZq0r_RZOPoNttk9beDhO_Bu5DA-xwP',
+  'PLewGdhs0k9xG6TRPgHDO03kN0wTmehw_0'
+  
 ];
 const MAX_RESULTS = 20;
 
