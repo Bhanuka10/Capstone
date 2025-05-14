@@ -130,8 +130,10 @@
 
 /* Updated styles for user and AI messages */
 .chat-response {
+    
     padding: 10px;
     overflow-y: auto;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
     max-height: 60vh;
     width: 90%;
     display: flex;
@@ -139,8 +141,12 @@
     margin-top: 20px;
     flex-direction: column;
     gap: 10px;
-   
-    
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.chat-response::-webkit-scrollbar {
+    display:none; /* For Chrome, Safari, and Opera */
 }
 
 .ai-message {
@@ -152,12 +158,17 @@
     font-size: 18px; /* Increased font size */
     max-width: 70%;
     width: auto;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(41, 40, 40, 0.1);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    
+    border-radius: 12px;
+    
 }
 
 .user-message {
     align-self: flex-end; /* Align user messages to the right */
-    background-color: #0c5b78;
+   
     color: white;
     padding: 10px;
     padding-top: 5px;
@@ -166,5 +177,8 @@
     font-size: 16px; /* Increased font size */
     max-width: 70%;
     width: auto;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    box-shadow: 0 2px 5px rgba(45, 42, 42, 0.1);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
 }
