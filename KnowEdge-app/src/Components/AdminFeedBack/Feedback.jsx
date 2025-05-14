@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './Feedback.css';
 import SideBar from '../AdminSideBar/SideBar';
 
@@ -22,6 +22,15 @@ const Feedback = () => {
     const handleViewToggle = (index) => {
         setExpandedIndex(index === expandedIndex ? null : index);
     };
+
+    useEffect(() => {
+        const previousMargin = document.body.style.margin;
+        document.body.style.margin = '0';
+
+        return () => {
+            document.body.style.margin = previousMargin;
+        };
+    }, []);
 
     return (
         <div className="dashboard-container">

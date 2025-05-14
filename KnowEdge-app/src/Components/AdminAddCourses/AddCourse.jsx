@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './AddCourse.css';
 import SideBar from "@/Components/AdminSideBar/SideBar.jsx";
 
@@ -11,6 +11,15 @@ const CoursesDashboard = () => {
         link: "ABC,youtube.com",
         views: 56,
     });
+
+    useEffect(() => {
+        const previousMargin = document.body.style.margin;
+        document.body.style.margin = '0';
+
+        return () => {
+            document.body.style.margin = previousMargin;
+        };
+    }, []);
 
     return (
         <div className="dashboard-container">

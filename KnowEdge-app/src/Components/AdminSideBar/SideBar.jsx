@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const SideBar = ({ activeMenu, onMenuClick }) => {
     return (
         <div className="sidebar">
-            <div className="logo">Expert Path</div>
+            <div className="admin-logo">Expert Path</div>
             <div className="menu">
                 <Link
                     to="/"
