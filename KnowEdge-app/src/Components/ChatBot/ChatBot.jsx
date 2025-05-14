@@ -1,37 +1,40 @@
+// src/Pages/ChatBot/ChatBot.jsx
+
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './ChatBot.css';
 import { assets } from '../../assets/assets';
 import callGeminiFlash from '../../Config/Gemini';
 import { useChat } from '../../Context/ChatContext';
+import ReactMarkdown from 'react-markdown';
 
 const ChatBot = () => {
-  const location = useLocation(); // Access the passed state
-  const initialQuestion = location.state?.question || ''; // Get the question from state
+  const location = useLocation();
+  const initialQuestion = location.state?.question || '';
 
-  const [prompt, setPrompt] = useState(initialQuestion); // Initialize with the passed question
+  const [prompt, setPrompt] = useState(initialQuestion);
   const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);
-  const [showResponse, setShowResponse] = useState(false); // State to toggle main-container visibility
-  const [messages, setMessages] = useState([]); // State to store all messages
-  const { addToChatHistory } = useChat(); // Use context to update chat history
+  const [showResponse, setShowResponse] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const { addToChatHistory } = useChat();
 
   const handleSend = async () => {
     if (!prompt.trim()) return;
 
     const userMessage = { text: prompt, sender: "user" };
-    setMessages((prevMessages) => [...prevMessages, userMessage]); // Add user message to messages
+    setMessages((prev) => [...prev, userMessage]);
 
     setLoading(true);
     const reply = await callGeminiFlash(prompt);
     const aiMessage = { text: reply, sender: "ai" };
-    setMessages((prevMessages) => [...prevMessages, aiMessage]); // Add AI message to messages
+    setMessages((prev) => [...prev, aiMessage]);
 
-    addToChatHistory(prompt, reply); // Update chat history in context
+    addToChatHistory(prompt, reply);
 
     setLoading(false);
     setPrompt('');
-    setShowResponse(true); // Show response and hide main-container
+    setShowResponse(true);
   };
 
   return (
@@ -45,10 +48,14 @@ const ChatBot = () => {
         {messages.map((message, index) => (
           <div
             key={index}
-            id={message.text} // Add an ID to each message for scrolling
+            id={message.text}
             className={message.sender === "user" ? "user-message" : "ai-message"}
           >
-            <p>{message.text}</p>
+            {message.sender === "ai" ? (
+              <ReactMarkdown>{message.text}</ReactMarkdown>
+            ) : (
+              <p>{message.text}</p>
+            )}
           </div>
         ))}
         {loading && <p>Thinking...</p>}
@@ -63,7 +70,13 @@ const ChatBot = () => {
             onChange={(e) => setPrompt(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
           />
-          <div onClick={handleSend} style={{ cursor: 'pointer' }} role="button" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && handleSend()}>
+          <div
+            onClick={handleSend}
+            style={{ cursor: 'pointer' }}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+          >
             <img src={assets.gallery_icon} alt="Gallery" />
             <img src={assets.mic_icon} alt="Mic" />
             <img src={assets.send_icon} alt="Send" />
