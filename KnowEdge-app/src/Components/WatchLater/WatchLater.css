@@ -75,14 +75,20 @@
     border-radius: 8px;
   }
   
+  /* Adjusted the close button to be smaller */
   .close-btn {
     position: absolute;
-    top: 5px;
+    top: 10px;
     right: 10px;
-    background-color: crimson;
+    background-color: red;
     color: white;
     border: none;
-    padding: 5px 10px;
+    border-radius: 50%;
+    width: 30px; /* Reduced size */
+    height: 30px; /* Reduced size */
+    font-size: 14px; /* Adjusted font size */
     cursor: pointer;
-    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
