@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jaini+Purva&family=Outfit:wght@100..900&display=swap');
+
 .main{
     flex: 1;
    min-height: 100vh;
@@ -155,8 +157,10 @@
     color: rgb(255, 255, 255);
     padding: 10px;
     border-radius: 10px;
-    font-size: 18px; /* Increased font size */
+    font-size: 16px; /* Increased font size */
     max-width: 70%;
+    font-weight: 400;
+    font-family: 'Outfit', sans-serif;
     width: auto;
     box-shadow: 0 2px 5px rgba(41, 40, 40, 0.1);
     backdrop-filter: blur(16px) saturate(180%);
@@ -177,6 +181,7 @@
     font-size: 16px; /* Increased font size */
     max-width: 70%;
     width: auto;
+    font-family: 'Outfit', sans-serif;
 
     box-shadow: 0 2px 5px rgba(45, 42, 42, 0.1);
     backdrop-filter: blur(16px) saturate(180%);
