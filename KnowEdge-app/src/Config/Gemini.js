@@ -34,7 +34,8 @@ async function callGeminiFlash(promptText) {
       result += chunk.text;
     }
 
-    return result;
+    // Return the response in one-phase mode
+    return result.trim();
   } catch (error) {
     console.error("Gemini API error:", error);
     return "Something went wrong.";
