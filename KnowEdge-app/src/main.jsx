@@ -11,14 +11,14 @@ import User from "@/Components/AdminUser/User.jsx";
 import Feedback from "@/Components/AdminFeedBack/Feedback.jsx";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/contact",
-    element: <Myprofile />,
-  },
+  // {
+  //   path: "/",
+  //   element: <App />,
+  // },
+  // {
+  //   path: "/contact",
+  //   element: <Myprofile />,
+  // },
 
   {
     path: "/",
