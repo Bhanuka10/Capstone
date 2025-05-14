@@ -21,7 +21,6 @@ const Myprofile = () => {
       <ChatBot />
       
       
-      
       </div>
       <Courses/>
       <Footer/>
