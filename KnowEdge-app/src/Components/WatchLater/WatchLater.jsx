@@ -10,31 +10,20 @@ const WatchLater = () => {
     setWatchLaterList(savedList);
   }, []);
 
+  const handleVideoClick = (videoId) => {setCurrentVideoId(videoId)};
+
   const handleRemove = (videoId) => {
     const updatedList = watchLaterList.filter(video => video.videoId !== videoId);
     setWatchLaterList(updatedList);
     localStorage.setItem("watchLater", JSON.stringify(updatedList));
     alert("Video removed from Watch Later");
+    const handleVideoClick = (videoId) => {setCurrentVideoId(videoId)};
+    const handleClosePlaybox = ()=> { setCurrentVideoId(null)}; //not sure place
   };
 
-  const handleVideoClick = (videoId) => {
-    setCurrentVideoId(videoId); // Set the current video ID to play
+  const handleClosePlaybox = ()=> { setCurrentVideoId(null);
 
-    setWatchLaterList(prevList => {
-        const updatedList = prevList.map(video =>
-            video.videoId === videoId
-                ? { ...video, viewCount: (video.viewCount || 0) + 1 } // Increment view count
-                : video
-        );
-
-        localStorage.setItem("watchLater", JSON.stringify(updatedList)); // Save updated list to localStorage
-        return updatedList;
-    });
-  };
-
-  const handleClosePlaybox = () => {
-    setCurrentVideoId(null); // Clear the current video ID to close the playbox
-  };
+  }; //not sure place
 
   return (
     <div className="watch-later-container">
@@ -59,19 +48,19 @@ const WatchLater = () => {
       </div>
 
       {currentVideoId && (
-        <div className={`playbox ${currentVideoId ? 'show' : ''}`}>
-          <iframe
-            width="100%"
-            height="100%"
-            src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=0`}
-            frameBorder="0"
-            allow="autoplay; encrypted-media; picture-in-picture"
-            allowFullScreen
-            title="Video player"
-          ></iframe>
-          <button className="close-btn" onClick={handleClosePlaybox}>Close</button>
-        </div>
-      )}
+  <div className="playbox">
+    <iframe
+      width="100%"
+      height="400px"
+      src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1`}
+      frameBorder="0"
+      allow="autoplay; encrypted-media"
+      allowFullScreen
+      title="Video player"
+    ></iframe>
+    <button className="close-btn" onClick={handleClosePlaybox}>Close</button>
+  </div>
+)}
     </div>
   );
 };

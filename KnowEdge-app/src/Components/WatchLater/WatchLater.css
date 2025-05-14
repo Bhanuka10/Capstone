@@ -62,17 +62,23 @@
 
   .playbox {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 800px;
-    height: 450px;
-    background-color: #000;
-    z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    padding: 10px;
-    border-radius: 8px;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .playbox iframe {
+    width: 80%;
+    height: 80%;
+    border: none;
+    border-radius: 10px;
   }
   
   /* Adjusted the close button to be smaller */

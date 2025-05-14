@@ -43,9 +43,7 @@ const router = createBrowserRouter(
       path: "/watchlater",
       element: <WatchLater />,
     },
-  ],
-  
-);
+  ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
