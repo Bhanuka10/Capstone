@@ -1,53 +1,91 @@
 // src/Pages/ChatBot/ChatBot.jsx
 
-import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import './ChatBot.css';
-import { assets } from '../../assets/assets';
-import callGeminiFlash from '../../Config/Gemini';
-import { useChat } from '../../Context/ChatContext';
-import ReactMarkdown from 'react-markdown';
+import React, { useState, useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import "./ChatBot.css";
+import { assets } from "../../assets/assets";
+import callGeminiFlash from "../../Config/Gemini";
+import { useChat } from "../../Context/ChatContext";
+import ReactMarkdown from "react-markdown";
 
-const ChatBot = () => {
+function Chatbot({ onProfileUpdate }) {
   const location = useLocation();
-  const initialQuestion = location.state?.question || '';
+  const initialQuestion = location.state?.question || "";
 
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState(initialQuestion);
   const [loading, setLoading] = useState(false);
+  const chatEndRef = useRef(null);
   const { addToChatHistory } = useChat();
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
 
     const userMessage = { role: "user", text: input };
     const updatedMessages = [...messages, userMessage];
-
     setMessages(updatedMessages);
     setInput("");
     setLoading(true);
 
-    // Combine message history into a prompt
     const historyText = updatedMessages
       .map((msg) => `${msg.role === "user" ? "User" : "AI"}: ${msg.text}`)
       .join("\n");
 
     const prompt = `
-You are an educational AI chatbot. Ask users one question at a time based on what they’ve said.
-Avoid giving list answers. Focus only on education and learning.
-Here is the current chat history:
+You're an AI tutor. Guide users in learning by asking one friendly educational question at a time.
 
+- Focus only on education: ambition, skill level, subjects of interest.
+- Never give a list unless asked.
+- Extract their goal, skill level, and current struggles silently.
+- Speak casually, like a friend.
+
+Chat so far:
 ${historyText}
 
-Now continue the conversation naturally by asking the next helpful educational question.
+Now, respond naturally with the next educational question.
 `;
 
     const aiResponse = await callGeminiFlash(prompt);
-
     const botMessage = { role: "bot", text: aiResponse };
-    setMessages((prev) => [...prev, botMessage]);
-    addToChatHistory(input, aiResponse);
+    setMessages([...updatedMessages, botMessage]);
     setLoading(false);
+
+    extractProfileData(input + " " + aiResponse);
+    addToChatHistory(input, aiResponse);
+  };
+
+  const extractProfileData = async (text) => {
+    const extractionPrompt = `
+Given the following chat, extract the user's:
+- Ambition/goal
+- Skill level
+- Educational background
+- Struggles or learning needs
+
+Respond ONLY in JSON like this:
+{
+  "goal": "...",
+  "skills": "...",
+  "education": "...",
+  "struggles": "..."
+}
+
+Text:
+${text}
+    `;
+
+    const extracted = await callGeminiFlash(extractionPrompt);
+
+    try {
+      const json = JSON.parse(extracted.match(/\{[\s\S]*\}/)?.[0]);
+      onProfileUpdate?.(json);
+    } catch (e) {
+      console.log("Extraction failed", e);
+    }
   };
 
   return (
@@ -70,7 +108,13 @@ Now continue the conversation naturally by asking the next helpful educational q
             )}
           </div>
         ))}
-        {loading && <p>Thinking...</p>}
+        {loading && (
+          <div className="chat-message bot">
+            <div className="avatar">🤖</div>
+            <div className="message-text typing">Typing...</div>
+          </div>
+        )}
+        <div ref={chatEndRef}></div>
       </div>
 
       <div className="main-botom">
@@ -80,27 +124,27 @@ Now continue the conversation naturally by asking the next helpful educational q
             placeholder="Enter a prompt here"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+            onKeyDown={(e) => e.key === "Enter" && handleSend()}
           />
           <div
             onClick={handleSend}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
             role="button"
             tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+            onKeyDown={(e) => e.key === "Enter" && handleSend()}
           >
             <img src={assets.gallery_icon} alt="Gallery" />
             <img src={assets.mic_icon} alt="Mic" />
             <img src={assets.send_icon} alt="Send" />
           </div>
         </div>
-        <button className='generate-btn'>Generate</button>
+        <button className="generate-btn">Generate</button>
         <p className="bottom-info">
           Chat bot is a large language model powered by Gemini
         </p>
       </div>
     </div>
   );
-};
+}
 
-export default ChatBot;
+export default Chatbot;
