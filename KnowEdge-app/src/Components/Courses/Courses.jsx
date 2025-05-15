@@ -25,7 +25,21 @@ const DOMAIN_PLAYLIST_IDS = [
 const DATA_SCIENCE_PLAYLIST_IDS = [
   'PLWKjhJtqVAblvI1i46ScbKV2jH1gdL7VQ',
   'PLWKjhJtqVAbkoMsX4hgwxbJZW4aB0cbaB',
-  'PLWKjhJtqVAblQe2CCWqV4Zy3LY01Z8aF1'
+  'PLWKjhJtqVAblQe2CCWqV4Zy3LY01Z8aF1',
+  'PLTjRvDozrdlxj5wgH4qkvwSOdHLOCx10f',
+  'PL6Omre3duO-MPNUCcNO8TkhKqwq-9k313',
+  'PL6Omre3duO-NB322ACbm4_HfdX_V02ugn',
+  'PL6Omre3duO-P93dIofLn_QJv_MpmolO4D',
+  'PL6Omre3duO-OqL2T_jENSW1JLITQS8_nj',
+  'PL6Omre3duO-PMeRkxjU7pRkAlwqFXNWm9',
+  'PL6Omre3duO-M1ISixj6xonN5_rSowMvoQ',
+  'PL6Omre3duO-M1aP3UDtMHLM7rewneerqV',
+  'PL6Omre3duO-P8gQGpJaG98OL1SqVHLuIY',
+  'PL6Omre3duO-Oy8WsplPPwImWWy428RwoX',
+  'PL6Omre3duO-OGTAMuFuDOS8wMuuxmyaiX',
+  'PL6Omre3duO-NAHjbV4c5ce6s0ShlYl3Rw',
+
+  'PLWKjhJtqVAbl5SlE6aBHzUVZ1e6q1Wz0v'
 ];
 const MAX_RESULTS = 20;
 
