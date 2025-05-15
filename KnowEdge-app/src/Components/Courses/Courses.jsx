@@ -18,8 +18,14 @@ const DOMAIN_PLAYLIST_IDS = [
   'PLZPZq0r_RZOOxqHgOzPyCzIl4AJjXbCYt',
   'PLZPZq0r_RZOONc3kkuRmBOlj67YAG6jqo',
   'PLZPZq0r_RZOPoNttk9beDhO_Bu5DA-xwP',
+  'PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88',
   'PLewGdhs0k9xG6TRPgHDO03kN0wTmehw_0'
   
+];
+const DATA_SCIENCE_PLAYLIST_IDS = [
+  'PLWKjhJtqVAblvI1i46ScbKV2jH1gdL7VQ',
+  'PLWKjhJtqVAbkoMsX4hgwxbJZW4aB0cbaB',
+  'PLWKjhJtqVAblQe2CCWqV4Zy3LY01Z8aF1'
 ];
 const MAX_RESULTS = 20;
 
@@ -62,6 +68,15 @@ const Courses = () => {
       setCourses(allCourses.flat().sort(() => Math.random() - 0.5));
     } catch (error) {
       console.error('Error loading courses:', error);
+    }
+  };
+
+  const loadDataScienceCourses = async () => {
+    try {
+      const dataScienceCourses = await Promise.all(DATA_SCIENCE_PLAYLIST_IDS.map(fetchPlaylistVideos));
+      setCourses(dataScienceCourses.flat().sort(() => Math.random() - 0.5));
+    } catch (error) {
+      console.error('Error loading data science courses:', error);
     }
   };
 
@@ -116,6 +131,8 @@ const Courses = () => {
   const handleIconClick = (icon) => {
     if (icon === 'domain') {
       loadDomainCourses();
+    } else if (icon === 'data') {
+      loadDataScienceCourses();
     } else {
       setCourses([]); // Placeholder action
     }
@@ -237,11 +254,11 @@ const Courses = () => {
         </div>
       </div>
 
-      <div className={`playbox ${isPlaying ? 'show' : ''}`}>
+      <div className={`playbox ${isPlaying ? 'show' : 'hide'}`} style={{ display: isPlaying ? 'flex' : 'none', justifyContent: 'center', alignItems: 'center' }}> {/* Center the video */}
         {currentVideoId && (
           <iframe
-            width="100%"
-            height="100%"
+            width="100%" // Set to full width of the playbox
+            height="95%" // Adjusted height
             src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1`}
             frameBorder="0"
             allow="autoplay; encrypted-media"

@@ -81,7 +81,9 @@ const ChatBot = () => {
             <img src={assets.mic_icon} alt="Mic" />
             <img src={assets.send_icon} alt="Send" />
           </div>
+          
         </div>
+        <button className='generate-btn'>Genarate</button>
         <p className="bottom-info">
           Chat bot is a large language model powered by Gemini
         </p>

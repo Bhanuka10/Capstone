@@ -187,3 +187,25 @@
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
 }
+.generate-btn{
+    background-color: #03A6BC;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    justify-content: center;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.generate-btn:hover{
+    background-color: #025f73;
+    color: #ffffff;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
