@@ -12,29 +12,42 @@ const ChatBot = () => {
   const location = useLocation();
   const initialQuestion = location.state?.question || '';
 
-  const [prompt, setPrompt] = useState(initialQuestion);
-  const [response, setResponse] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [showResponse, setShowResponse] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState(initialQuestion);
+  const [loading, setLoading] = useState(false);
   const { addToChatHistory } = useChat();
 
   const handleSend = async () => {
-    if (!prompt.trim()) return;
+    if (!input.trim()) return;
 
-    const userMessage = { text: prompt, sender: "user" };
-    setMessages((prev) => [...prev, userMessage]);
+    const userMessage = { role: "user", text: input };
+    const updatedMessages = [...messages, userMessage];
 
+    setMessages(updatedMessages);
+    setInput("");
     setLoading(true);
-    const reply = await callGeminiFlash(prompt);
-    const aiMessage = { text: reply, sender: "ai" };
-    setMessages((prev) => [...prev, aiMessage]);
 
-    addToChatHistory(prompt, reply);
+    // Combine message history into a prompt
+    const historyText = updatedMessages
+      .map((msg) => `${msg.role === "user" ? "User" : "AI"}: ${msg.text}`)
+      .join("\n");
 
+    const prompt = `
+You are an educational AI chatbot. Ask users one question at a time based on what they’ve said.
+Avoid giving list answers. Focus only on education and learning.
+Here is the current chat history:
+
+${historyText}
+
+Now continue the conversation naturally by asking the next helpful educational question.
+`;
+
+    const aiResponse = await callGeminiFlash(prompt);
+
+    const botMessage = { role: "bot", text: aiResponse };
+    setMessages((prev) => [...prev, botMessage]);
+    addToChatHistory(input, aiResponse);
     setLoading(false);
-    setPrompt('');
-    setShowResponse(true);
   };
 
   return (
@@ -45,16 +58,15 @@ const ChatBot = () => {
       </div>
 
       <div className="chat-response">
-        {messages.map((message, index) => (
+        {messages.map((msg, index) => (
           <div
             key={index}
-            id={message.text}
-            className={message.sender === "user" ? "user-message" : "ai-message"}
+            className={`message ${msg.role === "user" ? "user-message" : "ai-message"}`}
           >
-            {message.sender === "ai" ? (
-              <ReactMarkdown>{message.text}</ReactMarkdown>
+            {msg.role === "bot" ? (
+              <ReactMarkdown>{msg.text}</ReactMarkdown>
             ) : (
-              <p>{message.text}</p>
+              <p>{msg.text}</p>
             )}
           </div>
         ))}
@@ -66,8 +78,8 @@ const ChatBot = () => {
           <input
             type="text"
             placeholder="Enter a prompt here"
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
           />
           <div
@@ -81,9 +93,8 @@ const ChatBot = () => {
             <img src={assets.mic_icon} alt="Mic" />
             <img src={assets.send_icon} alt="Send" />
           </div>
-          
         </div>
-        <button className='generate-btn'>Genarate</button>
+        <button className='generate-btn'>Generate</button>
         <p className="bottom-info">
           Chat bot is a large language model powered by Gemini
         </p>
