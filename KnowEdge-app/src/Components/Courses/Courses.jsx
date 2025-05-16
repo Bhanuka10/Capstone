@@ -49,6 +49,20 @@ const DATA_SCIENCE_PLAYLIST_IDS = [
   'PLeo1K3hjS3uua3c-0jHMharEJRpmNT2gh',
   'PLWKjhJtqVAbl5SlE6aBHzUVZ1e6q1Wz0v'
 ];
+const GAME_DEV_PLAYLIST_IDS = [
+  'PLZPZq0r_RZOO1zkgO4bIdfuLpizCeHYKv',
+  'PLZPZq0r_RZOOxqHgOzPyCzIl4AJjXbCYt',
+  'PLZPZq0r_RZOMRMjHB_IEBjOW_ufr00yG1',
+  'PLZPZq0r_RZOOzY_vR4zJM32SqsSInGMwe',
+  'PLZPZq0r_RZOMHoXIcxze_lP97j2Ase2on',
+  'PLZPZq0r_RZOPNy28FDBys3GVP2LiaIyP_',
+  'PL6n9fhu94yhWbn0ygHP_mLNk0hobvdvnj',
+  'PL6n9fhu94yhWjzB2ss5SPaEUboyJAx-XM',
+  'PL6n9fhu94yhVSqRSfp-6xJjVqR3xWK2IY',
+  'PL6n9fhu94yhWlAv3hnHzOaMSeggILsZFs',
+  'PLZPZq0r_RZOOkUQbat8LyQii36cJf2SWT',
+  'PLZPZq0r_RZON1eaqfafTnEexRzuHbfZX8'
+];
 const MAX_RESULTS = 20;
 
 const Courses = () => {
@@ -99,6 +113,15 @@ const Courses = () => {
       setCourses(dataScienceCourses.flat().sort(() => Math.random() - 0.5));
     } catch (error) {
       console.error('Error loading data science courses:', error);
+    }
+  };
+
+  const loadGameDevCourses = async () => {
+    try {
+      const gameDevCourses = await Promise.all(GAME_DEV_PLAYLIST_IDS.map(fetchPlaylistVideos));
+      setCourses(gameDevCourses.flat().sort(() => Math.random() - 0.5));
+    } catch (error) {
+      console.error('Error loading game development courses:', error);
     }
   };
 
@@ -155,6 +178,8 @@ const Courses = () => {
       loadDomainCourses();
     } else if (icon === 'data') {
       loadDataScienceCourses();
+    } else if (icon === 'game') {
+      loadGameDevCourses();
     } else {
       setCourses([]); // Placeholder action
     }
