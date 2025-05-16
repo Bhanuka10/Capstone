@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import "./SignIn.css"; 
+import "./SignIn.css";
 
-import robert from '../../assets/robert.png'
-import user_icon from '../../assets/user_icon.png'
-import mail_icon from '../../assets/mail_icon.png'
-import key_icon from '../../assets/key_icon.png'
-import google_icon from '../../assets/google_icon.png'
-import facebook_icon from '../../assets/facebook_icon.png'
+import robert from '../../../../src/assets/robert.png'
+import user_icon from '../../../../src/assets/user_icon.png'
+import mail_icon from '../../../../src/assets/mail_icon.png'
+import key_icon from '../../../../src/assets/key_icon.png'
+import google_icon from '../../../../src/assets/google_icon.png'
+import facebook_icon from '../../../../src/assets/facebook_icon.png'
 
 export default function Register() {
   const [form, setForm] = useState({

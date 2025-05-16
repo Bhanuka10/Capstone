@@ -8,20 +8,24 @@ import Navbar from './Components/Navbar/Navbar';
 import Home from './Pages/Home/Home';
 import Myprofile from './Pages/Myprofile/Myprofile';
 import WatchLater from './Components/WatchLater/WatchLater';
+import Register from "./Components/SignIn/SignIn.jsx";
 
 const App = () => {
   return (
-    <div className='app'>
-      <Routes>
-        {/*<Route path="/" element={<Home />} />*/}
-        {/*<Route path="/contact" element={<Myprofile />} />*/}
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/add-course" element={<AddCourse />} />
-        <Route path="/user-details" element={<User />} />
-        <Route path="/feedback" element={<Feedback />} />
-        <Route path='/watchlater' element={<WatchLater/>}/>
-      </Routes>
-    </div>
+      <div className="app-bg">
+          <Register/>
+      </div>
+    // <div className='app'>
+    //   <Routes>
+    //     {/*<Route path="/" element={<Home />} />*/}
+    //     {/*<Route path="/contact" element={<Myprofile />} />*/}
+    //     <Route path="/dashboard" element={<Dashboard />} />
+    //     <Route path="/add-course" element={<AddCourse />} />
+    //     <Route path="/user-details" element={<User />} />
+    //     <Route path="/feedback" element={<Feedback />} />
+    //     <Route path='/watchlater' element={<WatchLater/>}/>
+    //   </Routes>
+    // </div>
   );
 };
 
