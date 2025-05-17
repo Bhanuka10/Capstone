@@ -18,8 +18,86 @@ const DOMAIN_PLAYLIST_IDS = [
   'PLZPZq0r_RZOOxqHgOzPyCzIl4AJjXbCYt',
   'PLZPZq0r_RZOONc3kkuRmBOlj67YAG6jqo',
   'PLZPZq0r_RZOPoNttk9beDhO_Bu5DA-xwP',
+  'PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88',
   'PLewGdhs0k9xG6TRPgHDO03kN0wTmehw_0'
   
+];
+const DATA_SCIENCE_PLAYLIST_IDS = [
+  'PLWKjhJtqVAblvI1i46ScbKV2jH1gdL7VQ',
+  'PLWKjhJtqVAbkoMsX4hgwxbJZW4aB0cbaB',
+  'PLWKjhJtqVAblQe2CCWqV4Zy3LY01Z8aF1',
+  'PLTjRvDozrdlxj5wgH4qkvwSOdHLOCx10f',
+  'PL6Omre3duO-MPNUCcNO8TkhKqwq-9k313',
+  'PL6Omre3duO-NB322ACbm4_HfdX_V02ugn',
+  'PL6Omre3duO-P93dIofLn_QJv_MpmolO4D',
+  'PL6Omre3duO-OqL2T_jENSW1JLITQS8_nj',
+  'PL6Omre3duO-PMeRkxjU7pRkAlwqFXNWm9',
+  'PL6Omre3duO-M1ISixj6xonN5_rSowMvoQ',
+  'PL6Omre3duO-M1aP3UDtMHLM7rewneerqV',
+  'PL6Omre3duO-P8gQGpJaG98OL1SqVHLuIY',
+  'PL6Omre3duO-Oy8WsplPPwImWWy428RwoX',
+  'PL6Omre3duO-OGTAMuFuDOS8wMuuxmyaiX',
+  'PL6Omre3duO-NAHjbV4c5ce6s0ShlYl3Rw',
+  'PLeo1K3hjS3uuKaU2nBDwr6zrSOTzNCs0l',
+  'PLeo1K3hjS3ushgnP8Eif4jN8XRP-Avur5',
+  'PLeo1K3hjS3utcb9nKtanhcn8jd2E0Hp9b',
+  'PLeo1K3hjS3uva8pk1FI3iK9kCOKQdz1I9',
+  'PLeo1K3hjS3ut2o1ay5Dqh-r1kq6ZU8W0M',
+  'PLeo1K3hjS3uvaRHZLl-jLovIjBP14QTXc',
+  'PLeo1K3hjS3uuRh6Mvo3GJrXs87CEMGPWn',
+  'PLeo1K3hjS3uu_n_a__MI_KktGTLYopZ12',
+  'PLeo1K3hjS3uua3c-0jHMharEJRpmNT2gh',
+  'PLYwpaL_SFmcCgBLQ9UCxMVWKqR8FEUzJ8',
+  'PLYwpaL_SFmcDJ4M2i83kIwwnPit1aIOhQ',
+  'PLWKjhJtqVAbl5SlE6aBHzUVZ1e6q1Wz0v'
+];
+const GAME_DEV_PLAYLIST_IDS = [
+  'PLZPZq0r_RZOO1zkgO4bIdfuLpizCeHYKv',
+  'PLZPZq0r_RZOOxqHgOzPyCzIl4AJjXbCYt',
+  'PLZPZq0r_RZOMRMjHB_IEBjOW_ufr00yG1',
+  'PLZPZq0r_RZOOzY_vR4zJM32SqsSInGMwe',
+  'PLZPZq0r_RZOMHoXIcxze_lP97j2Ase2on',
+  'PLZPZq0r_RZOPNy28FDBys3GVP2LiaIyP_',
+  'PL6n9fhu94yhWbn0ygHP_mLNk0hobvdvnj',
+  'PL6n9fhu94yhWjzB2ss5SPaEUboyJAx-XM',
+  'PL6n9fhu94yhVSqRSfp-6xJjVqR3xWK2IY',
+  'PL6n9fhu94yhWlAv3hnHzOaMSeggILsZFs',
+  'PLZPZq0r_RZOOkUQbat8LyQii36cJf2SWT',
+  'PLBlnK6fEyqRhgMzWqbZXXd8TrBXtQiV3l',
+  'PLBlnK6fEyqRjARC5ewEBG9FC-2ivxQKVA',
+  'PLBlnK6fEyqRh6E-UvHKyBhoQNrRDSG-4j',
+  'PLBlnK6fEyqRhytV4M_S_Nk5OJt_E0jEbW',
+  'PLBlnK6fEyqRjcL24VVkQXUI_8KLv1zWc8',
+  'PLZPZq0r_RZOOj_NOZYq_R2PECIMglLemc',
+  'PLYwpaL_SFmcBqvw6QTRsA8gvZL3ao2ON-',
+  'PLYwpaL_SFmcDz_8-pygbcNvNF0DEwKoIL',
+  'PLYwpaL_SFmcAtxMe7ahYC4ZYjQHun_b-T',
+  'PLu_C7oK7LrjqH7IxdBS2tMr20AHxPzcuf',
+  'PLu_C7oK7Lrjr-h9d5rCjQ5X-oZuDY1ZYH',
+  'PLu_C7oK7LrjrORrYP0WhHpPI-PQN9ikUz',
+  'PLu_C7oK7LrjrKnrZjvzeggXgtflW79K84',
+  'PLu_C7oK7LrjqLdZpyOUDwHLtLd8Dc5dUP',
+  'PLu_C7oK7Lrjpeugtn4ARf_NLfAB_U6ZJt',
+  'PLu_C7oK7Lrjpgbrwvhk0uqzfoHtyPDAQi',
+  // 'PLu_C7oK7Lrjor66dpKoT-4iVLgvVFfVog',
+  // 'PLu_C7oK7LrjpPTduNJmwstCCU5q-OotUN',
+  // 'PLA-xaldQ72rwUKwo4raLoHYEjWuGNBFO9',
+  // 'PLA-xaldQ72rzaPRTmHytmBl54bvkj92zh',
+  // 'PLA-xaldQ72rwccxt4VR4sbM6Amq0hz62X',
+  // 'PLA-xaldQ72rxijh0UIIw9LbBiomYjCrNq',
+  
+  'PLBh8phtAyHPVYsF10GGqFWHIlxkML5l4n',
+  'PLBh8phtAyHPXYTDpnYOA5gZMREsxYSsGD',
+  'PLBh8phtAyHPUY9fqgs1w6aHJALJ3_fMSc',
+  'PLFt_AvWsXl0cvHyu32ajwh2qU1i6hl77c',
+  'PLFt_AvWsXl0cbBEB7Z0QSeTCXDRL9IIH0',
+  'PLFt_AvWsXl0fxTBI16tPwuVmF6l3_NkYF',
+  'PLFt_AvWsXl0f_rlmTWiSPs8EXVuEnyB1h',
+  'PLFt_AvWsXl0f4c56CbvYi038zmCmoZ4CQ',
+  'PLFt_AvWsXl0cD2LPxcjxVjWTQLxJqKpgZ',
+  'PLFt_AvWsXl0djuNM22htmz3BUtHHtOh7v',
+  'PLFt_AvWsXl0fnA91TcmkRyhhixX9CO3Lw',
+  'PLZPZq0r_RZON1eaqfafTnEexRzuHbfZX8'
 ];
 const MAX_RESULTS = 20;
 
@@ -62,6 +140,24 @@ const Courses = () => {
       setCourses(allCourses.flat().sort(() => Math.random() - 0.5));
     } catch (error) {
       console.error('Error loading courses:', error);
+    }
+  };
+
+  const loadDataScienceCourses = async () => {
+    try {
+      const dataScienceCourses = await Promise.all(DATA_SCIENCE_PLAYLIST_IDS.map(fetchPlaylistVideos));
+      setCourses(dataScienceCourses.flat().sort(() => Math.random() - 0.5));
+    } catch (error) {
+      console.error('Error loading data science courses:', error);
+    }
+  };
+
+  const loadGameDevCourses = async () => {
+    try {
+      const gameDevCourses = await Promise.all(GAME_DEV_PLAYLIST_IDS.map(fetchPlaylistVideos));
+      setCourses(gameDevCourses.flat().sort(() => Math.random() - 0.5));
+    } catch (error) {
+      console.error('Error loading game development courses:', error);
     }
   };
 
@@ -116,6 +212,10 @@ const Courses = () => {
   const handleIconClick = (icon) => {
     if (icon === 'domain') {
       loadDomainCourses();
+    } else if (icon === 'data') {
+      loadDataScienceCourses();
+    } else if (icon === 'game') {
+      loadGameDevCourses();
     } else {
       setCourses([]); // Placeholder action
     }
@@ -237,11 +337,11 @@ const Courses = () => {
         </div>
       </div>
 
-      <div className={`playbox ${isPlaying ? 'show' : ''}`}>
+      <div className={`playbox ${isPlaying ? 'show' : 'hide'}`} style={{ display: isPlaying ? 'flex' : 'none', justifyContent: 'center', alignItems: 'center' }}> {/* Center the video */}
         {currentVideoId && (
           <iframe
-            width="100%"
-            height="100%"
+            width="100%" // Set to full width of the playbox
+            height="95%" // Adjusted height
             src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1`}
             frameBorder="0"
             allow="autoplay; encrypted-media"
@@ -255,6 +355,8 @@ const Courses = () => {
       <button className='back-to-top' onClick={backToTop} ref={backToTopBtnRef}>
         Back to Top
       </button>
+
+
 
       <div className="watch-later-shortcut">
   <Link to="/watchlater">
