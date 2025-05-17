@@ -10,6 +10,10 @@ import Myprofile from './Pages/Myprofile/Myprofile';
 import WatchLater from './Components/WatchLater/WatchLater';
 import Chatbot from "./Components/ChatBot/ChatBot";
 
+//sign in
+
+import Register from "./Components/SignIn/Register";
+
 const App = () => {
   const [profile, setProfile] = useState(null);
 
@@ -30,6 +34,10 @@ const App = () => {
           <Route path="/user-details" element={<User />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path='/watchlater' element={<WatchLater />} />
+          <Route path="/register" element={<Register />} />
+
+          <Route path="/" element={<Register />} />
+
         </Routes>
       </BrowserRouter>
       <Chatbot onProfileUpdate={handleProfileUpdate} />
@@ -46,3 +54,7 @@ const App = () => {
 };
 
 export default App;
+
+
+
+

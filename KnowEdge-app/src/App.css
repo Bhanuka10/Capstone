@@ -40,3 +40,14 @@
 .read-the-docs {
   color: #888;
 }
+
+
+/* App.css */
+.app-bg {
+  min-height: 100vh;
+  min-width: 100vw;
+  background: #2e8b9c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
