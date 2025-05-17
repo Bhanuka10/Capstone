@@ -9,10 +9,12 @@ import Home from './Pages/Home/Home';
 import Myprofile from './Pages/Myprofile/Myprofile';
 import WatchLater from './Components/WatchLater/WatchLater';
 import Chatbot from "./Components/ChatBot/ChatBot";
+import Signin from './Pages/Signin/Signin';
+
 
 //sign in
 
-import Register from "./Components/SignIn/Register";
+
 
 const App = () => {
   const [profile, setProfile] = useState(null);
@@ -34,9 +36,9 @@ const App = () => {
           <Route path="/user-details" element={<User />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path='/watchlater' element={<WatchLater />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Signin />} />
 
-          <Route path="/" element={<Register />} />
+          
 
         </Routes>
       </BrowserRouter>
