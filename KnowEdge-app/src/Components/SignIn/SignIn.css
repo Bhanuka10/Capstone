@@ -2,7 +2,7 @@ body, html {
     height: 100%;
     margin: 0;
     font-family: 'Montserrat', Arial, sans-serif;
-    background: #3790a3;
+   
   }
   
   .register-container {
@@ -11,6 +11,7 @@ body, html {
     align-items: center;
     justify-content: center;
     background: #3790a3;
+     background: #3790a3;
   }
   
   .register-card {
