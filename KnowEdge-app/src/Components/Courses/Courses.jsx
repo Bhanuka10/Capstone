@@ -76,7 +76,25 @@ const GAME_DEV_PLAYLIST_IDS = [
 ];
 const AI_PLAYLIST_IDS = [
   'PLD80i8An1OEFYv0r6gULbeYY8QGjdtSw-',
-  'PLD80i8An1OEGZ2tYimemzwC3xqkU0jKUg'
+  'PLD80i8An1OEGZ2tYimemzwC3xqkU0jKUg',
+  'PLeo1K3hjS3utjalsQ32f6fYcLkWvf3-rA',
+  'PLeo1K3hjS3uvqU_A4uzpbCNyTI5HbiEm4',
+  'PLeo1K3hjS3uuKaU2nBDwr6zrSOTzNCs0l',
+  'PLeo1K3hjS3ut2o1ay5Dqh-r1kq6ZU8W0M',
+  'PLeo1K3hjS3uvaRHZLl-jLovIjBP14QTXc',
+  'PLeo1K3hjS3uvCeTYTeyfe0-rN5r8zn9rw',
+  'PLWPirh4EWFpEjbNicXUZk0wrPBzBlAlU_',
+  'PLWPirh4EWFpEV7539u8r_afMlRbt5sa6Q',
+  'PLOLWGEXpOrBzAHnRf3-F_ypf5kX_WsYvO',
+  'PLOLWGEXpOrByXHRGMfU1b7X4esb-c1i2N',
+  'PLOLWGEXpOrBzV-o9E1qWnisuxNJuePBEG',
+  'PLOLWGEXpOrBxHOzhwnBDU6HOGCTm87UiY',
+  'PLLhBy6YSIT0DNkQQmt16gZRQnFPQKD318',
+  'PLEiEAq2VkUUIW49-3u2oj7XwJEZoWKxBF',
+  'PLEiEAq2VkUULjxp4UxA9Z4ca5pvHqFmy7',
+  'PLEiEAq2VkUUIUgmP1bAbcoOuGketuOi6U',
+  'PLEiEAq2VkUUJ9VOQkH_xU-MGg-z67Gyra',
+  'PLLhBy6YSIT0AtWO_ldCwGNCQ4Id1WWov2'
 ];
 const AI_API_KEY = 'AIzaSyAF_buLKadyaFn0CwatrPP545plDQ_NQ4A';
 const MAX_RESULTS = 30;
