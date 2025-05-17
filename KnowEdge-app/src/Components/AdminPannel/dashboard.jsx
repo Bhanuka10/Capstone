@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './dashboard.css';
 import AddCourse from "../AdminAddCourses/AddCourse";
 import { FaUser, FaBook, FaUsers, FaComments } from 'react-icons/fa';
@@ -7,11 +7,21 @@ import { Link } from 'react-router-dom';
 import SideBar from '../AdminSideBar/SideBar';
 
 const Dashboard = () => {
-    const [activeMenu, setActiveMenu] = useState('dashboard'); // state for active item
+    const [activeMenu, setActiveMenu] = useState('dashboard');
 
     const handleMenuClick = (menu) => {
         setActiveMenu(menu);
     };
+
+    // ✅ Remove body margin only for this page
+    useEffect(() => {
+        const previousMargin = document.body.style.margin;
+        document.body.style.margin = '0';
+
+        return () => {
+            document.body.style.margin = previousMargin;
+        };
+    }, []);
 
     return (
         <div className="dashboard-container">
@@ -24,7 +34,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className="stats-cards">
-                    <h1 className="title">Dashboard</h1>
+                    <h1 className="admin-title">Dashboard</h1>
                     <div className="card">
                         <div className="card-info">
                             <p>Total Users</p>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./SignIn.css"; 
+import "./SignIn.css";
 
 import robert from '../../assets/robert.png'
-import user_icon from '../../assets/user_icon.png'
+import black_user_icon from '../../assets/black_user_icon.png'
 import mail_icon from '../../assets/mail_icon.png'
 import key_icon from '../../assets/key_icon.png'
 import google_icon from '../../assets/google_icon.png'
@@ -32,48 +32,22 @@ export default function Register() {
   };
 
   return (
-
-
-
-    
-
-
-
     <div className="register-container">
       <div className="register-card">
         <div className="logo-row">
-          {/* <span>Expert Path</span> */}
+          <span>Expert Path</span>
         </div>
-        {/* <div className="register-title">WelCome</div>
-        <div className="register-subtitle">Let's get started!</div> */}
-
-
-<div style={{ marginBottom: 22 }}>
-            <div style={{ color: "#fff", fontSize: 16, fontWeight: 400 }}>
-              Welcome to
-            </div>
-            <div style={{ color: "#9ee493", fontWeight: 600, fontSize: 18, letterSpacing: 1 }}>
-              Expert Path
-            </div>
-          </div>
-
-          <div className="register-subtitle">Let's get started!</div> 
-
-
-
-
-
-
-
+        <div className="register-title">Create an account</div>
+        <div className="register-subtitle">Let's get started!</div>
         <form className="register-form" onSubmit={handleSubmit}>
           <div className="input-group">
             <span className="icon">
-              <img src={user_icon} alt="Name" />
+              <img src={black_user_icon} alt="Name" />
             </span>
             <input
               type="text"
               name="name"
-              placeholder="Email"
+              placeholder="Name"
               value={form.name}
               onChange={handleChange}
               required
@@ -81,16 +55,16 @@ export default function Register() {
           </div>
           <div className="input-group">
             <span className="icon">
-              {/* <img src={mail_icon} alt="E-mail" /> */}
+              <img src={mail_icon} alt="E-mail" />
             </span>
-            {/* <input
+            <input
               type="email"
               name="email"
               placeholder="E-mail"
               value={form.email}
               onChange={handleChange}
               required
-            /> */}
+            />
           </div>
           <div className="input-group">
             <span className="icon">
@@ -107,18 +81,18 @@ export default function Register() {
           </div>
           <div className="input-group">
             <span className="icon">
-              {/* <img src={key_icon} alt="Confirm Password" /> */}
+              <img src={key_icon} alt="Confirm Password" />
             </span>
-            {/* <input
+            <input
               type="password"
               name="confirmPassword"
               placeholder="Confirm Password"
               value={form.confirmPassword}
               onChange={handleChange}
               required
-            /> */}
+            />
           </div>
-          {/* <div className="terms-row">
+          <div className="terms-row">
             <input
               type="checkbox"
               name="terms"
@@ -126,52 +100,15 @@ export default function Register() {
               onChange={handleChange}
               required
             />
-            Remember me
-          </div> */}
-
-
-<div className="form-options">
-  <div className="checkbox-wrapper">
-    <input
-      id="rememberMe"
-      type="checkbox"
-      name="terms"
-      checked={form.terms}
-      onChange={handleChange}
-      required
-    />
-    <label htmlFor="rememberMe">Remember me</label>
-  </div>
-  <a href="#" className="forgot-link">Forgot Password?</a>
-</div>
-
-
-
-
-
-
-
-          
-{/* 
-<a href="#" style={{ color: "#b9e3e7", fontSize: 13, textDecoration: "none" }}>
-                Forget Password ?
-</a> */}
-
-
-
-
-
-
-
-
-
+            I Accept Terms & Conditions
+          </div>
           <button className="signup-btn" type="submit">
-            Sign in
+            Sign up
           </button>
         </form>
         <div className="signin-row">
-          Don't have an account?
-          <a href="/login">Sign up</a>
+          Already have an account?
+          <a href="/login">Sign in</a>
         </div>
         <div className="divider">
           <span>OR</span>
