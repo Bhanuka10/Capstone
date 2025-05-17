@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 
 const SideBar = ({ activeMenu, onMenuClick }) => {
     return (
-        <div className="sidebar">
-            <div className="logo">Expert Path</div>
-            <div className="menu">
+        <div className="admin-sidebar">
+            <div className="admin-logo">Expert Path</div>
+            <div className="admin-menu">
                 <Link
                     to="/"
-                    className={`menu-item ${activeMenu === 'dashboard' ? 'active' : ''}`}
+                    className={`admin-menu-item ${activeMenu === 'dashboard' ? 'active' : ''}`}
                     onClick={() => onMenuClick('dashboard')}
                 >
                     <MdDashboard /> Dashboard
@@ -19,7 +19,7 @@ const SideBar = ({ activeMenu, onMenuClick }) => {
 
                 <Link
                     to="/user-details"
-                    className={`menu-item ${activeMenu === 'users' ? 'active' : ''}`}
+                    className={`admin-menu-item ${activeMenu === 'users' ? 'active' : ''}`}
                     onClick={() => onMenuClick('users')}
                 >
                     <FaUsers /> Users
@@ -27,7 +27,7 @@ const SideBar = ({ activeMenu, onMenuClick }) => {
 
                 <Link
                     to="/add-course"
-                    className={`menu-item ${activeMenu === 'courses' ? 'active' : ''}`}
+                    className={`admin-menu-item ${activeMenu === 'courses' ? 'active' : ''}`}
                     onClick={() => onMenuClick('courses')}
                 >
                     <FaBook /> Courses
@@ -35,7 +35,7 @@ const SideBar = ({ activeMenu, onMenuClick }) => {
 
                 <Link
                     to="/feedback"
-                    className={`menu-item ${activeMenu === 'feedback' ? 'active' : ''}`}
+                    className={`admin-menu-item ${activeMenu === 'feedback' ? 'active' : ''}`}
                     onClick={() => onMenuClick('feedback')}
                 >
                     <FaComments /> Feedback
