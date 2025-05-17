@@ -74,6 +74,11 @@ const GAME_DEV_PLAYLIST_IDS = [
   'PLFt_AvWsXl0fnA91TcmkRyhhixX9CO3Lw',
   'PLZPZq0r_RZON1eaqfafTnEexRzuHbfZX8'
 ];
+const AI_PLAYLIST_IDS = [
+  'PLD80i8An1OEFYv0r6gULbeYY8QGjdtSw-',
+  'PLD80i8An1OEGZ2tYimemzwC3xqkU0jKUg'
+];
+const AI_API_KEY = 'AIzaSyAF_buLKadyaFn0CwatrPP545plDQ_NQ4A';
 const MAX_RESULTS = 30;
 
 const Courses = () => {
@@ -95,6 +100,23 @@ const Courses = () => {
   const fetchPlaylistVideos = async (playlistId) => {
     const response = await fetch(
       `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${MAX_RESULTS}&playlistId=${playlistId}&key=${API_KEY}`
+    );
+    const data = await response.json();
+    const storedCounts = getStoredViewCounts();
+    return data.items.map(item => {
+      const videoId = item.snippet.resourceId.videoId;
+      return {
+        title: item.snippet.title,
+        thumbnail: item.snippet.thumbnails.medium.url,
+        videoId,
+        viewCount: storedCounts[videoId] || 0
+      };
+    });
+  };
+
+  const fetchAIPlaylistVideos = async (playlistId) => {
+    const response = await fetch(
+      `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${MAX_RESULTS}&playlistId=${playlistId}&key=${AI_API_KEY}`
     );
     const data = await response.json();
     const storedCounts = getStoredViewCounts();
@@ -133,6 +155,15 @@ const Courses = () => {
       setCourses(gameDevCourses.flat().sort(() => Math.random() - 0.5));
     } catch (error) {
       console.error('Error loading game development courses:', error);
+    }
+  };
+
+  const loadAICourses = async () => {
+    try {
+      const aiCourses = await Promise.all(AI_PLAYLIST_IDS.map(fetchAIPlaylistVideos));
+      setCourses(aiCourses.flat().sort(() => Math.random() - 0.5));
+    } catch (error) {
+      console.error('Error loading AI courses:', error);
     }
   };
 
@@ -191,6 +222,8 @@ const Courses = () => {
       loadDataScienceCourses();
     } else if (icon === 'game') {
       loadGameDevCourses();
+    } else if (icon === 'ai') {
+      loadAICourses();
     } else {
       setCourses([]); // Placeholder action
     }
