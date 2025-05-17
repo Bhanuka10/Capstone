@@ -34,14 +34,6 @@ const DATA_SCIENCE_PLAYLIST_IDS = [
   'PL6Omre3duO-PMeRkxjU7pRkAlwqFXNWm9',
   'PL6Omre3duO-M1ISixj6xonN5_rSowMvoQ',
   'PL6Omre3duO-M1aP3UDtMHLM7rewneerqV',
-  'PL6Omre3duO-P8gQGpJaG98OL1SqVHLuIY',
-  'PL6Omre3duO-Oy8WsplPPwImWWy428RwoX',
-  'PL6Omre3duO-OGTAMuFuDOS8wMuuxmyaiX',
-  'PL6Omre3duO-NAHjbV4c5ce6s0ShlYl3Rw',
-  'PLeo1K3hjS3uuKaU2nBDwr6zrSOTzNCs0l',
-  'PLeo1K3hjS3ushgnP8Eif4jN8XRP-Avur5',
-  'PLeo1K3hjS3utcb9nKtanhcn8jd2E0Hp9b',
-  'PLeo1K3hjS3uva8pk1FI3iK9kCOKQdz1I9',
   'PLeo1K3hjS3ut2o1ay5Dqh-r1kq6ZU8W0M',
   'PLeo1K3hjS3uvaRHZLl-jLovIjBP14QTXc',
   'PLeo1K3hjS3uuRh6Mvo3GJrXs87CEMGPWn',
@@ -74,23 +66,6 @@ const GAME_DEV_PLAYLIST_IDS = [
   'PLYwpaL_SFmcAtxMe7ahYC4ZYjQHun_b-T',
   'PLu_C7oK7LrjqH7IxdBS2tMr20AHxPzcuf',
   'PLu_C7oK7Lrjr-h9d5rCjQ5X-oZuDY1ZYH',
-  'PLu_C7oK7LrjrORrYP0WhHpPI-PQN9ikUz',
-  'PLu_C7oK7LrjrKnrZjvzeggXgtflW79K84',
-  'PLu_C7oK7LrjqLdZpyOUDwHLtLd8Dc5dUP',
-  'PLu_C7oK7Lrjpeugtn4ARf_NLfAB_U6ZJt',
-  'PLu_C7oK7Lrjpgbrwvhk0uqzfoHtyPDAQi',
-  // 'PLu_C7oK7Lrjor66dpKoT-4iVLgvVFfVog',
-  // 'PLu_C7oK7LrjpPTduNJmwstCCU5q-OotUN',
-  // 'PLA-xaldQ72rwUKwo4raLoHYEjWuGNBFO9',
-  // 'PLA-xaldQ72rzaPRTmHytmBl54bvkj92zh',
-  // 'PLA-xaldQ72rwccxt4VR4sbM6Amq0hz62X',
-  // 'PLA-xaldQ72rxijh0UIIw9LbBiomYjCrNq',
-  
-  'PLBh8phtAyHPVYsF10GGqFWHIlxkML5l4n',
-  'PLBh8phtAyHPXYTDpnYOA5gZMREsxYSsGD',
-  'PLBh8phtAyHPUY9fqgs1w6aHJALJ3_fMSc',
-  'PLFt_AvWsXl0cvHyu32ajwh2qU1i6hl77c',
-  'PLFt_AvWsXl0cbBEB7Z0QSeTCXDRL9IIH0',
   'PLFt_AvWsXl0fxTBI16tPwuVmF6l3_NkYF',
   'PLFt_AvWsXl0f_rlmTWiSPs8EXVuEnyB1h',
   'PLFt_AvWsXl0f4c56CbvYi038zmCmoZ4CQ',
@@ -99,7 +74,7 @@ const GAME_DEV_PLAYLIST_IDS = [
   'PLFt_AvWsXl0fnA91TcmkRyhhixX9CO3Lw',
   'PLZPZq0r_RZON1eaqfafTnEexRzuHbfZX8'
 ];
-const MAX_RESULTS = 20;
+const MAX_RESULTS = 30;
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);

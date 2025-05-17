@@ -15,7 +15,7 @@
     font-weight: bold;
 }
 
-.menu {
+.admin-menu {
     margin-top:35px;
     width: 100%;
     display:grid;
@@ -23,7 +23,7 @@
 
 }
 
-.menu-item {
+.admin-menu-item {
     padding: 15px 20px;
     display: flex;
     align-items: center;
@@ -33,7 +33,7 @@
     text-decoration: none;
 }
 
-.menu-item.active {
+.admin-menu-item.active {
     border-radius: 8px 0px 0px 8px;
     border: 1px solid #0D9488;
     background: #2DD4C5;
