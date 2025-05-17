@@ -13,10 +13,10 @@ import Register from "@/Pages/SignIn/SignIn.jsx"; // ChatBot component
 const router = createBrowserRouter([
 
     //Uncomment this to run sign in page
-  {
-    path: "/",
-    element: <Register />,
-  },
+  // {
+  //   path: "/",
+  //   element: <Register />,
+  // },
 
 
 
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
   },
 
 
-//Uncomment this to run Admin panel
+// Uncomment this to run Admin panel
 //   {
 //     path: "/",
 //     element: <Dashboard />,
