@@ -35,11 +35,15 @@ const App = () => {
           <Route path="/add-course" element={<AddCourse />} />
           <Route path="/user-details" element={<User />} />
           <Route path="/feedback" element={<Feedback />} />
+<<<<<<< Updated upstream
           <Route path='/watchlater' element={<WatchLater />} />
           <Route path="/register" element={<Signin />} />
 
           
 
+=======
+          <Route path="/watchlater" element={<WatchLater />} />
+>>>>>>> Stashed changes
         </Routes>
       </BrowserRouter>
       <Chatbot onProfileUpdate={handleProfileUpdate} />
