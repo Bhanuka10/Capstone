@@ -96,7 +96,11 @@ const AI_PLAYLIST_IDS = [
   'PLEiEAq2VkUUJ9VOQkH_xU-MGg-z67Gyra',
   'PLLhBy6YSIT0AtWO_ldCwGNCQ4Id1WWov2'
 ];
+const MOBILE_DEV_PLAYLIST_IDS = [
+  
+];
 const AI_API_KEY = 'AIzaSyAF_buLKadyaFn0CwatrPP545plDQ_NQ4A';
+const MOBILE_DEV_API_KEY = 'AIzaSyCrHMb5V__f_D2dNBNvGSeSzf2ziZnSKJs';
 const MAX_RESULTS = 30;
 
 const Courses = () => {
@@ -149,6 +153,23 @@ const Courses = () => {
     });
   };
 
+  const fetchMobileDevPlaylistVideos = async (playlistId) => {
+    const response = await fetch(
+      `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${MAX_RESULTS}&playlistId=${playlistId}&key=${MOBILE_DEV_API_KEY}`
+    );
+    const data = await response.json();
+    const storedCounts = getStoredViewCounts();
+    return data.items.map(item => {
+      const videoId = item.snippet.resourceId.videoId;
+      return {
+        title: item.snippet.title,
+        thumbnail: item.snippet.thumbnails.medium.url,
+        videoId,
+        viewCount: storedCounts[videoId] || 0
+      };
+    });
+  };
+
   const loadDomainCourses = async () => {
     try {
       const allCourses = await Promise.all(DOMAIN_PLAYLIST_IDS.map(fetchPlaylistVideos));
@@ -182,6 +203,15 @@ const Courses = () => {
       setCourses(aiCourses.flat().sort(() => Math.random() - 0.5));
     } catch (error) {
       console.error('Error loading AI courses:', error);
+    }
+  };
+
+  const loadMobileDevCourses = async () => {
+    try {
+      const mobileDevCourses = await Promise.all(MOBILE_DEV_PLAYLIST_IDS.map(fetchMobileDevPlaylistVideos));
+      setCourses(mobileDevCourses.flat().sort(() => Math.random() - 0.5));
+    } catch (error) {
+      console.error('Error loading mobile development courses:', error);
     }
   };
 
@@ -242,6 +272,8 @@ const Courses = () => {
       loadGameDevCourses();
     } else if (icon === 'ai') {
       loadAICourses();
+    } else if (icon === 'mobile') {
+      loadMobileDevCourses();
     } else {
       setCourses([]); // Placeholder action
     }
