@@ -97,7 +97,39 @@ const AI_PLAYLIST_IDS = [
   'PLLhBy6YSIT0AtWO_ldCwGNCQ4Id1WWov2'
 ];
 const MOBILE_DEV_PLAYLIST_IDS = [
-  
+  'PLsyeobzWxl7oa1WO9n4cP3OY9nOtUcZIg',
+  'PLsyeobzWxl7qbKoSgR5ub6jolI8-ocxCF',
+  'PLsyeobzWxl7q6oUFts2erdot6jxF_lisP',
+  'PLsyeobzWxl7rccHHxqmSaNLD2gf7t_Eip',
+  'PLsyeobzWxl7pSqMzPF_SlvQ0IdcGA-XI2',
+  'PLsyeobzWxl7poL9JTVyndKe62ieoN-MZ3',
+  'PLsyeobzWxl7rooJFZhc3qPLwVROovGCfh',
+  'PLUhfM8afLE_N2rYb3C6BE6nBn6v_oCY9A',
+  'PLUhfM8afLE_OaJOVXCboP9PRuhvirFqgk',
+  'PLUhfM8afLE_NAzt-k3CIs4m4yndkku80D',
+  'PLUhfM8afLE_OhwmYSj3I0pc-7eV4gdhHh',
+  'PLUhfM8afLE_OwjgXnBxikbym0d3QGvhTZ',
+  'PLSrm9z4zp4mFwug3OIZnL9Fq_txkIhNJc',
+  'PLSrm9z4zp4mFttjku-3wiRkPH1lDRQLYy',
+  'PLSrm9z4zp4mHWc6emIR_X4WcLLA5pD2Fp',
+  'PLSrm9z4zp4mGmSn4w5fBs5EsRiQxTSl-r',
+  'PLSrm9z4zp4mE-o3sPq-PqzGHoFAIsQFI6',
+  'PLMRqhzcHGw1YZ63-rrun604ee7M4iglaJ',
+  'PLMRqhzcHGw1aYtbJQUR1lhmPzzaCQWl8z',
+  'PLMRqhzcHGw1bXAOgzO8HokHyq9vmSeq1L',
+  'PLMRqhzcHGw1ZsFRLAWa_Axx7daXteynjh',
+  'PLMRqhzcHGw1Z-lZaaun3A3mV9PbEfHANI',
+  'PLMRqhzcHGw1b89DXHOVA77ozWXWmuBkWX',
+  'PLRAV69dS1uWRH0QDzQaKLQEYD26YCQ5eS',
+  'PLRAV69dS1uWTNPzObtUpbxe1L1lB97z2R',
+  'PLRAV69dS1uWR7KF-zV6YPYtKYEHENETyE',
+  'PLRAV69dS1uWTcGaBdIhAU4rdvhWKl1spk',
+  'PLRAV69dS1uWSjBBJ-egNNOd4mdblt1P4c',
+  'PLRAV69dS1uWRPSfKzwZsIm-Axxq-LxqhW',
+  'PL4cUxeGkcC9hNTz3sxqGTfxAwU-DIHJd2',
+  'PL4cUxeGkcC9hgO93oEHPBMuLA20y0SBVK',
+  'PL4cUxeGkcC9gwXT3edSVZitfmIhRcwx_T',
+  'PL4cUxeGkcC9ic9O6xDW2d1qMp3rMOb0Nu'
 ];
 const AI_API_KEY = 'AIzaSyAF_buLKadyaFn0CwatrPP545plDQ_NQ4A';
 const MOBILE_DEV_API_KEY = 'AIzaSyCrHMb5V__f_D2dNBNvGSeSzf2ziZnSKJs';
