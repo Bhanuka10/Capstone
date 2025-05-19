@@ -290,6 +290,28 @@ const Courses = () => {
     }
   };
 
+  const loadAllCourses = async () => {
+    try {
+      const allDomain = await Promise.all(DOMAIN_PLAYLIST_IDS.map(fetchPlaylistVideos));
+      const allDataScience = await Promise.all(DATA_SCIENCE_PLAYLIST_IDS.map(fetchPlaylistVideos));
+      const allGameDev = await Promise.all(GAME_DEV_PLAYLIST_IDS.map(fetchPlaylistVideos));
+      const allAI = await Promise.all(AI_PLAYLIST_IDS.map(fetchAIPlaylistVideos));
+      const allMobile = await Promise.all(MOBILE_DEV_PLAYLIST_IDS.map(fetchMobileDevPlaylistVideos));
+      const allTech = await Promise.all(TECHNOLOGY_PLAYLIST_IDS.map(fetchTechnologyPlaylistVideos));
+      const allCourses = [
+        ...allDomain.flat(),
+        ...allDataScience.flat(),
+        ...allGameDev.flat(),
+        ...allAI.flat(),
+        ...allMobile.flat(),
+        ...allTech.flat()
+      ];
+      setCourses(allCourses.sort(() => Math.random() - 0.5));
+    } catch (error) {
+      console.error('Error loading all courses:', error);
+    }
+  };
+
   useEffect(() => {
     loadDomainCourses();
   }, []);
@@ -351,6 +373,8 @@ const Courses = () => {
       loadMobileDevCourses();
     } else if (icon === 'tech') {
       loadTechnologyCourses();
+    } else if (icon === 'all') {
+      loadAllCourses();
     } else {
       setCourses([]); // Placeholder action
     }
@@ -418,7 +442,7 @@ const Courses = () => {
 
       <div className='icons-row'>
         <div className='icons-ai'>
-          <img src="select-all.png" alt="All Courses" />
+          <img src="select-all.png" alt="All Courses" onClick={() => handleIconClick('all')} />
         </div>
         <div className='icons'>
           <ul>
