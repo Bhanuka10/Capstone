@@ -8,21 +8,21 @@ import AddCourse from "@/Components/AdminAddCourses/AddCourse.jsx";
 import User from "@/Components/AdminUser/User.jsx";
 import Feedback from "@/Components/AdminFeedBack/Feedback.jsx";
 import WatchLater from "@/Components/WatchLater/WatchLater.jsx";
-import Register from "@/Pages/SignIn/SignIn.jsx"; // ChatBot component
+import Register from "@/Pages/Register/Register.jsx";
 
 const router = createBrowserRouter([
 
     //Uncomment this to run sign in page
-  // {
-  //   path: "/",
-  //   element: <Register />,
-  // },
+  {
+    path: "/",
+    element: <Register />,
+  },
 
 
 
     //Uncomment this to run Home page
   {
-    path: "/",
+    path: "/home",
     element: <Home />, // Home page
   },
   {
@@ -36,22 +36,22 @@ const router = createBrowserRouter([
 
 
 // Uncomment this to run Admin panel
-//   {
-//     path: "/",
-//     element: <Dashboard />,
-//   },
-//   {
-//     path: "/add-course",
-//     element: <AddCourse />,
-//   },
-//   {
-//     path: "/user-details",
-//     element: <User />,
-//   },
-//   {
-//     path: "/feedback",
-//     element: <Feedback />,
-//   },
+  {
+    path: "/",
+    element: <Dashboard />,
+  },
+  {
+    path: "/add-course",
+    element: <AddCourse />,
+  },
+  {
+    path: "/user-details",
+    element: <User />,
+  },
+  {
+    path: "/feedback",
+    element: <Feedback />,
+  },
 
 ]);
 
