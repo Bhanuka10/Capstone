@@ -57,7 +57,7 @@ const Navbar = () => {
                 <div className='menu'>
                     <ul>
                         <li className={menu === "Home" ? "active" : ""} onClick={() => setMenu("Home")}>
-                            <Link to="/">Home</Link>
+                            <Link to="/home">Home</Link>
                         </li>
                         <li className={menu === "About" ? "active" : ""} onClick={handleScrollToAbout}>
                             About

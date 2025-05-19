@@ -209,3 +209,16 @@
     width: 310px;
     margin-bottom: 18px;
   }
+
+.alert-box {
+  color: #fff;
+  background-color: #e63946;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+.alert-box:has(:contains ("Registration successful")) {
+  background-color: #38a169;
+}
