@@ -131,6 +131,10 @@ const MOBILE_DEV_PLAYLIST_IDS = [
   'PL4cUxeGkcC9gwXT3edSVZitfmIhRcwx_T',
   'PL4cUxeGkcC9ic9O6xDW2d1qMp3rMOb0Nu'
 ];
+const TECHNOLOGY_PLAYLIST_IDS = [
+  'PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb'
+];
+const TECHNOLOGY_API_KEY = 'AIzaSyCrHMb5V__f_D2dNBNvGSeSzf2ziZnSKJs';
 const AI_API_KEY = 'AIzaSyAF_buLKadyaFn0CwatrPP545plDQ_NQ4A';
 const MOBILE_DEV_API_KEY = 'AIzaSyCrHMb5V__f_D2dNBNvGSeSzf2ziZnSKJs';
 const MAX_RESULTS = 30;
@@ -202,6 +206,23 @@ const Courses = () => {
     });
   };
 
+  const fetchTechnologyPlaylistVideos = async (playlistId) => {
+    const response = await fetch(
+      `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${MAX_RESULTS}&playlistId=${playlistId}&key=${TECHNOLOGY_API_KEY}`
+    );
+    const data = await response.json();
+    const storedCounts = getStoredViewCounts();
+    return data.items.map(item => {
+      const videoId = item.snippet.resourceId.videoId;
+      return {
+        title: item.snippet.title,
+        thumbnail: item.snippet.thumbnails.medium.url,
+        videoId,
+        viewCount: storedCounts[videoId] || 0
+      };
+    });
+  };
+
   const loadDomainCourses = async () => {
     try {
       const allCourses = await Promise.all(DOMAIN_PLAYLIST_IDS.map(fetchPlaylistVideos));
@@ -244,6 +265,15 @@ const Courses = () => {
       setCourses(mobileDevCourses.flat().sort(() => Math.random() - 0.5));
     } catch (error) {
       console.error('Error loading mobile development courses:', error);
+    }
+  };
+
+  const loadTechnologyCourses = async () => {
+    try {
+      const techCourses = await Promise.all(TECHNOLOGY_PLAYLIST_IDS.map(fetchTechnologyPlaylistVideos));
+      setCourses(techCourses.flat().sort(() => Math.random() - 0.5));
+    } catch (error) {
+      console.error('Error loading technology courses:', error);
     }
   };
 
@@ -306,6 +336,8 @@ const Courses = () => {
       loadAICourses();
     } else if (icon === 'mobile') {
       loadMobileDevCourses();
+    } else if (icon === 'tech') {
+      loadTechnologyCourses();
     } else {
       setCourses([]); // Placeholder action
     }
