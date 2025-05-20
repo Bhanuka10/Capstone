@@ -49,6 +49,24 @@
   margin-top: 40px;
 }
 
+.icons-ai.blue-3d-png-rectangle {
+  padding: 2px 4px !important;
+  border-width: 2px !important;
+  border-radius: 10px !important;
+  display: inline-block;
+  background: transparent;
+  box-shadow: 0 2px 8px 0 rgba(33, 150, 243, 0.18), 0 1px 4px 0 #0d47a1;
+  width: fit-content;
+  height: fit-content;
+  min-width: 0;
+  min-height: 0;
+}
+.icons-ai.blue-3d-png-rectangle img {
+  width: 50px !important;
+  height: 50px !important;
+  margin: 0 !important;
+}
+
 .buttn {
   margin-top: 30px;
   margin-left: 60px;
@@ -291,6 +309,16 @@
   border-radius: 14px;
   box-shadow: 0 4px 16px 0 rgba(33, 150, 243, 0.18), 0 1px 4px 0 #0d47a1;
   padding: 4px 8px;
+  display: inline-block;
+  background: transparent;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.all {
+  border: 3px solid #2196f3;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px 0 rgba(33, 150, 243, 0.18), 0 1px 4px 0 #0d47a1;
+  padding-top: -20px;
+  
   display: inline-block;
   background: transparent;
   transition: box-shadow 0.2s, border-color 0.2s;

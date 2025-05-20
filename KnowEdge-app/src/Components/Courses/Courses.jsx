@@ -473,7 +473,7 @@ const Courses = () => {
 
       {show3DRect && (
         <div className='blue-3d-png-rectangle'>
-          <img src="select-all.png" alt="All Courses" style={{ width: 60, height: 60, margin: 10 }} />
+          <img src="select-all.png" alt="All Courses" className='all' style={{ width: 0, height: 0, margin: 0 }} />
           <img src="domain.png" alt="Domain" style={{ width: 60, height: 60, margin: 10 }} />
           <img src="game-development.png" alt="Game Dev" style={{ width: 60, height: 60, margin: 10 }} />
           <img src="data-science.png" alt="Data Science" style={{ width: 60, height: 60, margin: 10 }} />
