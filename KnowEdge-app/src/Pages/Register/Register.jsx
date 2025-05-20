@@ -63,7 +63,7 @@ export default function Register() {
             toast.success("✅ Registration successful!");
 
             setTimeout(() => {
-                navigate("/home");
+                navigate("/registerForm");
             }, 2500);
         } catch (error) {
             toast.error(`❌ ${error.message}`);
@@ -89,7 +89,7 @@ export default function Register() {
 
             toast.success("✅ Signed in with Google! Redirecting...");
             setTimeout(() => {
-                navigate("/home");
+                navigate("/registerForm");
             }, 2500);
 
         } catch (error) {
@@ -116,7 +116,7 @@ export default function Register() {
 
             toast.success("✅ Signed in with Facebook! Redirecting...");
             setTimeout(() => {
-                navigate("/home");
+                navigate("/registerForm");
             }, 2500);
 
         } catch (error) {
