@@ -285,3 +285,13 @@
 .watch-later-btn:hover {
   background-color: #025f73;
 }
+
+.blue-3d-png-rectangle {
+  border: 3px solid #2196f3;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px 0 rgba(33, 150, 243, 0.18), 0 1px 4px 0 #0d47a1;
+  padding: 4px 8px;
+  display: inline-block;
+  background: transparent;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}

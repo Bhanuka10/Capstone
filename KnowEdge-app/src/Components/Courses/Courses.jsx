@@ -156,6 +156,8 @@ const Courses = () => {
   const [courses, setCourses] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentVideoId, setCurrentVideoId] = useState(null);
+  const [show3DRect, setShow3DRect] = useState(false);
+  const [activeIcon, setActiveIcon] = useState(null);
   const containerRef = useRef(null);
   const backToTopBtnRef = useRef(null);
 
@@ -361,6 +363,7 @@ const Courses = () => {
   }, []);
 
   const handleIconClick = (icon) => {
+    setActiveIcon(icon);
     if (icon === 'domain') {
       loadDomainCourses();
     } else if (icon === 'data') {
@@ -441,32 +444,44 @@ const Courses = () => {
       </div>
 
       <div className='icons-row'>
-        <div className='icons-ai'>
+        <div className={activeIcon === 'all' ? 'icons-ai blue-3d-png-rectangle' : 'icons-ai'}>
           <img src="select-all.png" alt="All Courses" onClick={() => handleIconClick('all')} />
         </div>
         <div className='icons'>
           <ul>
-            <li onClick={() => handleIconClick('domain')}>
+            <li onClick={() => handleIconClick('domain')} className={activeIcon === 'domain' ? 'blue-3d-png-rectangle' : ''}>
               <img src="domain.png" alt="Domain" />
             </li>
-            <li onClick={() => handleIconClick('game')}>
+            <li onClick={() => handleIconClick('game')} className={activeIcon === 'game' ? 'blue-3d-png-rectangle' : ''}>
               <img src="game-development.png" alt="Game Dev" />
             </li>
-            <li onClick={() => handleIconClick('data')}>
+            <li onClick={() => handleIconClick('data')} className={activeIcon === 'data' ? 'blue-3d-png-rectangle' : ''}>
               <img src="data-science.png" alt="Data Science" />
             </li>
-            <li onClick={() => handleIconClick('ai')}>
+            <li onClick={() => handleIconClick('ai')} className={activeIcon === 'ai' ? 'blue-3d-png-rectangle' : ''}>
               <img src="ai.png" alt="AI" />
             </li>
-            <li onClick={() => handleIconClick('mobile')}>
+            <li onClick={() => handleIconClick('mobile')} className={activeIcon === 'mobile' ? 'blue-3d-png-rectangle' : ''}>
               <img src="mobile-development.png" alt="Mobile Dev" />
             </li>
-            <li onClick={() => handleIconClick('tech')}>
+            <li onClick={() => handleIconClick('tech')} className={activeIcon === 'tech' ? 'blue-3d-png-rectangle' : ''}>
               <img src="technology.png" alt="Technology" />
             </li>
           </ul>
         </div>
       </div>
+
+      {show3DRect && (
+        <div className='blue-3d-png-rectangle'>
+          <img src="select-all.png" alt="All Courses" style={{ width: 60, height: 60, margin: 10 }} />
+          <img src="domain.png" alt="Domain" style={{ width: 60, height: 60, margin: 10 }} />
+          <img src="game-development.png" alt="Game Dev" style={{ width: 60, height: 60, margin: 10 }} />
+          <img src="data-science.png" alt="Data Science" style={{ width: 60, height: 60, margin: 10 }} />
+          <img src="ai.png" alt="AI" style={{ width: 60, height: 60, margin: 10 }} />
+          <img src="mobile-development.png" alt="Mobile Dev" style={{ width: 60, height: 60, margin: 10 }} />
+          <img src="technology.png" alt="Technology" style={{ width: 60, height: 60, margin: 10 }} />
+        </div>
+      )}
 
       <div className='buttn'>
         <button>All</button>
