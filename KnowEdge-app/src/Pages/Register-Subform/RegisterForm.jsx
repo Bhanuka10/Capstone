@@ -3,7 +3,17 @@ import "./RegisterForm.css";
 import Register from '../../assets/Register.png'
 import arrowdown from '../../assets/arrow-down.png'
 
+import { useEffect } from "react";
+import { auth, db } from "../../firebase";
+import { doc, updateDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+
 export default function RegisterForm() {
+  const navigate = useNavigate();
+  const user = auth.currentUser;
+
   const [form, setForm] = useState({
     fullname: "",
     age: "",
@@ -24,10 +34,36 @@ export default function RegisterForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Registration submitted!\n" + JSON.stringify(form, null, 2));
+
+    if (!user) {
+      toast.error("User not authenticated.");
+      return;
+    }
+
+    try {
+      const userRef = doc(db, "users", user.uid);
+
+      await updateDoc(userRef, {
+        fullname: form.fullname,
+        age: form.age,
+        gender: form.gender,
+        preferredLanguage: form.preferredLanguage,
+        educationalQualification: form.educationalQualification,
+        educationLevel: form.educationLevel,
+        skillLevel: form.skillLevel,
+        fieldOfStudy: form.fieldOfStudy,
+        profileCompleted: true,
+      });
+
+      toast.success("✅ Profile completed!");
+      setTimeout(() => navigate("/home"), 2500); // or your dashboard
+    } catch (error) {
+      toast.error(`❌ Failed to save data: ${error.message}`);
+    }
   };
+
 
   return (
     <div className="register-bg">
