@@ -23,30 +23,85 @@
 
 .icons-row {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-around;
+  gap: 0;
   margin-top: 20px;
-  gap: 200px;
+  ;
+}
+.all img {
+  width: 50px;
+  height: auto;
+}
+
+.icons-ai,
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+.icons-ai {
+  display: flex;
+  align-items: center;
+  margin-right: 100px; /* 100px gap after select-all.png */
 }
 
 .icons ul {
   display: flex;
-  gap: 30px;
-  list-style-type: none;
-  margin-top: 50px;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.icons li {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .icons img, .icons-ai img {
-  width: 50px;
-  height: 50px;
-  margin: 0 10px;
+  width: 36px;
+  height: 36px;
+  margin: 0 6px;
+  padding: 6px;
   cursor: pointer;
 }
 
 .icons-ai img {
-  width: 70px;
+  width: 36px;
+  height: 36px;
+  margin: 0 6px;
+  padding: 6px;
+}
+.all img {
+  width: 60px;
   height: auto;
-  margin-top: 40px;
+}
+
+.icons-ai.blue-3d-png-rectangle {
+  padding: 2px 4px !important;
+  border-width: 2px !important;
+  border-radius: 10px !important;
+  display: inline-block;
+  background: transparent;
+  box-shadow: 0 2px 8px 0 rgba(33, 150, 243, 0.18), 0 1px 4px 0 #0d47a1;
+  width: fit-content;
+  height: fit-content;
+  min-width: 0;
+  min-height: 0;
+}
+.icons-ai.blue-3d-png-rectangle img {
+  width: 50px !important;
+  height: 50px !important;
+  margin: 0 !important;
+  display: inline-block;
 }
 
 .buttn {
@@ -284,4 +339,29 @@
 
 .watch-later-btn:hover {
   background-color: #025f73;
+}
+
+.blue-3d-png-rectangle {
+  border: 2px solid #2196f3;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px 0 rgba(33, 150, 243, 0.18), 0 1px 4px 0 #0d47a1;
+  padding: 2px 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  width: fit-content;
+  min-width: 0;
+  min-height: 0;
+  margin: 0 6px; /* Add small gap between rectangle and other icons */
+}
+.all {
+  border: 3px solid #2196f3;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px 0 rgba(33, 150, 243, 0.18), 0 1px 4px 0 #0d47a1;
+  padding-top: -20px;
+  
+  display: inline-block;
+  background: transparent;
+  transition: box-shadow 0.2s, border-color 0.2s;
 }

@@ -1,0 +1,211 @@
+.register-bg {
+  margin: -8px;
+  min-height: 80vh;
+  background: #3790a3; /* Main teal background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Verdana, sans-serif;
+}
+
+.register-main {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: 900px;
+  min-height: 650px;
+  background: none;
+}
+
+.register-card {
+  background: #2d7b8b; /* Slightly darker, semi-transparent */
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  padding: 32px 32px 24px 32px;
+  width: 350px;
+  margin: 32px 0 32px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.logo-row span {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  display: block;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.register-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: #fff;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-block {
+  background: #14596b;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.input-block input,
+.input-block select {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  width: 100%;
+  padding: 12px 0;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.input-block input::placeholder,
+.input-block select:invalid {
+  color: #e7f6f8;
+  opacity: 1;
+}
+
+.input-block select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.select-wrapper {
+  position: relative;
+  padding-right: 32px;
+}
+
+
+.select-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  pointer-events: none; /* allows clicks to pass through */
+  filter: invert(100%); /* makes the icon white for dark backgrounds */
+}
+/* Hide spin buttons in Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* 
+/* Hide spin buttons in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
+.input-block label {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.radio-block {
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: unset;
+  padding: 8px 12px 2px 12px;
+  background: #14596b;
+}
+
+.radio-row {
+  display: flex;
+  gap: 24px;
+  margin-top: 4px;
+  height: auto;
+}
+.skill-row {
+  flex-wrap: wrap;
+  gap: 16px 24px;
+}
+
+.radio-row label {
+  font-size: 1rem;
+  display: flex;
+  color: #fff;
+  font-weight: 400;
+}
+
+.radio-row input[type="radio"] {
+  accent-color: #171717;
+  margin-right: 4px;
+}
+
+.register-btn {
+  width: 40%;
+    padding: 13px 0;
+    background: #133b4a;
+    color: #fff;
+    border: none;
+    border-radius: 22px;
+    font-size: 1.15rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    margin-top: 8px;
+    box-shadow: 0 3px 10px #0e2531;
+    cursor: pointer;
+    transition:  0.2s;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.register-btn:hover {
+  background: #032939;
+}
+
+/* Illustration */
+.register-illustration {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 32px;
+}
+
+.register-img {
+  max-width: 320px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+  background: transparent;
+}
+
+/* Responsive */
+/* @media (max-width: 950px) {
+  .register-main {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .register-card {
+    margin: 32px auto;
+  }
+  .register-illustration {
+    margin: 0;
+    margin-bottom: 32px;
+  }
+} */
+
