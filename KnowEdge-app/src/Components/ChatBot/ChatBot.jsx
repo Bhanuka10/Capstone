@@ -7,6 +7,7 @@ import { assets } from "../../assets/assets";
 import callGeminiFlash from "../../Config/Gemini";
 import { useChat } from "../../Context/ChatContext";
 import ReactMarkdown from "react-markdown";
+import Roadmap from "../Roadmap/Roadmap";
 
 function Chatbot({ onProfileUpdate }) {
   const location = useLocation();
@@ -15,6 +16,8 @@ function Chatbot({ onProfileUpdate }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState(initialQuestion);
   const [loading, setLoading] = useState(false);
+  const [showRoadmap, setShowRoadmap] = useState(false);
+  const [roadmapContent, setRoadmapContent] = useState("");
   const chatEndRef = useRef(null);
   const { addToChatHistory } = useChat();
 
@@ -56,6 +59,28 @@ Now, respond naturally with the next educational question.
 
     extractProfileData(input + " " + aiResponse);
     addToChatHistory(input, aiResponse);
+  };
+
+  const handleGenerate = async () => {
+    setLoading(true);
+    // Use the chat so far to generate a roadmap
+    const historyText = messages
+      .map((msg) => `${msg.role === "user" ? "User" : "AI"}: ${msg.text}`)
+      .join("\n");
+    const roadmapPrompt = `
+You are an AI tutor. Based on the following chat history, generate a step-by-step personalized learning roadmap for the user. The roadmap should be clear, actionable, and tailored to the user's goals, skills, and struggles. Use friendly, encouraging language. Format the roadmap as a numbered or bulleted list, with each step on a new line.
+
+Chat so far:
+${historyText}
+
+Respond ONLY with the roadmap, no extra text.`;
+    const roadmap = await callGeminiFlash(roadmapPrompt);
+    setMessages((prev) => [
+      ...prev,
+      { role: "bot", text: roadmap, isRoadmap: true }
+    ]);
+    setShowRoadmap(true);
+    setLoading(false);
   };
 
   const extractProfileData = async (text) => {
@@ -101,7 +126,12 @@ ${text}
             key={index}
             className={`message ${msg.role === "user" ? "user-message" : "ai-message"}`}
           >
-            {msg.role === "bot" ? (
+            {msg.isRoadmap ? (
+              <div className="ai-roadmap">
+                <h2>AI Generated Roadmap</h2>
+                <ReactMarkdown>{msg.text}</ReactMarkdown>
+              </div>
+            ) : msg.role === "bot" ? (
               <ReactMarkdown>{msg.text}</ReactMarkdown>
             ) : (
               <p>{msg.text}</p>
@@ -138,7 +168,13 @@ ${text}
             <img src={assets.send_icon} alt="Send" />
           </div>
         </div>
-        <button className="generate-btn">Generate</button>
+        <button className="generate-btn" onClick={handleGenerate}>Generate</button>
+        {showRoadmap && (
+          <div className="ai-roadmap">
+            <h2>AI Generated Roadmap</h2>
+            <ReactMarkdown>{roadmapContent}</ReactMarkdown>
+          </div>
+        )}
         <p className="bottom-info">
           Chat bot is a large language model powered by Gemini
         </p>
