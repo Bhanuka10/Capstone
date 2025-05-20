@@ -9,8 +9,14 @@ import User from "@/Components/AdminUser/User.jsx";
 import Feedback from "@/Components/AdminFeedBack/Feedback.jsx";
 import WatchLater from "@/Components/WatchLater/WatchLater.jsx";
 import Register from "@/Pages/Register/Register.jsx";
+import RegisterForm from "../Pages/Register-Subform/RegisterForm";
 
 const router = createBrowserRouter([
+
+  {
+    path: "/",
+    element: <RegisterForm />
+  },
 
     //Uncomment this to run sign in page
   {
