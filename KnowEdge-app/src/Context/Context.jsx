@@ -15,19 +15,20 @@ const router = createBrowserRouter([
 
 
     //Uncomment this to run sign in page
-  {
-    path: "/",
-    element: <Register />,
-  },
+  // {
+  //   path: "/",
+  //   element: <Register />,
+  // },
+  //
 
   {
     path: "/registerForm",
     element: <RegisterForm />
   },
 
-    //Uncomment this to run Home page
+  //Uncomment this to run Home page
   {
-    path: "/home",
+    path: "/",
     element: <Home />, // Home page
   },
   {

@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import './Navbar.css';
 import { FaSearch } from "react-icons/fa";
 import { Link } from 'react-router-dom'; // Import Link for navigation
+import { useRef, useEffect } from 'react';
 
 const Navbar = () => {
+
     const [menu, setMenu] = useState('menu');
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
@@ -34,6 +36,37 @@ const Navbar = () => {
             aboutSection.scrollIntoView({ behavior: 'smooth' });
         }
     };
+
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const toggleDropdown = () => {
+        setShowDropdown((prev) => !prev);
+    };
+
+    const handleLogout = () => {
+        console.log("Logging out...");
+        // You can call your logout logic here (like clearing tokens)
+    };
+
+    const handleProfile = () => {
+        console.log("Go to profile...");
+        // Navigate to profile page or open modal
+    };
+
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setShowDropdown(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     return (
         <div className='navbar'>
@@ -69,22 +102,24 @@ const Navbar = () => {
                 </div>
             </div>
             <div className='second'>
-                <div className='login-btn'>
-                    <button>Sign in</button>
+                {/*<div className='login-btn'>*/}
+                {/*    <button>Sign in</button>*/}
+                {/*</div>*/}
+
+                <div className='user-logo' onClick={toggleDropdown} ref={dropdownRef}>
+                    <img src="av3cbfdc7ee86dab9a41d.png" alt="User" />
+                    {showDropdown && (
+                        <div className="user-dropdown">
+                            <ul>
+                                <li onClick={handleProfile}>Profile</li>
+                                <li onClick={handleLogout}>Logout</li>
+                            </ul>
+                        </div>
+                    )}
                 </div>
-                <div className='user-logo'>
-                    <img src="av3cbfdc7ee86dab9a41d.png" alt="" />
-                </div>
+
             </div>
-            {searchResults.length > 0 && (
-                <div className='search-results'>
-                    <ul>
-                        {searchResults.map((result, index) => (
-                            <li key={index}>{result}</li>
-                        ))}
-                    </ul>
-                </div>
-            )}
+
         </div>
     );
 };

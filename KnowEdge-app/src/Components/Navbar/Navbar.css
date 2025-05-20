@@ -1,3 +1,43 @@
+.user-logo {
+    position: relative;
+    cursor: pointer;
+}
+
+.user-logo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    width: 150px;
+}
+
+.user-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.user-dropdown ul li {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.user-dropdown ul li:hover {
+    background-color: #f0f0f0;
+}
+
+
 .navbar {
     display: flex;
     align-items: center;
