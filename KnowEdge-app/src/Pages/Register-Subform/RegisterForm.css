@@ -1,4 +1,5 @@
 .register-bg {
+  margin: -8px;
   min-height: 80vh;
   background: #3790a3; /* Main teal background */
   display: flex;
@@ -111,7 +112,7 @@ input[type="number"]::-webkit-outer-spin-button {
 /* Hide spin buttons in Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
-} */
+}
 
 
 .input-block label {
