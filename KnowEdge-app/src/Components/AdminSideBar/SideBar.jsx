@@ -17,13 +17,13 @@ const SideBar = ({ activeMenu, onMenuClick }) => {
                     <MdDashboard /> Dashboard
                 </Link>
 
-                <Link
-                    to="/user-details"
-                    className={`admin-menu-item ${activeMenu === 'users' ? 'active' : ''}`}
-                    onClick={() => onMenuClick('users')}
-                >
-                    <FaUsers /> Users
-                </Link>
+                {/*<Link*/}
+                {/*    to="/user-details"*/}
+                {/*    className={`admin-menu-item ${activeMenu === 'users' ? 'active' : ''}`}*/}
+                {/*    onClick={() => onMenuClick('users')}*/}
+                {/*>*/}
+                {/*    <FaUsers /> Users*/}
+                {/*</Link>*/}
 
                 <Link
                     to="/add-course"
@@ -33,13 +33,13 @@ const SideBar = ({ activeMenu, onMenuClick }) => {
                     <FaBook /> Courses
                 </Link>
 
-                <Link
-                    to="/feedback"
-                    className={`admin-menu-item ${activeMenu === 'feedback' ? 'active' : ''}`}
-                    onClick={() => onMenuClick('feedback')}
-                >
-                    <FaComments /> Feedback
-                </Link>
+                {/*<Link*/}
+                {/*    to="/feedback"*/}
+                {/*    className={`admin-menu-item ${activeMenu === 'feedback' ? 'active' : ''}`}*/}
+                {/*    onClick={() => onMenuClick('feedback')}*/}
+                {/*>*/}
+                {/*    <FaComments /> Feedback*/}
+                {/*</Link>*/}
             </div>
         </div>
     );
