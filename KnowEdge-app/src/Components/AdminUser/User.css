@@ -5,10 +5,10 @@
     font-family: 'Arial', sans-serif;
     background: linear-gradient(270deg, rgba(120, 255, 214, 0.65) 0%, rgba(0, 121, 145, 0.92) 100%);
 }
-.admin-user-section h2{
-    position:relative;
-    left:-440px;
-}
+/*.admin-user-section h2{*/
+/*    position:relative;*/
+/*    left:-440px;*/
+/*}*/
 
 
 .user-table {
