@@ -30,8 +30,8 @@ const router = createBrowserRouter([
     path: "/registerForm",
     element: <RegisterForm />
   },
-
-  //Uncomment this to run Home page
+  //
+  // //Uncomment this to run Home page
   {
     path: "/home",
     element: <Home />, // Home page

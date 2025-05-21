@@ -36,14 +36,26 @@ export default function SignIn() {
         e.preventDefault();
         const { email, password } = form;
 
+        const adminEmail = "harishihan@outlook.com"; // Replace with actual admin email
+        const adminPassword = "123456789"; // Replace with actual admin password
+
         try {
             await signInWithEmailAndPassword(auth, email, password);
             toast.success("✅ Signed in successfully!");
-            setTimeout(() => navigate("/home"), 2000); // Update redirect path
+
+            // Redirect based on credentials
+            setTimeout(() => {
+                if (email === adminEmail && password === adminPassword) {
+                    navigate("/dashboard"); // Redirect to admin panel
+                } else {
+                    navigate("/home"); // Redirect to regular home page
+                }
+            }, 2000);
         } catch (error) {
             toast.error(`❌ ${error.message}`);
         }
     };
+
 
     const handleGoogleSignIn = async () => {
         const provider = new GoogleAuthProvider();

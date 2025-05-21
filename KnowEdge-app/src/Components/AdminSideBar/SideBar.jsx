@@ -10,7 +10,7 @@ const SideBar = ({ activeMenu, onMenuClick }) => {
             <div className="admin-logo">Expert Path</div>
             <div className="admin-menu">
                 <Link
-                    to="/"
+                    to="/dashboard"
                     className={`admin-menu-item ${activeMenu === 'dashboard' ? 'active' : ''}`}
                     onClick={() => onMenuClick('dashboard')}
                 >
