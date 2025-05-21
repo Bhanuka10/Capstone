@@ -53,7 +53,10 @@ export default function Register() {
                 email,
                 termsAccepted: terms,
                 createdAt: new Date(),
+                time: new Date().toLocaleTimeString(),
+                date: new Date().toLocaleDateString(),
             });
+
 
             toast.success("✅ Registration successful!");
             setTimeout(() => navigate("/registerForm"), 2500);
@@ -74,7 +77,10 @@ export default function Register() {
                 photoURL: user.photoURL,
                 authProvider: "google",
                 createdAt: new Date(),
+                time: new Date().toLocaleTimeString(),
+                date: new Date().toLocaleDateString(),
             });
+
 
             toast.success("✅ Signed in with Google!");
             setTimeout(() => navigate("/registerForm"), 2500);
@@ -93,9 +99,12 @@ export default function Register() {
                 name: user.displayName,
                 email: user.email,
                 photoURL: user.photoURL,
-                authProvider: "facebook",
+                authProvider: "Facebook",
                 createdAt: new Date(),
+                time: new Date().toLocaleTimeString(),
+                date: new Date().toLocaleDateString(),
             });
+
 
             toast.success("✅ Signed in with Facebook!");
             setTimeout(() => navigate("/registerForm"), 2500);
