@@ -9,6 +9,8 @@ import Home from './Pages/Home/Home';
 import Myprofile from './Pages/Myprofile/Myprofile';
 import WatchLater from './Components/WatchLater/WatchLater';
 import Chatbot from "./Components/ChatBot/ChatBot";
+import SignIn from "./Pages/SignIn/SignIn.jsx";
+import Register from "@/Pages/Register/Register.jsx";
 
 const App = () => {
   const [profile, setProfile] = useState(null);
@@ -23,6 +25,8 @@ const App = () => {
     <div className='app'>
       <BrowserRouter>
         <Routes>
+          <Route path="/register" element={<Register />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Myprofile />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -30,7 +34,6 @@ const App = () => {
           <Route path="/user-details" element={<User />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path='/watchlater' element={<WatchLater />} />
-          <Route path="/register" element={<Signin />} />
 
           
 
