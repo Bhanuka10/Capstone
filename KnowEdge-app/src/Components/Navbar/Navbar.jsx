@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import './Navbar.css';
 import { FaSearch } from "react-icons/fa";
-import { Link } from 'react-router-dom'; // Import Link for navigation
-import { useRef, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // <-- add useNavigate
 
 const Navbar = () => {
-
     const [menu, setMenu] = useState('menu');
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [showDropdown, setShowDropdown] = useState(false);
+    const dropdownRef = useRef(null);
+    const navigate = useNavigate(); // <-- initialize useNavigate
 
     const handleSearch = () => {
         if (searchQuery.trim() !== '') {
@@ -37,23 +38,17 @@ const Navbar = () => {
         }
     };
 
-    const [showDropdown, setShowDropdown] = useState(false);
-
     const toggleDropdown = () => {
         setShowDropdown((prev) => !prev);
     };
 
     const handleLogout = () => {
         console.log("Logging out...");
-        // You can call your logout logic here (like clearing tokens)
+        // Example: clear auth token
+        localStorage.removeItem('token'); // or sessionStorage.removeItem()
+        setShowDropdown(false);
+        navigate('/signin'); // redirect to signin page
     };
-
-    const handleProfile = () => {
-        console.log("Go to profile...");
-        // Navigate to profile page or open modal
-    };
-
-    const dropdownRef = useRef(null);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -61,7 +56,6 @@ const Navbar = () => {
                 setShowDropdown(false);
             }
         };
-
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
@@ -72,7 +66,7 @@ const Navbar = () => {
         <div className='navbar'>
             <div className='first'>
                 <div className='logo'>
-                    <img src="DALL·E 2025-03-07 23.02.25 - A modern, sleek logo design combining the letters K and E in an elegant and creative way. The design should focus on a clean, minimalistic aesthetic w.png" alt="" />
+                    <img src="DALL·E 2025-03-07 23.02.25 - A modern, sleek logo design combining the letters K and E in an elegant and creative way. The design should focus on a clean, minimalistic aesthetic w.png" alt="Logo" />
                 </div>
                 <div className='search'>
                     <input
@@ -102,24 +96,17 @@ const Navbar = () => {
                 </div>
             </div>
             <div className='second'>
-                {/*<div className='login-btn'>*/}
-                {/*    <button>Sign in</button>*/}
-                {/*</div>*/}
-
                 <div className='user-logo' onClick={toggleDropdown} ref={dropdownRef}>
                     <img src="av3cbfdc7ee86dab9a41d.png" alt="User" />
                     {showDropdown && (
                         <div className="user-dropdown">
                             <ul>
-                                <li onClick={handleProfile}>Profile</li>
                                 <li onClick={handleLogout}>Logout</li>
                             </ul>
                         </div>
                     )}
                 </div>
-
             </div>
-
         </div>
     );
 };
