@@ -158,6 +158,7 @@ const Courses = () => {
   const [currentVideoId, setCurrentVideoId] = useState(null);
   const [show3DRect, setShow3DRect] = useState(false);
   const [activeIcon, setActiveIcon] = useState(null);
+  const [youtubeVideos, setYoutubeVideos] = useState([]);
   const containerRef = useRef(null);
   const backToTopBtnRef = useRef(null);
 
@@ -236,6 +237,11 @@ const Courses = () => {
         viewCount: storedCounts[videoId] || 0
       };
     });
+  };
+
+  const fetchAndSetVideos = async (query) => {
+    const fetchedVideos = await fetchVideos(query); // fetchVideos should be implemented to call YouTube API
+    setYoutubeVideos(fetchedVideos);
   };
 
   const loadDomainCourses = async () => {
