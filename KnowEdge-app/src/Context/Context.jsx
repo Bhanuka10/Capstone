@@ -10,16 +10,21 @@ import Feedback from "@/Components/AdminFeedBack/Feedback.jsx";
 import WatchLater from "@/Components/WatchLater/WatchLater.jsx";
 import Register from "@/Pages/Register/Register.jsx";
 import RegisterForm from "../Pages/Register-Subform/RegisterForm";
+import SignIn from "@/Pages/SignIn/SignIn.jsx";
 
 const router = createBrowserRouter([
 
 
     //Uncomment this to run sign in page
-  // {
-  //   path: "/",
-  //   element: <Register />,
-  // },
-  //
+  {
+    path: "/",
+    element: <Register />,
+  },
+
+  {
+    path: "/signin",
+    element: <SignIn />
+  },
 
   {
     path: "/registerForm",
@@ -28,7 +33,7 @@ const router = createBrowserRouter([
 
   //Uncomment this to run Home page
   {
-    path: "/",
+    path: "/home",
     element: <Home />, // Home page
   },
   {
@@ -43,7 +48,7 @@ const router = createBrowserRouter([
 
 // Uncomment this to run Admin panel
   {
-    path: "/",
+    path: "/dashboard",
     element: <Dashboard />,
   },
   {

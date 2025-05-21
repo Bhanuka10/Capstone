@@ -1,9 +1,9 @@
-body, html {
-    height: 100%;
-    margin: 0;
-    font-family: 'Montserrat', Arial, sans-serif;
-    background: #3790a3;
-  }
+/*body, html {*/
+/*    height: 100%;*/
+/*    margin: 0;*/
+/*    font-family: 'Montserrat', Arial, sans-serif;*/
+/*    background: #3790a3;*/
+/*  }*/
   
   .register-container {
     display: flex;
