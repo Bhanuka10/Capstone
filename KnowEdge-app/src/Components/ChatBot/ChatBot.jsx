@@ -9,6 +9,7 @@ import { useChat } from "../../Context/ChatContext";
 import ReactMarkdown from "react-markdown";
 import Roadmap from "../Roadmap/Roadmap";
 import YoutubeIcon from '../../assets/youtube_icon.png';
+import { DOMAIN_PLAYLIST_IDS, DATA_SCIENCE_PLAYLIST_IDS, GAME_DEV_PLAYLIST_IDS, AI_PLAYLIST_IDS, MOBILE_DEV_PLAYLIST_IDS } from '../Courses/Courses';
 
 function Chatbot({ onProfileUpdate }) {
   const location = useLocation();
@@ -19,12 +20,43 @@ function Chatbot({ onProfileUpdate }) {
   const [loading, setLoading] = useState(false);
   const [showRoadmap, setShowRoadmap] = useState(false);
   const [roadmapContent, setRoadmapContent] = useState("");
+  const [activeCategory, setActiveCategory] = useState('domain'); // Default to 'domain'
   const chatEndRef = useRef(null);
   const { addToChatHistory } = useChat();
+
+  const categoryMap = {
+    domain: DOMAIN_PLAYLIST_IDS,
+    data: DATA_SCIENCE_PLAYLIST_IDS,
+    game: GAME_DEV_PLAYLIST_IDS,
+    ai: AI_PLAYLIST_IDS,
+    mobile: MOBILE_DEV_PLAYLIST_IDS,
+  };
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  const fetchPlaylistItems = async (playlistId) => {
+    try {
+      const response = await fetch(
+        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${playlistId}&key=${API_KEY}`
+      );
+      const data = await response.json();
+      return data.items || [];
+    } catch (error) {
+      console.error('Failed to fetch playlist items:', error);
+      return [];
+    }
+  };
+
+  const fetchAllPlaylists = async (playlistIds) => {
+    const allVideos = [];
+    for (let id of playlistIds) {
+      const videos = await fetchPlaylistItems(id);
+      allVideos.push(...videos);
+    }
+    return allVideos;
+  };
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -84,6 +116,40 @@ Respond ONLY with the roadmap, no extra text.`;
     setLoading(false);
   };
 
+  const handleGenerateRoadmap = async () => {
+    setLoading(true);
+    const selectedPlaylistIds = categoryMap[activeCategory];
+    const fetchedVideos = await fetchAllPlaylists(selectedPlaylistIds);
+
+    if (fetchedVideos.length === 0) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "bot",
+          text: "Since you haven't provided any videos, I can't create a personalized learning roadmap. To give you the best possible advice, please provide the links to the videos you'd like me to use!",
+        },
+      ]);
+      setLoading(false);
+      return;
+    }
+
+    const roadmapPrompt = `
+You are an AI tutor. Based on the following videos, generate a step-by-step personalized learning roadmap for the user. The roadmap should be clear, actionable, and tailored to the user's goals, skills, and struggles. Use friendly, encouraging language. Format the roadmap as a numbered or bulleted list, with each step on a new line.
+
+Videos:
+${fetchedVideos.map(video => `- ${video.snippet.title}`).join('\n')}
+
+Respond ONLY with the roadmap, no extra text.`;
+
+    const roadmap = await callGeminiFlash(roadmapPrompt);
+    setMessages((prev) => [
+      ...prev,
+      { role: "bot", text: roadmap, isRoadmap: true }
+    ]);
+    setShowRoadmap(true);
+    setLoading(false);
+  };
+
   const extractProfileData = async (text) => {
     const extractionPrompt = `
 Given the following chat, extract the user's:
@@ -119,6 +185,14 @@ ${text}
       <div className="nav">
         <p>Gemini</p>
         <img src={assets.user_icon} alt="User" />
+      </div>
+
+      <div className="category-buttons">
+        <button onClick={() => setActiveCategory('domain')}>Domain</button>
+        <button onClick={() => setActiveCategory('data')}>Data Science</button>
+        <button onClick={() => setActiveCategory('game')}>Game Dev</button>
+        <button onClick={() => setActiveCategory('ai')}>AI</button>
+        <button onClick={() => setActiveCategory('mobile')}>Mobile</button>
       </div>
 
       <div className="chat-response">
@@ -184,6 +258,7 @@ ${text}
           </div>
         </div>
         <button className="generate-btn" onClick={handleGenerate}>Generate</button>
+        <button className="generate-btn" onClick={handleGenerateRoadmap}>Generate Roadmap</button>
         {showRoadmap && (
           <div className="ai-roadmap">
             <h2>AI Generated Roadmap</h2>
