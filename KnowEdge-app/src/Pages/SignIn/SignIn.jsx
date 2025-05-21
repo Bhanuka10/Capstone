@@ -36,19 +36,30 @@ export default function SignIn() {
         e.preventDefault();
         const { email, password } = form;
 
-        const adminEmail = "harishihan@outlook.com"; // Replace with actual admin email
-        const adminPassword = "123456789"; // Replace with actual admin password
+        const adminEmail = "harishihan@outlook.com";
+        const adminPassword = "123456789";
 
         try {
-            await signInWithEmailAndPassword(auth, email, password);
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+
+            // ✅ Save last login date and time
+            const now = new Date();
+            const time = now.toLocaleTimeString();
+            const date = now.toLocaleDateString();
+
+            await setDoc(doc(db, "users", user.uid), {
+                time,
+                date,
+            }, { merge: true });
+
             toast.success("✅ Signed in successfully!");
 
-            // Redirect based on credentials
             setTimeout(() => {
                 if (email === adminEmail && password === adminPassword) {
-                    navigate("/dashboard"); // Redirect to admin panel
+                    navigate("/dashboard");
                 } else {
-                    navigate("/home"); // Redirect to regular home page
+                    navigate("/home");
                 }
             }, 2000);
         } catch (error) {
@@ -57,19 +68,23 @@ export default function SignIn() {
     };
 
 
+
     const handleGoogleSignIn = async () => {
         const provider = new GoogleAuthProvider();
         try {
-            const result = await signInWithPopup(auth, provider);
-            const user = result.user;
+            const now = new Date();
+            const time = now.toLocaleTimeString();
+            const date = now.toLocaleDateString();
 
             await setDoc(doc(db, "users", user.uid), {
                 name: user.displayName,
                 email: user.email,
                 photoURL: user.photoURL,
-                authProvider: "google",
-                signedInAt: new Date(),
+                authProvider: "google", // or "facebook"
+                time,
+                date,
             }, { merge: true });
+
 
             toast.success("✅ Signed in with Google!");
             setTimeout(() => navigate("/home"), 2000);
@@ -81,16 +96,19 @@ export default function SignIn() {
     const handleFacebookSignIn = async () => {
         const provider = new FacebookAuthProvider();
         try {
-            const result = await signInWithPopup(auth, provider);
-            const user = result.user;
+            const now = new Date();
+            const time = now.toLocaleTimeString();
+            const date = now.toLocaleDateString();
 
             await setDoc(doc(db, "users", user.uid), {
                 name: user.displayName,
                 email: user.email,
                 photoURL: user.photoURL,
-                authProvider: "facebook",
-                signedInAt: new Date(),
+                authProvider: "Facebook", // or "facebook"
+                time,
+                date,
             }, { merge: true });
+
 
             toast.success("✅ Signed in with Facebook!");
             setTimeout(() => navigate("/home"), 2000);
