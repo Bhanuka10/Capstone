@@ -39,7 +39,7 @@ export default function SignIn() {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             toast.success("✅ Signed in successfully!");
-            setTimeout(() => navigate("/dashboard"), 2000); // Update redirect path
+            setTimeout(() => navigate("/home"), 2000); // Update redirect path
         } catch (error) {
             toast.error(`❌ ${error.message}`);
         }
@@ -60,7 +60,7 @@ export default function SignIn() {
             }, { merge: true });
 
             toast.success("✅ Signed in with Google!");
-            setTimeout(() => navigate("/dashboard"), 2000);
+            setTimeout(() => navigate("/home"), 2000);
         } catch (error) {
             toast.error(`❌ Google sign-in failed: ${error.message}`);
         }
@@ -81,7 +81,7 @@ export default function SignIn() {
             }, { merge: true });
 
             toast.success("✅ Signed in with Facebook!");
-            setTimeout(() => navigate("/dashboard"), 2000);
+            setTimeout(() => navigate("/home"), 2000);
         } catch (error) {
             toast.error(`❌ Facebook sign-in failed: ${error.message}`);
         }
