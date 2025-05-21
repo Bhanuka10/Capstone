@@ -11,6 +11,9 @@ import Roadmap from "../Roadmap/Roadmap";
 import YoutubeIcon from '../../assets/youtube_icon.png';
 import { DOMAIN_PLAYLIST_IDS, DATA_SCIENCE_PLAYLIST_IDS, GAME_DEV_PLAYLIST_IDS, AI_PLAYLIST_IDS, MOBILE_DEV_PLAYLIST_IDS } from '../Courses/Courses';
 
+const API_KEY = 'AIzaSyCrHMb5V__f_D2dNBNvGSeSzf2ziZnSKJs';
+const PLAYLIST_ID = 'PLAY30bf7ZN4yWIfNufseR9IcbJzCZwCNP';
+
 function Chatbot({ onProfileUpdate }) {
   const location = useLocation();
   const initialQuestion = location.state?.question || "";
@@ -41,7 +44,18 @@ function Chatbot({ onProfileUpdate }) {
       const response = await fetch(
         `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${playlistId}&key=${API_KEY}`
       );
+
+      if (!response.ok) {
+        console.error('API Error:', response.status, response.statusText);
+        return [];
+      }
+
       const data = await response.json();
+
+      if (!data.items || data.items.length === 0) {
+        console.warn('No videos found in the playlist:', playlistId);
+      }
+
       return data.items || [];
     } catch (error) {
       console.error('Failed to fetch playlist items:', error);
@@ -117,37 +131,54 @@ Respond ONLY with the roadmap, no extra text.`;
   };
 
   const handleGenerateRoadmap = async () => {
+    console.log('Generating roadmap...');
     setLoading(true);
-    const selectedPlaylistIds = categoryMap[activeCategory];
-    const fetchedVideos = await fetchAllPlaylists(selectedPlaylistIds);
 
-    if (fetchedVideos.length === 0) {
+    try {
+      const fetchedVideos = await fetchPlaylistItems(PLAYLIST_ID);
+      console.log('Fetched videos:', fetchedVideos);
+
+      if (fetchedVideos.length === 0) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "bot",
+            text: "No videos found in the playlist. Please check the playlist ID or try again later.",
+          },
+        ]);
+        setLoading(false);
+        return;
+      }
+
+      const videoList = fetchedVideos.map(
+        (video) => `- [${video.snippet.title}](https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId})`
+      ).join('\n');
+
+      const roadmapPrompt = `
+Here is the list of videos from the playlist:
+
+${videoList}
+
+You can use these videos to create a personalized learning roadmap.`;
+
+      console.log('Roadmap prompt:', roadmapPrompt);
+
+      setMessages((prev) => [
+        ...prev,
+        { role: "bot", text: roadmapPrompt },
+      ]);
+    } catch (error) {
+      console.error('Error generating roadmap:', error);
       setMessages((prev) => [
         ...prev,
         {
           role: "bot",
-          text: "Since you haven't provided any videos, I can't create a personalized learning roadmap. To give you the best possible advice, please provide the links to the videos you'd like me to use!",
+          text: "An error occurred while generating the roadmap. Please try again later.",
         },
       ]);
+    } finally {
       setLoading(false);
-      return;
     }
-
-    const roadmapPrompt = `
-You are an AI tutor. Based on the following videos, generate a step-by-step personalized learning roadmap for the user. The roadmap should be clear, actionable, and tailored to the user's goals, skills, and struggles. Use friendly, encouraging language. Format the roadmap as a numbered or bulleted list, with each step on a new line.
-
-Videos:
-${fetchedVideos.map(video => `- ${video.snippet.title}`).join('\n')}
-
-Respond ONLY with the roadmap, no extra text.`;
-
-    const roadmap = await callGeminiFlash(roadmapPrompt);
-    setMessages((prev) => [
-      ...prev,
-      { role: "bot", text: roadmap, isRoadmap: true }
-    ]);
-    setShowRoadmap(true);
-    setLoading(false);
   };
 
   const extractProfileData = async (text) => {
