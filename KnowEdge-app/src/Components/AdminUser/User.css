@@ -1,10 +1,14 @@
-
+.user-container{
+    display: flex;
+    width:100%;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(270deg, rgba(120, 255, 214, 0.65) 0%, rgba(0, 121, 145, 0.92) 100%);
+}
 .admin-user-section h2{
     position:relative;
     left:-440px;
 }
-
-
 
 
 .user-table {
@@ -19,7 +23,7 @@
 .table-header,
 .table-row {
     display: grid;
-    grid-template-columns: 2fr 1fr 2fr 1fr 1fr;
+    grid-template-columns: 5fr 3fr 2fr 1fr;
     padding: 10px 0;
     border-bottom: 1px solid #e0e0e0;
 }
