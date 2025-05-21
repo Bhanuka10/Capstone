@@ -13,22 +13,22 @@ import RegisterForm from "../Pages/Register-Subform/RegisterForm";
 
 const router = createBrowserRouter([
 
+
+    //Uncomment this to run sign in page
+  // {
+  //   path: "/",
+  //   element: <Register />,
+  // },
+  //
+
   {
-    path: "/",
+    path: "/registerForm",
     element: <RegisterForm />
   },
 
-    //Uncomment this to run sign in page
+  //Uncomment this to run Home page
   {
     path: "/",
-    element: <Register />,
-  },
-
-
-
-    //Uncomment this to run Home page
-  {
-    path: "/home",
     element: <Home />, // Home page
   },
   {

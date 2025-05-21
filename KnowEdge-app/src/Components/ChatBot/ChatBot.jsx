@@ -8,6 +8,7 @@ import callGeminiFlash from "../../Config/Gemini";
 import { useChat } from "../../Context/ChatContext";
 import ReactMarkdown from "react-markdown";
 import Roadmap from "../Roadmap/Roadmap";
+import YoutubeIcon from '../../assets/youtube_icon.png';
 
 function Chatbot({ onProfileUpdate }) {
   const location = useLocation();
@@ -132,7 +133,21 @@ ${text}
                 <ReactMarkdown>{msg.text}</ReactMarkdown>
               </div>
             ) : msg.role === "bot" ? (
-              <ReactMarkdown>{msg.text}</ReactMarkdown>
+              <>
+                <ReactMarkdown>{msg.text}</ReactMarkdown>
+                {/* Extract and display YouTube video links as thumbnails */}
+                {msg.text && Array.from(msg.text.matchAll(/\[([^\]]+)\]\((https?:\/\/www\.youtube\.com\/watch\?v=[^\)]+)\)/g)).map((match, i) => (
+                  <div key={i} className="youtube-video-list">
+                    <a href={match[2]} target="_blank" rel="noopener noreferrer">
+                      <img src={`https://img.youtube.com/vi/${new URL(match[2]).searchParams.get('v')}/mqdefault.jpg`} alt={match[1]} style={{width: '200px', borderRadius: '8px', margin: '8px 0'}} />
+                      <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+                        <img src={YoutubeIcon} alt="YouTube" style={{width:'24px'}} />
+                        <span style={{fontWeight:'bold'}}>{match[1]}</span>
+                      </div>
+                    </a>
+                  </div>
+                ))}
+              </>
             ) : (
               <p>{msg.text}</p>
             )}
