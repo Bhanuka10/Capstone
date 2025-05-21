@@ -2,10 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './Courses.css';
 import { Link } from 'react-router-dom';
 
-
-
-const API_KEY = 'AIzaSyD-SJkFXqteSzaQPVUSqo5Lq3CaQh2j5pU';
-const DOMAIN_PLAYLIST_IDS = [
+export const DOMAIN_PLAYLIST_IDS = [
   'PLoYCgNOIyGABDU532eesybur5HPBVfC1G',
   'PLTjRvDozrdlw0x_FcXItVVVVh-RP-5hdP',
   'PLXNgqM9ig24c7IdumyymD9q3e2hsz9U1m',
@@ -20,9 +17,9 @@ const DOMAIN_PLAYLIST_IDS = [
   'PLZPZq0r_RZOPoNttk9beDhO_Bu5DA-xwP',
   'PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88',
   'PLewGdhs0k9xG6TRPgHDO03kN0wTmehw_0'
-  
 ];
-const DATA_SCIENCE_PLAYLIST_IDS = [
+
+export const DATA_SCIENCE_PLAYLIST_IDS = [
   'PLWKjhJtqVAblvI1i46ScbKV2jH1gdL7VQ',
   'PLWKjhJtqVAbkoMsX4hgwxbJZW4aB0cbaB',
   'PLWKjhJtqVAblQe2CCWqV4Zy3LY01Z8aF1',
@@ -43,7 +40,8 @@ const DATA_SCIENCE_PLAYLIST_IDS = [
   'PLYwpaL_SFmcDJ4M2i83kIwwnPit1aIOhQ',
   'PLWKjhJtqVAbl5SlE6aBHzUVZ1e6q1Wz0v'
 ];
-const GAME_DEV_PLAYLIST_IDS = [
+
+export const GAME_DEV_PLAYLIST_IDS = [
   'PLZPZq0r_RZOO1zkgO4bIdfuLpizCeHYKv',
   'PLZPZq0r_RZOOxqHgOzPyCzIl4AJjXbCYt',
   'PLZPZq0r_RZOMRMjHB_IEBjOW_ufr00yG1',
@@ -74,7 +72,8 @@ const GAME_DEV_PLAYLIST_IDS = [
   'PLFt_AvWsXl0fnA91TcmkRyhhixX9CO3Lw',
   'PLZPZq0r_RZON1eaqfafTnEexRzuHbfZX8'
 ];
-const AI_PLAYLIST_IDS = [
+
+export const AI_PLAYLIST_IDS = [
   'PLD80i8An1OEFYv0r6gULbeYY8QGjdtSw-',
   'PLD80i8An1OEGZ2tYimemzwC3xqkU0jKUg',
   'PLeo1K3hjS3utjalsQ32f6fYcLkWvf3-rA',
@@ -96,7 +95,8 @@ const AI_PLAYLIST_IDS = [
   'PLEiEAq2VkUUJ9VOQkH_xU-MGg-z67Gyra',
   'PLLhBy6YSIT0AtWO_ldCwGNCQ4Id1WWov2'
 ];
-const MOBILE_DEV_PLAYLIST_IDS = [
+
+export const MOBILE_DEV_PLAYLIST_IDS = [
   'PLsyeobzWxl7oa1WO9n4cP3OY9nOtUcZIg',
   'PLsyeobzWxl7qbKoSgR5ub6jolI8-ocxCF',
   'PLsyeobzWxl7q6oUFts2erdot6jxF_lisP',
@@ -131,6 +131,7 @@ const MOBILE_DEV_PLAYLIST_IDS = [
   'PL4cUxeGkcC9gwXT3edSVZitfmIhRcwx_T',
   'PL4cUxeGkcC9ic9O6xDW2d1qMp3rMOb0Nu'
 ];
+
 const TECHNOLOGY_PLAYLIST_IDS = [
   'PLZPZq0r_RZOOzY_vR4zJM32SqsSInGMwe',
   'PLZPZq0r_RZOMHoXIcxze_lP97j2Ase2on',
