@@ -23,7 +23,15 @@
     width: 40px;
     border-radius: 50%;
 }
+.gbutton {
+  display: flex;
+  gap: -60px;
+  width: 400px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 
+}
 .main-container {
     max-width: 900px;
     margin: auto;
@@ -40,7 +48,6 @@
     margin-top: 20px;
     flex-direction: column;
     gap: 10px;
-    scrollbar-width: none;
     -ms-overflow-style: none;
 }
 
@@ -57,8 +64,8 @@
     max-width: 70%;
     font-weight: 400;
     font-family: 'Outfit', sans-serif;
-    backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
+    backdrop-filter: blur(16px) saturate(180%);
     box-shadow: 0 2px 5px rgba(41, 40, 40, 0.1);
 }
 
@@ -70,8 +77,8 @@
     font-size: 16px;
     max-width: 70%;
     font-family: 'Outfit', sans-serif;
-    backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
+    backdrop-filter: blur(16px) saturate(180%);
     box-shadow: 0 2px 5px rgba(45, 42, 42, 0.1);
 }
 
@@ -273,4 +280,18 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
+}
+
+/* Fix for scrollbar-width */
+.scrollable-container {
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.scrollable-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+/* Fix for backdrop-filter */
+.blur-container {
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
 }

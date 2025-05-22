@@ -253,16 +253,16 @@ Respond ONLY with the roadmap, no extra text.`;
   };
 
   const handleGenerateRoadmap = async () => {
-    console.log('Generating roadmap with multiple API keys...');
+    console.log('Generating personalized roadmap based on user chat...');
     setLoading(true);
 
     try {
       const allVideos = [];
       const apiKeys = [TECHNOLOGY_API_KEY, AI_API_KEY, MOBILE_DEV_API_KEY];
-      const playlistIds = [...ADDITIONAL_PLAYLIST_IDS]; // Use the existing playlist IDs
+      const playlistIds = [...ADDITIONAL_PLAYLIST_IDS];
 
       for (let i = 0; i < playlistIds.length; i++) {
-        const apiKey = apiKeys[i % apiKeys.length]; // Rotate through API keys
+        const apiKey = apiKeys[i % apiKeys.length];
         const videos = await fetchPlaylistItems(playlistIds[i], apiKey);
         allVideos.push(...videos);
       }
@@ -281,22 +281,56 @@ Respond ONLY with the roadmap, no extra text.`;
         return;
       }
 
-      const videoList = allVideos.map(
+      // Extract user preferences from chat history
+      const userPreferences = messages
+        .filter(msg => msg.role === "user")
+        .map(msg => msg.text.toLowerCase())
+        .join(" ");
+
+      // Filter videos based on user preferences
+      const relevantVideos = allVideos.filter(video => {
+        const title = video.snippet.title.toLowerCase();
+        return userPreferences.split(" ").some(keyword => title.includes(keyword));
+      });
+
+      // Remove already suggested videos
+      const suggestedVideoIds = new Set(messages
+        .filter(msg => msg.role === "bot" && msg.suggestedVideos)
+        .flatMap(msg => msg.suggestedVideos));
+
+      const uniqueVideos = relevantVideos.filter(video => !suggestedVideoIds.has(video.snippet.resourceId.videoId));
+
+      // Select the top 20 videos
+      const selectedVideos = uniqueVideos.slice(0, 20);
+
+      if (selectedVideos.length === 0) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "bot",
+            text: "No new relevant videos found based on your preferences. Please try asking something different.",
+          },
+        ]);
+        setLoading(false);
+        return;
+      }
+
+      const videoList = selectedVideos.map(
         (video) => `- [${video.snippet.title}](https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId})`
       ).join('\n');
 
       const roadmapPrompt = `
-Here is the list of videos from the playlists:
+Based on your chat, here is a personalized learning roadmap with 20 videos:
 
 ${videoList}
 
-You can use these videos to create a personalized learning roadmap.`;
+These videos are tailored to help you progress further in your learning journey.`;
 
       console.log('Roadmap prompt:', roadmapPrompt);
 
       setMessages((prev) => [
         ...prev,
-        { role: "bot", text: roadmapPrompt },
+        { role: "bot", text: roadmapPrompt, suggestedVideos: selectedVideos.map(video => video.snippet.resourceId.videoId) },
       ]);
     } catch (error) {
       console.error('Error generating roadmap:', error);
@@ -347,14 +381,6 @@ ${text}
       <div className="nav">
         <p>Gemini</p>
         <img src={assets.user_icon} alt="User" />
-      </div>
-
-      <div className="category-buttons">
-        <button onClick={() => setActiveCategory('domain')}>Domain</button>
-        <button onClick={() => setActiveCategory('data')}>Data Science</button>
-        <button onClick={() => setActiveCategory('game')}>Game Dev</button>
-        <button onClick={() => setActiveCategory('ai')}>AI</button>
-        <button onClick={() => setActiveCategory('mobile')}>Mobile</button>
       </div>
 
       <div className="chat-response">
@@ -418,9 +444,9 @@ ${text}
             <img src={assets.mic_icon} alt="Mic" />
             <img src={assets.send_icon} alt="Send" />
           </div>
-        </div>
+        </div><div className="gbutton">
         <button className="generate-btn" onClick={handleGenerate}>Generate</button>
-        <button className="generate-btn" onClick={handleGenerateRoadmap}>Generate Roadmap</button>
+        <button className="generate-btn" onClick={handleGenerateRoadmap}>Generate Roadmap</button></div>
         {showRoadmap && (
           <div className="ai-roadmap">
             <h2>AI Generated Roadmap</h2>
