@@ -331,6 +331,18 @@ These videos are tailored to help you progress further in your learning journey.
       setMessages((prev) => [
         ...prev,
         { role: "bot", text: roadmapPrompt, suggestedVideos: selectedVideos.map(video => video.snippet.resourceId.videoId) },
+        {
+          role: "bot",
+          text: "download this roadmap:",
+          isSaveButton: true,
+          saveAction: () => {
+            const blob = new Blob([roadmapPrompt], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'roadmap.txt';
+            link.click();
+          },
+        },
       ]);
     } catch (error) {
       console.error('Error generating roadmap:', error);
@@ -409,6 +421,9 @@ ${text}
                     </a>
                   </div>
                 ))}
+                {msg.isSaveButton && (
+                  <button className="save-btn" onClick={msg.saveAction}>Download</button>
+                )}
               </>
             ) : (
               <p>{msg.text}</p>
@@ -444,13 +459,27 @@ ${text}
             <img src={assets.mic_icon} alt="Mic" />
             <img src={assets.send_icon} alt="Send" />
           </div>
-        </div><div className="gbutton">
-        <button className="generate-btn" onClick={handleGenerate}>Generate</button>
-        <button className="generate-btn" onClick={handleGenerateRoadmap}>Generate Roadmap</button></div>
+        </div>
+        <div className="gbutton">
+          <button className="generate-btn" onClick={handleGenerate}>Generate</button>
+          <button className="generate-btn" onClick={handleGenerateRoadmap}>Generate Roadmap</button>
+        </div>
         {showRoadmap && (
           <div className="ai-roadmap">
             <h2>AI Generated Roadmap</h2>
             <ReactMarkdown>{roadmapContent}</ReactMarkdown>
+            <button className="save-btn" onClick={() => {
+              const roadmapText = messages.find(msg => msg.isRoadmap)?.text;
+              if (roadmapText) {
+                const blob = new Blob([roadmapText], { type: 'text/plain' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'roadmap.txt';
+                link.click();
+              } else {
+                alert('No roadmap available to save. Please generate one first.');
+              }
+            }}>Save Roadmap</button>
           </div>
         )}
         <p className="bottom-info">
