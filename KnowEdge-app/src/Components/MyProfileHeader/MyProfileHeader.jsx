@@ -53,7 +53,7 @@ const MyProfileHeader = () => {
 
             {/*user profile box*/}
             <div className='profile-box'>
-                <img src={userimage} alt='User' className='profile-image' />
+                <img src={userData?.avatarURL} alt="User Avatar" />
                 <h3 className='username'>Hello {userData?.fullname || "User"}!</h3>
                 <div className='content'>
                     <p><strong>Age:</strong> {userData?.age}</p>
@@ -70,3 +70,7 @@ const MyProfileHeader = () => {
 }
 
 export default MyProfileHeader
+
+
+
+
