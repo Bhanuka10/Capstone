@@ -16,6 +16,11 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvide
 import { auth, db } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
 
+const generateRandomAvatar = () => {
+    const randomId = Math.floor(Math.random() * 10000);
+    return `https://robohash.org/${randomId}.png?set=set1`; // You can use set1, set2, set3, or set4
+};
+
 export default function Register() {
     const [form, setForm] = useState({
         name: "",
@@ -55,7 +60,9 @@ export default function Register() {
                 createdAt: new Date(),
                 time: new Date().toLocaleTimeString(),
                 date: new Date().toLocaleDateString(),
+                avatarURL: generateRandomAvatar(), // ✅ Add this line
             });
+
 
 
             toast.success("✅ Registration successful!");
@@ -74,7 +81,7 @@ export default function Register() {
             await setDoc(doc(db, "users", user.uid), {
                 name: user.displayName,
                 email: user.email,
-                photoURL: user.photoURL,
+                avatarURL: user.photoURL || generateRandomAvatar(),
                 authProvider: "google",
                 createdAt: new Date(),
                 time: new Date().toLocaleTimeString(),
@@ -98,7 +105,7 @@ export default function Register() {
             await setDoc(doc(db, "users", user.uid), {
                 name: user.displayName,
                 email: user.email,
-                photoURL: user.photoURL,
+                avatarURL: user.photoURL || generateRandomAvatar(),
                 authProvider: "Facebook",
                 createdAt: new Date(),
                 time: new Date().toLocaleTimeString(),
