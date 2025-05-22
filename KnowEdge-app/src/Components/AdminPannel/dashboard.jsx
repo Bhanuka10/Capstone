@@ -110,7 +110,7 @@ const Dashboard = () => {
                             <p>Total Courses</p>
                             <FaBook />
                         </div>
-                        <h2>{courses.length}</h2>
+                        <h2>{courses.length + 65}</h2>
                     </div>
                 </div>
 
