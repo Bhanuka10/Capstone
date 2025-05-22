@@ -81,7 +81,7 @@ export default function Register() {
             await setDoc(doc(db, "users", user.uid), {
                 name: user.displayName,
                 email: user.email,
-                avatarURL: user.photoURL || generateRandomAvatar(),
+                avatarURL: generateRandomAvatar(),
                 authProvider: "google",
                 createdAt: new Date(),
                 time: new Date().toLocaleTimeString(),
@@ -105,7 +105,7 @@ export default function Register() {
             await setDoc(doc(db, "users", user.uid), {
                 name: user.displayName,
                 email: user.email,
-                avatarURL: user.photoURL || generateRandomAvatar(),
+                avatarURL: generateRandomAvatar(),
                 authProvider: "Facebook",
                 createdAt: new Date(),
                 time: new Date().toLocaleTimeString(),
