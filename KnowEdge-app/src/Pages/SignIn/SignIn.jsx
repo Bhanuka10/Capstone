@@ -72,6 +72,9 @@ export default function SignIn() {
     const handleGoogleSignIn = async () => {
         const provider = new GoogleAuthProvider();
         try {
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+
             const now = new Date();
             const time = now.toLocaleTimeString();
             const date = now.toLocaleDateString();
@@ -80,11 +83,10 @@ export default function SignIn() {
                 name: user.displayName,
                 email: user.email,
                 photoURL: user.photoURL,
-                authProvider: "google", // or "facebook"
+                authProvider: "google",
                 time,
                 date,
             }, { merge: true });
-
 
             toast.success("✅ Signed in with Google!");
             setTimeout(() => navigate("/home"), 2000);
@@ -93,9 +95,13 @@ export default function SignIn() {
         }
     };
 
+
     const handleFacebookSignIn = async () => {
         const provider = new FacebookAuthProvider();
         try {
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+
             const now = new Date();
             const time = now.toLocaleTimeString();
             const date = now.toLocaleDateString();
@@ -104,11 +110,10 @@ export default function SignIn() {
                 name: user.displayName,
                 email: user.email,
                 photoURL: user.photoURL,
-                authProvider: "Facebook", // or "facebook"
+                authProvider: "Facebook",
                 time,
                 date,
             }, { merge: true });
-
 
             toast.success("✅ Signed in with Facebook!");
             setTimeout(() => navigate("/home"), 2000);
@@ -116,6 +121,7 @@ export default function SignIn() {
             toast.error(`❌ Facebook sign-in failed: ${error.message}`);
         }
     };
+
 
     return (
         <div className="register-container">
