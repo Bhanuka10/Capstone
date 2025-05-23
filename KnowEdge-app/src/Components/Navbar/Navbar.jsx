@@ -90,8 +90,12 @@ const Navbar = () => {
                             About
                         </li>
                         <li className={menu === "Contact" ? "active" : ""} onClick={() => setMenu("Contact")}>
-                            <Link to="/contact">Contact</Link>
+                            <Link to="/contact">Profile</Link>
                         </li>
+                        <li className={menu === "Content" ? "active" : ""} onClick={() => setMenu("Content")}>
+                            <Link to="/roadmap">Content</Link>
+                        </li>
+
                     </ul>
                 </div>
             </div>
