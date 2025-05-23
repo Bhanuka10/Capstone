@@ -422,7 +422,10 @@ ${text}
                   </div>
                 ))}
                 {msg.isSaveButton && (
-                  <button className="save-btn" onClick={msg.saveAction}>Download</button>
+                  <div style={{ display: 'flex', gap: '10px' }}>
+                    <button className="download-btn" onClick={msg.saveAction}>Download</button>
+                    <button className="save-btn">Save</button>
+                  </div>
                 )}
               </>
             ) : (
