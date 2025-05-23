@@ -64,6 +64,7 @@ const MyProfileHeader = () => {
                     <p><strong>Field of Study:</strong> {userData?.fieldOfStudy}</p>
                     <p><strong>Skill Level:</strong> {userData?.skillLevel}</p>
                 </div>
+                
             </div>
         </div>
     )
