@@ -11,6 +11,8 @@ import WatchLater from './Components/WatchLater/WatchLater';
 import Chatbot from "./Components/ChatBot/ChatBot";
 import SignIn from "./Pages/SignIn/SignIn.jsx";
 import Register from "@/Pages/Register/Register.jsx";
+import Roadmap from './Components/Roadmap/Roadmap.jsx';
+
 
 const App = () => {
   const [profile, setProfile] = useState(null);
@@ -34,7 +36,8 @@ const App = () => {
           <Route path="/user-details" element={<User />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path='/watchlater' element={<WatchLater />} />
-
+          <Route path="/Content" element={<Roadmap />} />
+          
           
 
         </Routes>
