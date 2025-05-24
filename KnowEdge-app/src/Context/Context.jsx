@@ -11,6 +11,7 @@ import WatchLater from "@/Components/WatchLater/WatchLater.jsx";
 import Register from "@/Pages/Register/Register.jsx";
 import RegisterForm from "../Pages/Register-Subform/RegisterForm";
 import SignIn from "@/Pages/SignIn/SignIn.jsx";
+import Content from "../Pages/Content/Content";
 
 const router = createBrowserRouter([
 
@@ -44,6 +45,11 @@ const router = createBrowserRouter([
     path: "/chatbot",
     element: <ChatBot />, // ChatBot page
   },
+  {
+    path: "/content",
+    element: <Content />, // Content page
+  },
+
 
 
 // Uncomment this to run Admin panel
