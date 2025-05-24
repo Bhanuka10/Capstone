@@ -12,6 +12,7 @@ import Chatbot from "./Components/ChatBot/ChatBot";
 import SignIn from "./Pages/SignIn/SignIn.jsx";
 import Register from "@/Pages/Register/Register.jsx";
 import Roadmap from './Components/Roadmap/Roadmap.jsx';
+import Content from './Pages/Content/Content.jsx';
 
 
 const App = () => {
@@ -36,7 +37,7 @@ const App = () => {
           <Route path="/user-details" element={<User />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path='/watchlater' element={<WatchLater />} />
-          <Route path="/Content" element={<Roadmap />} />
+          <Route path="/Content" element={<Content />} />
           
           
 
