@@ -93,7 +93,7 @@ const Navbar = () => {
                             <Link to="/contact">Profile</Link>
                         </li>
                         <li className={menu === "Content" ? "active" : ""} onClick={() => setMenu("Content")}>
-                            <Link to="/roadmap">Content</Link>
+                            <Link to="/Content">Content</Link>
                         </li>
 
                     </ul>
