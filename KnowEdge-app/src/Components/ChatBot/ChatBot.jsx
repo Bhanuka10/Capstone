@@ -287,10 +287,17 @@ Respond ONLY with the roadmap, no extra text.`;
         .map(msg => msg.text.toLowerCase())
         .join(" ");
 
-      // Filter videos based on user preferences
+      // Use keywords only (remove stopwords and short words)
+      const stopwords = ["the","is","at","which","on","a","an","and","or","for","to","of","in","with","by","as","from","that","this","it","are","be","was","were","has","have","had","but","not","so","if","then","than","too","very","can","will","just","about","into","over","after","before","more","most","some","such","no","nor","only","own","same","so","than","too","very","s","t","can","will","don","should","now"];
+      const keywords = userPreferences.split(/\W+/).filter(word => word.length > 2 && !stopwords.includes(word));
+
+      // Filter videos based on keywords (title and description)
       const relevantVideos = allVideos.filter(video => {
         const title = video.snippet.title.toLowerCase();
-        return userPreferences.split(" ").some(keyword => title.includes(keyword));
+        const description = (video.snippet.description || '').toLowerCase();
+        return keywords.some(keyword =>
+          title.includes(keyword) || description.includes(keyword)
+        );
       });
 
       // Remove already suggested videos
