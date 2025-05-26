@@ -1,32 +1,24 @@
 // src/Config/playlistData.js
 
 export const DOMAIN_PLAYLIST_IDS = [
-  'PLsyeobzWxl7oa1WO9n4cP3OY9nOtUcZIg',
-  'PLsyeobzWxl7qbKoSgR5ub6jolI8-ocxCF',
-   'PLfqMhTWNBTe0PY9xunOzsP5kmYIz2Hu7i',
-'PLfqMhTWNBTe25HU2y-3Kx6MBsasawd61U',
-'PLWKjhJtqVAbkArDMazoARtNz1aMwNWmvC',
-'PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88',
-'PLillGF-Rfqbars4vKNtpcWVDUpVOVTlgB',
-'PLillGF-RfqbY3c2r0htQyVbDJJoBFE6Rb',
-'PLillGF-RfqbbRA-CIUxlxkUpbq0IFkX60',
-'PLillGF-RfqbbFSFYR_yJfDcdq6It6OqdO',
-'PLillGF-RfqbZ3_Xr8do7Q2R752xYrDRAo',
-'PLillGF-Rfqbb4ZOnsNCIB-DnLuUrQjS_G',
-'PLillGF-RfqbaISD5mxDCIjsSYk4jbiXi4',
-'PLillGF-RfqbZjJBAu0sx_0SCuFdzdx4iY',
-'PLillGF-RfqbYE6Ik_EuXA2iZFcE082B3s',
-'PLillGF-RfqbZTASqIqdvm1R5mLrQq79CU',
-'PLillGF-RfqbYhQsN5WMXy6VsDMKGadrJ-',
-'PLZPZq0r_RZOOj_NOZYq_R2PECIMglLemc',
-'PLZPZq0r_RZOO1zkgO4bIdfuLpizCeHYKv',
-'PLZPZq0r_RZOOxqHgOzPyCzIl4AJjXbCYt',
-'PLZPZq0r_RZOO6bGTY9jbLOyF_x6tgwcuB',
-'PLZPZq0r_RZOMQArzyI32mVndGBZ3D99XQ',
-'PLZPZq0r_RZONbmOn3EsHac5u5_-Rue3ne',
-'PLZPZq0r_RZOPP5Yjt6IqgytMRY5uLt4y3',
-'PLZPZq0r_RZOMRMjHB_IEBjOW_ufr00yG1'
-  
+  // Web development & APIs focused playlists
+  'PLsyeobzWxl7oa1WO9n4cP3OY9nOtUcZIg', // Web Development Full Course
+  'PLsyeobzWxl7qbKoSgR5ub6jolI8-ocxCF', // Web Development Projects
+  'PLfqMhTWNBTe0PY9xunOzsP5kmYIz2Hu7i', // Node.js APIs
+  'PLfqMhTWNBTe25HU2y-3Kx6MBsasawd61U', // Express.js APIs
+  'PLWKjhJtqVAbkArDMazoARtNz1aMwNWmvC', // JavaScript Web Projects
+  'PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88', // React.js
+  'PLillGF-Rfqbars4vKNtpcWVDUpVOVTlgB', // REST API Concepts
+  'PLillGF-RfqbY3c2r0htQyVbDJJoBFE6Rb', // Node.js API
+  'PLillGF-RfqbbRA-CIUxlxkUpbq0IFkX60', // Express.js API
+  'PLillGF-RfqbbFSFYR_yJfDcdq6It6OqdO', // Full Stack Web
+  'PLillGF-RfqbZ3_Xr8do7Q2R752xYrDRAo', // MERN Stack
+  'PLillGF-Rfqbb4ZOnsNCIB-DnLuUrQjS_G', // Web App Projects
+  'PLillGF-RfqbaISD5mxDCIjsSYk4jbiXi4', // API Security
+  'PLillGF-RfqbZjJBAu0sx_0SCuFdzdx4iY', // Web App Auth
+  'PLillGF-RfqbYE6Ik_EuXA2iZFcE082B3s', // Web App Deployment
+  'PLillGF-RfqbZTASqIqdvm1R5mLrQq79CU', // Web App Testing
+  'PLillGF-RfqbYhQsN5WMXy6VsDMKGadrJ-', // Web App Best Practices
 ];
 
 export const DATA_SCIENCE_PLAYLIST_IDS = [
