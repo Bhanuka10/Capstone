@@ -31,7 +31,7 @@ const router = createBrowserRouter([
     path: "/registerForm",
     element: <RegisterForm />
   },
-  //
+  
   // //Uncomment this to run Home page
   {
     path: "/home",
