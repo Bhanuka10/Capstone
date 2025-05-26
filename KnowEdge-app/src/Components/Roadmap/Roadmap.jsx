@@ -1,15 +1,15 @@
-import React from 'react'
-import "./Roadmap.css"
+import React, { useState } from 'react';
+import "./Roadmap.css";
 
 const Roadmap = () => {
+
   return (
     <div>
-        <div className='roadmap'>
-            <h1>hgkgk</h1>
-
-        </div>
+      <div className='roadmap'>
+        
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Roadmap
+export default Roadmap;
