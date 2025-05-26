@@ -3,20 +3,29 @@ import './Courses.css';
 import { Link } from 'react-router-dom';
 
 export const DOMAIN_PLAYLIST_IDS = [
-  'PLoYCgNOIyGABDU532eesybur5HPBVfC1G',
-  'PLTjRvDozrdlw0x_FcXItVVVVh-RP-5hdP',
-  'PLXNgqM9ig24c7IdumyymD9q3e2hsz9U1m',
-  'PLC3y8-rFHvwhIEc4I4YsRz5C7GOBnxSJY',
-  'PLC3y8-rFHvwjOKd6gdf4QtV1uYNiQnruI',
-  'PL1w1q3fL4pmg0ArGMe7-tZcDCYMvU0dG7',
-  'PL1w1q3fL4pmj9k1FrJ3Pe91EPub2_h4jF',
-  'PLTjRvDozrdlxEIuOBZkMAK5uiqp8rHUax',
-  'PLZPZq0r_RZOO1zkgO4bIdfuLpizCeHYKv',
-  'PLZPZq0r_RZOOxqHgOzPyCzIl4AJjXbCYt',
-  'PLZPZq0r_RZOONc3kkuRmBOlj67YAG6jqo',
-  'PLZPZq0r_RZOPoNttk9beDhO_Bu5DA-xwP',
-  'PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88',
-  'PLewGdhs0k9xG6TRPgHDO03kN0wTmehw_0'
+  'PLfqMhTWNBTe0PY9xunOzsP5kmYIz2Hu7i',
+'PLfqMhTWNBTe25HU2y-3Kx6MBsasawd61U',
+'PLWKjhJtqVAbkArDMazoARtNz1aMwNWmvC',
+'PLWKjhJtqVAbnSe1qUNMG7AbPmjIG54u88',
+'PLillGF-Rfqbars4vKNtpcWVDUpVOVTlgB',
+'PLillGF-RfqbY3c2r0htQyVbDJJoBFE6Rb',
+'PLillGF-RfqbbRA-CIUxlxkUpbq0IFkX60',
+'PLillGF-RfqbbFSFYR_yJfDcdq6It6OqdO',
+'PLillGF-RfqbZ3_Xr8do7Q2R752xYrDRAo',
+'PLillGF-Rfqbb4ZOnsNCIB-DnLuUrQjS_G',
+'PLillGF-RfqbaISD5mxDCIjsSYk4jbiXi4',
+'PLillGF-RfqbZjJBAu0sx_0SCuFdzdx4iY',
+'PLillGF-RfqbYE6Ik_EuXA2iZFcE082B3s',
+'PLillGF-RfqbZTASqIqdvm1R5mLrQq79CU',
+'PLillGF-RfqbYhQsN5WMXy6VsDMKGadrJ-',
+'PLZPZq0r_RZOOj_NOZYq_R2PECIMglLemc',
+'PLZPZq0r_RZOO1zkgO4bIdfuLpizCeHYKv',
+'PLZPZq0r_RZOOxqHgOzPyCzIl4AJjXbCYt',
+'PLZPZq0r_RZOO6bGTY9jbLOyF_x6tgwcuB',
+'PLZPZq0r_RZOMQArzyI32mVndGBZ3D99XQ',
+'PLZPZq0r_RZONbmOn3EsHac5u5_-Rue3ne',
+'PLZPZq0r_RZOPP5Yjt6IqgytMRY5uLt4y3',
+'PLZPZq0r_RZOMRMjHB_IEBjOW_ufr00yG1'
 ];
 
 export const DATA_SCIENCE_PLAYLIST_IDS = [
@@ -118,7 +127,6 @@ export const MOBILE_DEV_PLAYLIST_IDS = [
   'PLMRqhzcHGw1aYtbJQUR1lhmPzzaCQWl8z',
   'PLMRqhzcHGw1bXAOgzO8HokHyq9vmSeq1L',
   'PLMRqhzcHGw1ZsFRLAWa_Axx7daXteynjh',
-  'PLMRqhzcHGw1Z-lZaaun3A3mV9PbEfHANI',
   'PLMRqhzcHGw1b89DXHOVA77ozWXWmuBkWX',
   'PLRAV69dS1uWRH0QDzQaKLQEYD26YCQ5eS',
   'PLRAV69dS1uWTNPzObtUpbxe1L1lB97z2R',
@@ -148,9 +156,10 @@ const TECHNOLOGY_PLAYLIST_IDS = [
   'PL_67py5gIqwPpckEnMY3JtiRcJqqWUf3_',
   'PL_67py5gIqwPKo0gROo4uPLCSllZD7xt6'
 ];
-const TECHNOLOGY_API_KEY = 'AIzaSyCrHMb5V__f_D2dNBNvGSeSzf2ziZnSKJs';
+const DOMAIN_API_KEY = 'AIzaSyCwkZPBInHovr1jij2cbOQrLj6elW6NBwE';
 const AI_API_KEY = 'AIzaSyAF_buLKadyaFn0CwatrPP545plDQ_NQ4A';
 const MOBILE_DEV_API_KEY = 'AIzaSyCrHMb5V__f_D2dNBNvGSeSzf2ziZnSKJs';
+const TECHNOLOGY_API_KEY = 'AIzaSyD-SJkFXqteSzaQPVUSqo5Lq3CaQh2j5pU';
 const MAX_RESULTS = 30;
 
 const Courses = () => {
@@ -174,7 +183,7 @@ const Courses = () => {
 
   const fetchPlaylistVideos = async (playlistId) => {
     const response = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${MAX_RESULTS}&playlistId=${playlistId}&key=${API_KEY}`
+      `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${MAX_RESULTS}&playlistId=${playlistId}&key=${DOMAIN_API_KEY}`
     );
     const data = await response.json();
     const storedCounts = getStoredViewCounts();
@@ -256,7 +265,7 @@ const Courses = () => {
 
   const loadDataScienceCourses = async () => {
     try {
-      const dataScienceCourses = await Promise.all(DATA_SCIENCE_PLAYLIST_IDS.map(fetchPlaylistVideos));
+      const dataScienceCourses = await Promise.all(DATA_SCIENCE_PLAYLIST_IDS.map(fetchAIPlaylistVideos));
       setCourses(dataScienceCourses.flat().sort(() => Math.random() - 0.5));
     } catch (error) {
       console.error('Error loading data science courses:', error);
