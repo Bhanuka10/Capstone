@@ -71,6 +71,7 @@ function Chatbot({ onProfileUpdate }) {
       return [];
     }
   };
+  
 
   const fetchAllPlaylists = async (playlistIds) => {
     const allVideos = [];
@@ -310,22 +311,14 @@ ${text}
                   return (
                     <div key={i} className="youtube-video-list" style={{ marginBottom: '16px' }}>
                       <a href={videoUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
-                        <img
-                          src={`https://img.youtube.com/vi/${videoId}/mqdefault.jpg`}
-                          alt={title}
-                          style={{
-                            width: '100%',
-                            maxWidth: '360px',
-                            borderRadius: '10px',
-                            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-                          }}
-                        />
-                        <p style={{
-                          marginTop: '6px',
-                          fontWeight: '500',
-                          fontSize: '15px',
-                          maxWidth: '360px'
-                        }}>{title}</p>
+                        <div className="video-thumbnail">
+                          <img 
+                            src={`https://img.youtube.com/vi/${videoId}/0.jpg`} 
+                            alt={title} 
+                            style={{ width: '100%', borderRadius: '8px' }} 
+                          />
+                          <div style={{ marginTop: '8px', fontWeight: 'bold' }}>{title}</div>
+                        </div>
                       </a>
                     </div>
                   );
