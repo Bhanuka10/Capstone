@@ -302,17 +302,34 @@ ${text}
               <>
                 <ReactMarkdown>{msg.text}</ReactMarkdown>
                 {/* Extract and display YouTube video links as thumbnails */}
-                {msg.text && Array.from(msg.text.matchAll(/\[([^\]]+)\]\((https?:\/\/www\.youtube\.com\/watch\?v=[^\)]+)\)/g)).map((match, i) => (
-                  <div key={i} className="youtube-video-list">
-                    <a href={match[2]} target="_blank" rel="noopener noreferrer">
-                      <img src={`https://img.youtube.com/vi/${new URL(match[2]).searchParams.get('v')}/mqdefault.jpg`} alt={match[1]} style={{width: '200px', borderRadius: '8px', margin: '8px 0'}} />
-                      <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
-                        <img src={YoutubeIcon} alt="YouTube" style={{width:'24px'}} />
-                        <span style={{fontWeight:'bold'}}>{match[1]}</span>
-                      </div>
-                    </a>
-                  </div>
-                ))}
+                {msg.text && Array.from(msg.text.matchAll(/\[([^\]]+)\]\((https?:\/\/www\.youtube\.com\/watch\?v=[^\)]+)\)/g)).map((match, i) => {
+                  const title = match[1];
+                  const videoUrl = match[2];
+                  const videoId = new URL(videoUrl).searchParams.get('v');
+
+                  return (
+                    <div key={i} className="youtube-video-list" style={{ marginBottom: '16px' }}>
+                      <a href={videoUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <img
+                          src={`https://img.youtube.com/vi/${videoId}/mqdefault.jpg`}
+                          alt={title}
+                          style={{
+                            width: '100%',
+                            maxWidth: '360px',
+                            borderRadius: '10px',
+                            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                          }}
+                        />
+                        <p style={{
+                          marginTop: '6px',
+                          fontWeight: '500',
+                          fontSize: '15px',
+                          maxWidth: '360px'
+                        }}>{title}</p>
+                      </a>
+                    </div>
+                  );
+                })}
                 {msg.isSaveButton && (
                   <div style={{ display: 'flex', gap: '10px' }}>
                     <button className="download-btn" onClick={msg.saveAction}>Download</button>
