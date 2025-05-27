@@ -9,6 +9,15 @@ import { useChat } from "../../Context/ChatContext";
 import ReactMarkdown from "react-markdown";
 import Roadmap from "../Roadmap/Roadmap";
 import YoutubeIcon from '../../assets/youtube_icon.png';
+
+import { getAuth } from "firebase/auth";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+
+// Firebase SDK assumes you already initialized the app
+const auth = getAuth();
+const db = getFirestore();
+
 import {
   DOMAIN_PLAYLIST_IDS,
   DATA_SCIENCE_PLAYLIST_IDS,
@@ -222,7 +231,7 @@ These videos are tailored to help you progress further in your learning journey.
 
       setMessages((prev) => [
         ...prev,
-        { role: "bot", text: roadmapPrompt, suggestedVideos: selectedVideos.map(video => video.snippet.resourceId.videoId) },
+        { role: "bot", text: roadmapPrompt,isRoadmap: true, suggestedVideos: selectedVideos.map(video => video.snippet.resourceId.videoId) },
         {
           role: "bot",
           text: "download this roadmap:",
@@ -280,6 +289,38 @@ ${text}
     }
   };
 
+//Save Button Function
+  const handleSaveRoadmap = async () => {
+    const user = auth.currentUser;
+
+    if (!user) {
+      alert("User not authenticated.");
+      return;
+    }
+
+    const email = user.email;
+
+    // Get the roadmap message from messages array
+    const roadmapMsg = messages.find((msg) => msg.isRoadmap);
+
+    if (!roadmapMsg) {
+      alert("No roadmap to save.");
+      return;
+    }
+
+    try {
+      // Add to subcollection "roadmaps" inside the user's document
+      await addDoc(collection(db, "users", email, "roadmaps"), {
+        text: roadmapMsg.text,
+        timestamp: serverTimestamp(),
+      });
+
+      alert("✅ Roadmap saved to database!");
+    } catch (error) {
+      console.error("Error saving roadmap:", error);
+      alert("❌ Failed to save roadmap.");
+    }
+  };
   return (
     <div className="main">
       <div className="nav">
@@ -333,7 +374,7 @@ ${text}
                 {msg.isSaveButton && (
                   <div style={{ display: 'flex', gap: '10px' }}>
                     <button className="download-btn" onClick={msg.saveAction}>Download</button>
-                    <button className="save-btn">Save</button>
+                    <button className="save-btn" onClick={handleSaveRoadmap}>Save</button>
                   </div>
                 )}
               </>
