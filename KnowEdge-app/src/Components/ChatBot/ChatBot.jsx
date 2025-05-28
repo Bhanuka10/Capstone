@@ -7,30 +7,50 @@ import { assets } from "../../assets/assets";
 import callGeminiFlash from "../../Config/Gemini";
 import { useChat } from "../../Context/ChatContext";
 import ReactMarkdown from "react-markdown";
-import Roadmap from "../Roadmap/Roadmap";
-import YoutubeIcon from '../../assets/youtube_icon.png';
-
 import { getAuth } from "firebase/auth";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-
-// Firebase SDK assumes you already initialized the app
-const auth = getAuth();
-const db = getFirestore();
-
+import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
 import {
   DOMAIN_PLAYLIST_IDS,
   DATA_SCIENCE_PLAYLIST_IDS,
   GAME_DEV_PLAYLIST_IDS,
   AI_PLAYLIST_IDS,
-  MOBILE_DEV_PLAYLIST_IDS,
-  ADDITIONAL_PLAYLIST_IDS
+  MOBILE_DEV_PLAYLIST_IDS
 } from '../../Config/playlistData';
 
-const API_KEY = 'AIzaSyD-SJkFXqteSzaQPVUSqo5Lq3CaQh2j5pU';
-const TECHNOLOGY_API_KEY = 'AIzaSyCrHMb5V__f_D2dNBNvGSeSzf2ziZnSKJs';
-const AI_API_KEY = 'AIzaSyAF_buLKadyaFn0CwatrPP545plDQ_NQ4A';
-const MOBILE_DEV_API_KEY = 'AIzaSyCrHMb5V__f_D2dNBNvGSeSzf2ziZnSKJs';
+const API_KEYS = [
+  'AIzaSyD-SJkFXqteSzaQPVUSqo5Lq3CaQh2j5pU',
+  'AIzaSyCrHMb5V__f_D2dNBNvGSeSzf2ziZnSKJs',
+  'AIzaSyAF_buLKadyaFn0CwatrPP545plDQ_NQ4A'
+];
+
+const auth = getAuth();
+const db = getFirestore();
+
+const categoryMap = {
+  domain: DOMAIN_PLAYLIST_IDS,
+  data: DATA_SCIENCE_PLAYLIST_IDS,
+  game: GAME_DEV_PLAYLIST_IDS,
+  ai: AI_PLAYLIST_IDS,
+  mobile: MOBILE_DEV_PLAYLIST_IDS,
+};
+
+const intentKeywords = [
+  { category: 'ai', keywords: ['ai', 'artificial intelligence', 'machine learning', 'ml', 'deep learning', 'neural'] },
+  { category: 'data', keywords: ['data science', 'data', 'pandas', 'numpy', 'statistics', 'analysis', 'analytics'] },
+  { category: 'mobile', keywords: ['mobile', 'android', 'ios', 'react native', 'flutter', 'kotlin', 'swift', 'app'] },
+  { category: 'game', keywords: ['game', 'unity', 'unreal', 'gamedev', 'game development', '2d', '3d'] },
+  { category: 'domain', keywords: ['web', 'frontend', 'backend', 'react', 'node', 'express', 'html', 'css', 'javascript', 'mern', 'api'] }
+];
+
+function detectCategoryFromText(text) {
+  const lower = text.toLowerCase();
+  for (const entry of intentKeywords) {
+    if (entry.keywords.some(kw => lower.includes(kw))) {
+      return entry.category;
+    }
+  }
+  return 'domain'; // default fallback
+}
 
 function Chatbot({ onProfileUpdate }) {
   const location = useLocation();
@@ -41,20 +61,23 @@ function Chatbot({ onProfileUpdate }) {
   const [loading, setLoading] = useState(false);
   const [showRoadmap, setShowRoadmap] = useState(false);
   const [roadmapContent, setRoadmapContent] = useState("");
-  const [activeCategory, setActiveCategory] = useState('domain'); // Default to 'domain'
+  const [activeCategory, setActiveCategory] = useState('domain');
   const chatEndRef = useRef(null);
   const { addToChatHistory } = useChat();
 
-  const categoryMap = {
-    domain: DOMAIN_PLAYLIST_IDS,
-    data: DATA_SCIENCE_PLAYLIST_IDS,
-    game: GAME_DEV_PLAYLIST_IDS,
-    ai: AI_PLAYLIST_IDS,
-    mobile: MOBILE_DEV_PLAYLIST_IDS,
-  };
-
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  // Update category on each user message
+  useEffect(() => {
+    if (messages.length > 0) {
+      const lastUserMsg = messages.filter(m => m.role === 'user').slice(-1)[0];
+      if (lastUserMsg) {
+        const detected = detectCategoryFromText(lastUserMsg.text);
+        setActiveCategory(detected);
+      }
+    }
   }, [messages]);
 
   const fetchPlaylistItems = async (playlistId, apiKey) => {
@@ -62,38 +85,17 @@ function Chatbot({ onProfileUpdate }) {
       const response = await fetch(
         `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${playlistId}&key=${apiKey}`
       );
-
-      if (!response.ok) {
-        console.error('API Error:', response.status, response.statusText);
-        return [];
-      }
-
+      if (!response.ok) return [];
       const data = await response.json();
-
-      if (!data.items || data.items.length === 0) {
-        console.warn('No videos found in the playlist:', playlistId);
-      }
-
       return data.items || [];
     } catch (error) {
       console.error('Failed to fetch playlist items:', error);
       return [];
     }
   };
-  
-
-  const fetchAllPlaylists = async (playlistIds) => {
-    const allVideos = [];
-    for (let id of playlistIds) {
-      const videos = await fetchPlaylistItems(id, API_KEY);
-      allVideos.push(...videos);
-    }
-    return allVideos;
-  };
 
   const handleSend = async () => {
     if (!input.trim()) return;
-
     const userMessage = { role: "user", text: input };
     const updatedMessages = [...messages, userMessage];
     setMessages(updatedMessages);
@@ -106,7 +108,6 @@ function Chatbot({ onProfileUpdate }) {
 
     const prompt = `
 You're an AI tutor. Guide users in learning by asking one friendly educational question at a time.
-
 - Focus only on education: ambition, skill level, subjects of interest.
 - Never give a list unless asked.
 - Extract their goal, skill level, and current struggles silently.
@@ -122,14 +123,12 @@ Now, respond naturally with the next educational question.
     const botMessage = { role: "bot", text: aiResponse };
     setMessages([...updatedMessages, botMessage]);
     setLoading(false);
-
     extractProfileData(input + " " + aiResponse);
     addToChatHistory(input, aiResponse);
   };
 
   const handleGenerate = async () => {
     setLoading(true);
-    // Use the chat so far to generate a roadmap
     const historyText = messages
       .map((msg) => `${msg.role === "user" ? "User" : "AI"}: ${msg.text}`)
       .join("\n");
@@ -152,28 +151,13 @@ Respond ONLY with the roadmap, no extra text.`;
   const handleGenerateRoadmap = async () => {
     setLoading(true);
     try {
-      const allVideos = [];
       // Use the playlist group based on the activeCategory (user's interest)
       const playlistIds = categoryMap[activeCategory] || DOMAIN_PLAYLIST_IDS;
-      const apiKeys = [TECHNOLOGY_API_KEY, AI_API_KEY, MOBILE_DEV_API_KEY];
+      const allVideos = [];
       for (let i = 0; i < playlistIds.length; i++) {
-        const apiKey = apiKeys[i % apiKeys.length];
+        const apiKey = API_KEYS[i % API_KEYS.length];
         const videos = await fetchPlaylistItems(playlistIds[i], apiKey);
         allVideos.push(...videos);
-      }
-
-      console.log('Fetched videos:', allVideos);
-
-      if (allVideos.length === 0) {
-        setMessages((prev) => [
-          ...prev,
-          {
-            role: "bot",
-            text: "No videos found in the playlists. Please check the playlist IDs or try again later.",
-          },
-        ]);
-        setLoading(false);
-        return;
       }
 
       // Extract user preferences from chat history
@@ -201,8 +185,6 @@ Respond ONLY with the roadmap, no extra text.`;
         .flatMap(msg => msg.suggestedVideos));
 
       const uniqueVideos = relevantVideos.filter(video => !suggestedVideoIds.has(video.snippet.resourceId.videoId));
-
-      // Select the top 20 videos
       const selectedVideos = uniqueVideos.slice(0, 20);
 
       if (selectedVideos.length === 0) {
@@ -228,11 +210,9 @@ ${videoList}
 
 These videos are tailored to help you progress further in your learning journey.`;
 
-      console.log('Roadmap prompt:', roadmapPrompt);
-
       setMessages((prev) => [
         ...prev,
-        { role: "bot", text: roadmapPrompt,isRoadmap: true, suggestedVideos: selectedVideos.map(video => video.snippet.resourceId.videoId) },
+        { role: "bot", text: roadmapPrompt, isRoadmap: true, suggestedVideos: selectedVideos.map(video => video.snippet.resourceId.videoId) },
         {
           role: "bot",
           text: "download this roadmap:",
@@ -247,7 +227,6 @@ These videos are tailored to help you progress further in your learning journey.
         },
       ]);
     } catch (error) {
-      console.error('Error generating roadmap:', error);
       setMessages((prev) => [
         ...prev,
         {
@@ -279,9 +258,7 @@ Respond ONLY in JSON like this:
 Text:
 ${text}
     `;
-
     const extracted = await callGeminiFlash(extractionPrompt);
-
     try {
       const json = JSON.parse(extracted.match(/\{[\s\S]*\}/)?.[0]);
       onProfileUpdate?.(json);
@@ -290,38 +267,30 @@ ${text}
     }
   };
 
-//Save Button Function
+  // Save Button Function
   const handleSaveRoadmap = async () => {
     const user = auth.currentUser;
-
     if (!user) {
       alert("User not authenticated.");
       return;
     }
-
     const email = user.email;
-
-    // Get the roadmap message from messages array
     const roadmapMsg = messages.find((msg) => msg.isRoadmap);
-
     if (!roadmapMsg) {
       alert("No roadmap to save.");
       return;
     }
-
     try {
-      // Add to subcollection "roadmaps" inside the user's document
       await addDoc(collection(db, "users", email, "roadmaps"), {
         text: roadmapMsg.text,
         timestamp: serverTimestamp(),
       });
-
       alert("✅ Roadmap saved to database!");
     } catch (error) {
-      console.error("Error saving roadmap:", error);
       alert("❌ Failed to save roadmap.");
     }
   };
+
   return (
     <div className="main">
       <div className="nav">
@@ -348,15 +317,14 @@ ${text}
                   const title = match[1];
                   const videoUrl = match[2];
                   const videoId = new URL(videoUrl).searchParams.get('v');
-
                   return (
                     <div key={i} className="youtube-video-list" style={{ marginBottom: '16px' }}>
                       <a href={videoUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
                         <div className="video-thumbnail">
-                          <img 
-                            src={`https://img.youtube.com/vi/${videoId}/0.jpg`} 
-                            alt={title} 
-                            style={{ width: '100%', borderRadius: '8px' }} 
+                          <img
+                            src={`https://img.youtube.com/vi/${videoId}/0.jpg`}
+                            alt={title}
+                            style={{ width: '100%', borderRadius: '8px' }}
                           />
                           <div style={{ marginTop: '8px', fontWeight: 'bold' }}>{title}</div>
                         </div>
