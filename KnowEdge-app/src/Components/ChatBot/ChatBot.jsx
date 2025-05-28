@@ -52,6 +52,21 @@ function detectCategoryFromText(text) {
   return 'domain'; // default fallback
 }
 
+function detectCategoryFromMessages(messages) {
+  const userText = messages
+    .filter(msg => msg.role === "user")
+    .map(msg => msg.text.toLowerCase())
+    .join(" ");
+
+  // Prioritize ML/AI and algorithm-related keywords
+  if (userText.match(/\b(machine learning|ml|artificial intelligence|ai|deep learning|neural|algorithm|algorithms|scikit-learn|tensorflow|pytorch)\b/)) return 'ai';
+  if (userText.match(/\b(data science|data|pandas|numpy|statistics|analysis|analytics)\b/)) return 'data';
+  if (userText.match(/\b(mobile|android|ios|react native|flutter|kotlin|swift|app)\b/)) return 'mobile';
+  if (userText.match(/\b(game|unity|unreal|gamedev|game development|2d|3d)\b/)) return 'game';
+  if (userText.match(/\b(web|frontend|backend|react|node|express|html|css|javascript|mern|api)\b/)) return 'domain';
+  return 'domain'; // fallback
+}
+
 function Chatbot({ onProfileUpdate }) {
   const location = useLocation();
   const initialQuestion = location.state?.question || "";
@@ -151,8 +166,12 @@ Respond ONLY with the roadmap, no extra text.`;
   const handleGenerateRoadmap = async () => {
     setLoading(true);
     try {
-      // Use the playlist group based on the activeCategory (user's interest)
-      const playlistIds = categoryMap[activeCategory] || DOMAIN_PLAYLIST_IDS;
+      // 1. Always detect the most relevant category
+      const detectedCategory = detectCategoryFromMessages(messages);
+      setActiveCategory(detectedCategory);
+
+      // 2. Use only the relevant playlists
+      const playlistIds = categoryMap[detectedCategory] || DOMAIN_PLAYLIST_IDS;
       const allVideos = [];
       for (let i = 0; i < playlistIds.length; i++) {
         const apiKey = API_KEYS[i % API_KEYS.length];
@@ -160,32 +179,47 @@ Respond ONLY with the roadmap, no extra text.`;
         allVideos.push(...videos);
       }
 
-      // Extract user preferences from chat history
+      // 3. Extract user preferences and keywords
       const userPreferences = messages
         .filter(msg => msg.role === "user")
         .map(msg => msg.text.toLowerCase())
         .join(" ");
 
-      // Use keywords only (remove stopwords and short words)
+      // 4. Use keywords focused on ML/AI and algorithms
       const stopwords = ["the","is","at","which","on","a","an","and","or","for","to","of","in","with","by","as","from","that","this","it","are","be","was","were","has","have","had","but","not","so","if","then","than","too","very","can","will","just","about","into","over","after","before","more","most","some","such","no","nor","only","own","same","so","than","too","very","s","t","can","will","don","should","now"];
-      const keywords = userPreferences.split(/\W+/).filter(word => word.length > 2 && !stopwords.includes(word));
+      let keywords = userPreferences.split(/\W+/)
+        .filter(word => word.length > 2 && !stopwords.includes(word));
 
-      // Filter videos based on keywords (title and description)
-      const relevantVideos = allVideos.filter(video => {
+      // Boost with core topic keywords based on detected category
+      if (activeCategory === 'ai') {
+        keywords = [...new Set([...keywords, 'machine', 'learning', 'algorithm', 'algorithms', 'python', 'scikit-learn', 'tensorflow', 'pytorch', 'ml', 'ai'])];
+      } else if (activeCategory === 'data') {
+        keywords = [...new Set([...keywords, 'data', 'pandas', 'numpy', 'statistics', 'analysis', 'analytics'])];
+      } else if (activeCategory === 'mobile') {
+        keywords = [...new Set([...keywords, 'mobile', 'android', 'ios', 'react native', 'flutter', 'kotlin', 'swift', 'app'])];
+      } else if (activeCategory === 'game') {
+        keywords = [...new Set([...keywords, 'game', 'unity', 'unreal', 'gamedev', 'game development', '2d', '3d'])];
+      } else if (activeCategory === 'domain') {
+        keywords = [...new Set([...keywords, 'web', 'frontend', 'backend', 'react', 'node', 'express', 'html', 'css', 'javascript', 'mern', 'api'])];
+      }
+
+      // Score and filter videos
+      const scoredVideos = allVideos.map(video => {
         const title = video.snippet.title.toLowerCase();
         const description = (video.snippet.description || '').toLowerCase();
-        return keywords.some(keyword =>
+        const matchCount = keywords.filter(keyword =>
           title.includes(keyword) || description.includes(keyword)
-        );
+        ).length;
+        return { video, matchCount };
       });
 
-      // Remove already suggested videos
-      const suggestedVideoIds = new Set(messages
-        .filter(msg => msg.role === "bot" && msg.suggestedVideos)
-        .flatMap(msg => msg.suggestedVideos));
+      const relevantVideos = scoredVideos
+        .filter(v => v.matchCount > 0)
+        .sort((a, b) => b.matchCount - a.matchCount)
+        .map(v => v.video)
+        .slice(0, 20);
 
-      const uniqueVideos = relevantVideos.filter(video => !suggestedVideoIds.has(video.snippet.resourceId.videoId));
-      const selectedVideos = uniqueVideos.slice(0, 20);
+      const selectedVideos = relevantVideos.slice(0, 20); // Ensure selectedVideos is defined before use
 
       if (selectedVideos.length === 0) {
         setMessages((prev) => [
@@ -204,11 +238,12 @@ Respond ONLY with the roadmap, no extra text.`;
       ).join('\n');
 
       const roadmapPrompt = `
-Based on your chat, here is a personalized learning roadmap with 20 videos:
+Based on your chat, here is a personalized machine learning roadmap with 20 videos:
 
 ${videoList}
 
-These videos are tailored to help you progress further in your learning journey.`;
+These videos are tailored to help you progress further in your machine learning journey.
+`;
 
       setMessages((prev) => [
         ...prev,
@@ -221,7 +256,7 @@ These videos are tailored to help you progress further in your learning journey.
             const blob = new Blob([roadmapPrompt], { type: 'text/plain' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'roadmap.txt';
+            link.download = 'ml-roadmap.txt';
             link.click();
           },
         },
