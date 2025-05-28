@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import "./Roadmap.css";
 import { auth, db } from '../../firebase';
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, doc, deleteDoc } from 'firebase/firestore';
 import ReactMarkdown from 'react-markdown';
 
 const Roadmap = () => {
@@ -49,6 +49,17 @@ const Roadmap = () => {
 
         fetchRoadmaps();
     }, []);
+
+    const handleRemoveRoadmap = async (id) => {
+        try {
+            await deleteDoc(doc(db, "users", auth.currentUser.email, "roadmaps", id));
+            setRoadmaps((prev) => prev.filter((rm) => rm.id !== id));
+            alert("Roadmap removed successfully.");
+        } catch (error) {
+            console.error("Error removing roadmap:", error);
+            alert("Failed to remove roadmap.");
+        }
+    };
 
     const renderMarkdown = (text) => {
         const counterRef = { current: 0 };
@@ -109,6 +120,7 @@ const Roadmap = () => {
                             <div className="roadmap-content">
                                 {renderMarkdown(rm.text)}
                             </div>
+                            <button className="remove-btn" onClick={() => handleRemoveRoadmap(rm.id)}>Remove</button>
                         </div>
                     ))
                 )}
