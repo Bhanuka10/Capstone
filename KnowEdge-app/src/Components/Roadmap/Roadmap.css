@@ -52,6 +52,17 @@
     gap: 16px;
 }
 
+.youtube-video.watched {
+    background-color: #007bff; /* Blue background to indicate watched */
+    border: 2px solid #0056b3; /* Darker blue border for emphasis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.youtube-video.watched .youtube-thumb {
+    filter: brightness(0.8); /* Slightly dim the thumbnail */
+}
+
 .step-number {
     background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
     color: white;
@@ -87,6 +98,12 @@
     max-width: 500px;
     text-align: start;
 }
+
+.youtube-video.watched .youtube-title {
+    text-decoration: line-through; /* Strike-through text to indicate watched */
+    color: #155724; /* Dark green text color */
+}
+
 .remove-btn{
     background-color: #f44336;
     color: white;

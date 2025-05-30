@@ -63,6 +63,13 @@ const Roadmap = () => {
         }
     };
 
+    const handleVideoWatched = (videoId) => {
+        const videoElement = document.querySelector(`.youtube-video[data-video-id='${videoId}']`);
+        if (videoElement) {
+            videoElement.classList.add('watched');
+        }
+    };
+
     const renderMarkdown = (text) => {
         const counterRef = { current: 0 };
 
@@ -80,13 +87,14 @@ const Roadmap = () => {
                             const cleanedTitle = String(children).replace(/^([#\d\.\)\s]+)/, "").trim();
 
                             return (
-                                <div className="youtube-video" key={videoId}>
+                                <div className="youtube-video" data-video-id={videoId}>
                                     <div className="step-number">{stepNumber}</div>
                                     <a
                                         href={href}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="youtube-link"
+                                        onClick={() => handleVideoWatched(videoId)}
                                     >
                                         <img src={thumbnailUrl} alt={cleanedTitle} className="youtube-thumb" />
                                         <p className="youtube-title">{cleanedTitle}</p>
