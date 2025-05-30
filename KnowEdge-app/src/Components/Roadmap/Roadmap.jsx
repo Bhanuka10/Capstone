@@ -3,10 +3,12 @@ import "./Roadmap.css";
 import { auth, db } from '../../firebase';
 import { collection, getDocs, query, orderBy, doc, deleteDoc } from 'firebase/firestore';
 import ReactMarkdown from 'react-markdown';
+import { useNavigate } from 'react-router-dom';
 
 const Roadmap = () => {
     const [roadmaps, setRoadmaps] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchRoadmaps = async () => {
@@ -109,6 +111,7 @@ const Roadmap = () => {
 
     return (
         <div className="roadmap-container">
+            <button className="back-btn" onClick={() => navigate('/contact')}>Back to Profile</button>
             <div className="roadmap-card">
                 <h2 className="roadmap-title">🎯 Your Saved AI Roadmaps</h2>
                 {loading ? (
@@ -130,33 +133,3 @@ const Roadmap = () => {
 };
 
 export default Roadmap;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useState } from 'react';
-// import "./Roadmap.css";
-//
-// const Roadmap = () => {
-//
-//   return (
-//     <div>
-//       <div className='roadmap'>
-//
-//       </div>
-//     </div>
-//   );
-// };
-//
-// export default Roadmap;
