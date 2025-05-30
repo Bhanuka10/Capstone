@@ -106,3 +106,23 @@
     border-radius: 8px; /* Rounded corners for a clean look */
     background-color: #fff; /* Ensure a distinct background */
 }
+
+.back-btn {
+    background-color: #007bff; /* Blue color */
+    color: white;
+    padding: 6px 12px; /* Same size as remove button */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px; /* Same font size as remove button */
+    font-weight: bold;
+    position: absolute; /* Position at the top */
+    top: 20px; /* Distance from the top */
+    left: 20px; /* Distance from the left */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
