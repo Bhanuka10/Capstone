@@ -5,7 +5,7 @@ import Navbar from "@/Components/Navbar/Navbar.jsx";
 const Content = () => {
   return (
     <div>
-        <Navbar />
+       
       <Roadmap />
     </div>
   )
