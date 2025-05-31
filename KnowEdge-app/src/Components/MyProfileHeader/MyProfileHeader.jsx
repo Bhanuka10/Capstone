@@ -35,6 +35,13 @@ const MyProfileHeader = () => {
         }
     }, [userId])
 
+    const handleScrollToChatBot = () => {
+        const chatBotElement = document.querySelector('.cha');
+        if (chatBotElement) {
+            chatBotElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
     return (
         <div className='profile-container'>
             {/*SKILLFORGE box*/}
@@ -43,7 +50,7 @@ const MyProfileHeader = () => {
                     <h2 className='title'>SKILL FORGE</h2>
                     <p className='subtitle'>Sharpen your knowledge with AI-powered guidance for a smarter learning journey</p>
                     <div className='chatbot-button-wrapper'>
-                        <button className='chatbot-button'>Use Chatbot</button>
+                        <button className='chatbot-button' onClick={handleScrollToChatBot}>Use Chatbot</button>
                     </div>
                 </div>
                 <div className='image-section'>
