@@ -2,6 +2,15 @@ import React from 'react';
 import './Header.css';
 
 const Header = () => {
+  const handleNavigateToCourses = () => {
+    const coursesElement = document.querySelector('.courses-container');
+    if (coursesElement) {
+      coursesElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      console.error('Courses section not found');
+    }
+  };
+
   return (
     <div className='header'>
       <div className='header-left'>
@@ -10,7 +19,7 @@ const Header = () => {
           <p className='slide-in'>Sharpen Your Knowledge with AI-Powered Guidance for a Smarter Learning Journey</p>
         </div>
         <div className='header-left-bottom'>
-          <button className='button-animate'>View Courses</button>
+          <button className='button-animate' onClick={handleNavigateToCourses}>View Courses</button>
           <button className='button-animate'>Use ChatBot</button>
         </div>
       </div>
