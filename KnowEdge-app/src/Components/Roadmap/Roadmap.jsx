@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import "./Roadmap.css";
 import { auth, db } from '../../firebase';
-import { collection, getDocs, query, orderBy, doc, deleteDoc } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, doc, deleteDoc, setDoc } from 'firebase/firestore';
 import ReactMarkdown from 'react-markdown';
 import { useNavigate } from 'react-router-dom';
 
@@ -63,12 +63,57 @@ const Roadmap = () => {
         }
     };
 
-    const handleVideoWatched = (videoId) => {
+    const handleVideoWatched = async (videoId) => {
         const videoElement = document.querySelector(`.youtube-video[data-video-id='${videoId}']`);
         if (videoElement) {
             videoElement.classList.add('watched');
         }
+
+        try {
+            const user = auth.currentUser;
+            if (!user) {
+                console.error("User not authenticated.");
+                return;
+            }
+
+            const email = user.email;
+            const watchedVideosRef = doc(db, "users", email, "watchedVideos", videoId);
+            await setDoc(watchedVideosRef, { watched: true });
+        } catch (error) {
+            console.error("Error saving watched video to database:", error);
+        }
     };
+
+    useEffect(() => {
+        const fetchWatchedVideos = async () => {
+            try {
+                const user = auth.currentUser;
+                if (!user) {
+                    console.error("User not authenticated.");
+                    return;
+                }
+
+                const email = user.email;
+                const watchedVideosSnapshot = await getDocs(collection(db, "users", email, "watchedVideos"));
+                const watchedVideos = {};
+
+                watchedVideosSnapshot.forEach((doc) => {
+                    watchedVideos[doc.id] = doc.data().watched;
+                });
+
+                document.querySelectorAll('.youtube-video').forEach((videoElement) => {
+                    const videoId = videoElement.getAttribute('data-video-id');
+                    if (watchedVideos[videoId]) {
+                        videoElement.classList.add('watched');
+                    }
+                });
+            } catch (error) {
+                console.error("Error fetching watched videos from database:", error);
+            }
+        };
+
+        fetchWatchedVideos();
+    }, []);
 
     const renderMarkdown = (text) => {
         const counterRef = { current: 0 };
