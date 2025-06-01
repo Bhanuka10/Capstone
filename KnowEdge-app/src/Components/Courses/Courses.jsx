@@ -454,6 +454,7 @@ const Courses = () => {
   };
 
   return (
+    <div className="courses-container">
     <div className='Courses'>
       <div className='Uper-bar'>
         <h1>Choose the Courses</h1>
@@ -554,6 +555,7 @@ const Courses = () => {
   </Link>
 </div>
 
+    </div>
     </div>
   );
   
