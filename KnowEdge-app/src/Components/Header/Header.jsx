@@ -11,6 +11,10 @@ const Header = () => {
     }
   };
 
+  const handleNavigateToChatBot = () => {
+    window.location.href = '/contact';
+  };
+
   return (
     <div className='header'>
       <div className='header-left'>
@@ -20,7 +24,7 @@ const Header = () => {
         </div>
         <div className='header-left-bottom'>
           <button className='button-animate' onClick={handleNavigateToCourses}>View Courses</button>
-          <button className='button-animate'>Use ChatBot</button>
+          <button className='button-animate' onClick={handleNavigateToChatBot}>Use ChatBot</button>
         </div>
       </div>
       <div className='header-right'>
