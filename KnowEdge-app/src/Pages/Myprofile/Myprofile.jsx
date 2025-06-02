@@ -9,6 +9,8 @@ import WatchLater from '../../Components/WatchLater/WatchLater';
 import Courses from '../../Components/Courses/Courses';
 import Footer from '../../Components/Footer/Footer';
 import Roadmap from '../../Components/Roadmap/Roadmap';
+import Feedback from '../../Components/Feedback/Feedback';
+
 
 const Myprofile = () => {
   useEffect(() => {
@@ -33,6 +35,7 @@ const Myprofile = () => {
       </div>
       
       <WatchLater />
+      <Feedback />
       <Footer/>
       <signIn/>
     </div>
