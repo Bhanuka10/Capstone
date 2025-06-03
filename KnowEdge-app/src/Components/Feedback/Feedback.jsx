@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import "./feedback.css"; // Make sure the path is correct!
+import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+
+const auth = getAuth();
+const db = getFirestore();
 
 const Feedback = () => {
   const [name, setName] = useState("");
@@ -12,12 +17,29 @@ const Feedback = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ name, comment, image });
-    setName("");
-    setComment("");
-    setImage(null);
+    const user = auth.currentUser;
+    if (!user) {
+      alert("User not authenticated.");
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "feedback"), {
+        name,
+        text: comment,
+        image,
+        timestamp: serverTimestamp(),
+      });
+      alert("Feedback saved successfully!");
+      setName("");
+      setComment("");
+      setImage(null);
+    } catch (error) {
+      console.error("Error saving feedback:", error);
+      alert("Failed to save feedback.");
+    }
   };
 
   return (
