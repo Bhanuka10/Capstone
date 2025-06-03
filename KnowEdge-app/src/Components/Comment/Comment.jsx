@@ -1,30 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Comment.css';
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 
-const feedbackData = [
-  {
-    name: 'James Carter',
-    image: 'images.jpeg',
-    text: 'This website is incredibly user-friendly and informative! The content is well-structured, and the design makes navigation seamless. Great work!',
-  },
-  {
-    name: 'Daniel Smith',
-    image: 'handsome-man-pointing-lateral.jpg',
-    text: 'I love the clean layout and the variety of resources available. The site loads quickly, and everything is easy to find. Keep up the fantastic work!',
-  },
-  {
-    name: 'Sophia Williams',
-    image: 'download.jpeg',
-    text: 'I appreciate how well-organized and informative this website is. The content is valuable, and the user experience is smooth. Keep it up!',
-  },
-  {
-    name: 'Emily Granger',
-    image: 'young-smiling-young-woman-showing-copy-space.jpg',
-    text: 'Fantastic website! The layout is clean and intuitive, making it easy to find information quickly. The content is clear, engaging, and highly informative. Well done!',
-  }
-];
+const db = getFirestore();
 
 const Comment = () => {
+  const [feedbackData, setFeedbackData] = useState([]);
+
+  useEffect(() => {
+    const fetchFeedback = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "feedback"));
+        const feedback = querySnapshot.docs.map((doc) => doc.data());
+        setFeedbackData(feedback);
+      } catch (error) {
+        console.error("Error fetching feedback:", error);
+      }
+    };
+
+    fetchFeedback();
+  }, []);
+
   return (
     <div className='comment'>
       <div className='banner'><h1>Feedback</h1></div>
