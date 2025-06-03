@@ -3,7 +3,6 @@
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to bottom, #DCF6F5, #88F0EE);
 }
 
 .banner {
@@ -43,7 +42,7 @@
   min-width: 300px;
   max-width: 300px;
   height: 200px;
-  background: #fff;
+  background: #dce5e9;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
