@@ -1,8 +1,9 @@
 .comment {
   width: 100%;
-  min-height: 100vh;
+  min-height: auto;
   margin: 0;
   padding: 0;
+  padding-bottom: 70px;
 }
 
 .banner {
@@ -85,7 +86,3 @@
   text-align: center;
 }
 
-.after-scroll {
-  background-color: white;
-  height: 250px;
-}
