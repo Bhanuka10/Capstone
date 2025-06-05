@@ -39,7 +39,7 @@ const intentKeywords = [
   { category: 'data', keywords: ['data science', 'data', 'pandas', 'numpy', 'statistics', 'analysis', 'analytics', 'big data', 'spark', 'hadoop', 'sql', 'data visualization', 'data cleaning'] },
   { category: 'mobile', keywords: ['mobile', 'android', 'ios', 'react native', 'flutter', 'kotlin', 'swift', 'app', 'mobile development', 'java'] },
   { category: 'game', keywords: ['game', 'unity', 'unreal', 'gamedev', 'game development', '2d', '3d', 'vr', 'ar', 'c#'] },
-  { category: 'domain', keywords: ['web', 'frontend', 'backend', 'react', 'node', 'express', 'html', 'css', 'javascript', 'typescript', 'sass', 'webpack', 'api', 'full stack', 'django', 'flask', 'php', 'ruby', 'laravel'] }
+  { category: 'domain', keywords: ['web', 'frontend', 'backend', 'react', 'node', 'express', 'html', 'css', 'javascript', 'typescript', 'sass', 'webpack', 'api', 'full stack', 'django', 'flask', 'php', 'ruby', 'laravel', 'angular', 'vue', 'next.js', 'nuxt.js'] }
 ];
 
 function detectCategoryFromText(text) {
