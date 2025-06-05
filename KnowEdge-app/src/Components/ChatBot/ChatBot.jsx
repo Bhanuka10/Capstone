@@ -28,18 +28,18 @@ const db = getFirestore();
 
 const categoryMap = {
   domain: DOMAIN_PLAYLIST_IDS,
-  data: DATA_SCIENCE_PLAYLIST_IDS,
+  data: DATA_SCIENCE_PLAYLIST_IDS, // Ensure this is correctly mapped
   game: GAME_DEV_PLAYLIST_IDS,
   ai: AI_PLAYLIST_IDS,
   mobile: MOBILE_DEV_PLAYLIST_IDS,
 };
 
 const intentKeywords = [
-  { category: 'ai', keywords: ['ai', 'artificial intelligence', 'machine learning', 'ml', 'deep learning', 'neural'] },
-  { category: 'data', keywords: ['data science', 'data', 'pandas', 'numpy', 'statistics', 'analysis', 'analytics'] },
-  { category: 'mobile', keywords: ['mobile', 'android', 'ios', 'react native', 'flutter', 'kotlin', 'swift', 'app'] },
-  { category: 'game', keywords: ['game', 'unity', 'unreal', 'gamedev', 'game development', '2d', '3d'] },
-  { category: 'domain', keywords: ['web', 'frontend', 'backend', 'react', 'node', 'express', 'html', 'css', 'javascript', 'mern', 'api'] }
+  { category: 'ai', keywords: ['ai', 'artificial intelligence', 'machine learning', 'ml', 'deep learning', 'neural', 'tensorflow', 'keras', 'pytorch'] },
+  { category: 'data', keywords: ['data science', 'data', 'pandas', 'numpy', 'statistics', 'analysis', 'analytics', 'big data', 'spark', 'hadoop', 'sql', 'data visualization', 'data cleaning'] },
+  { category: 'mobile', keywords: ['mobile', 'android', 'ios', 'react native', 'flutter', 'kotlin', 'swift', 'app', 'mobile development', 'java'] },
+  { category: 'game', keywords: ['game', 'unity', 'unreal', 'gamedev', 'game development', '2d', '3d', 'vr', 'ar', 'c#'] },
+  { category: 'domain', keywords: ['web', 'frontend', 'backend', 'react', 'node', 'express', 'html', 'css', 'javascript', 'typescript', 'sass', 'webpack', 'api', 'full stack', 'django', 'flask', 'php', 'ruby', 'laravel'] }
 ];
 
 function detectCategoryFromText(text) {
@@ -324,6 +324,44 @@ ${text}
     } catch (error) {
       alert("❌ Failed to save roadmap.");
     }
+  };
+
+  const handleSendMessage = async (userMessage) => {
+    const category = detectCategory(userMessage);
+    let aiResponse = '';
+
+    if (category) {
+      const roadmap = generateRoadmap(category);
+      const filterKeywords = userMessage.toLowerCase().split(' '); // Extract keywords from user message
+      const videos = await fetchPlaylistVideos(category, filterKeywords);
+
+      aiResponse = roadmap;
+      setMessages(prev => [...prev, { role: 'bot', text: roadmap }]);
+
+      if (videos.length > 0) {
+        setMessages(prev => [...prev, { role: 'bot', text: 'Here are some videos related to your query:' }]);
+        videos.forEach(video => {
+          setMessages(prev => [...prev, { role: 'bot', text: `[${video.title}](${video.url})` }]);
+        });
+      } else {
+        setMessages(prev => [...prev, { role: 'bot', text: "No specific videos found for your request. Please try refining your query." }]);
+      }
+    } else {
+      aiResponse = await callGeminiFlash(userMessage);
+      setMessages(prev => [...prev, { role: 'bot', text: aiResponse }]);
+    }
+
+    const user = auth.currentUser;
+    if (user) {
+      await addDoc(collection(db, 'messages'), {
+        user: user.email,
+        message: userMessage,
+        response: aiResponse,
+        timestamp: serverTimestamp(),
+      });
+    }
+
+    setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
   };
 
   return (
