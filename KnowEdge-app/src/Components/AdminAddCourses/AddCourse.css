@@ -45,7 +45,7 @@
 
 .course-form button {
     position: absolute;
-    top:630px;
+    top:690px;
     Right: 2.5%;
     margin-top: 1.5rem;
     width: 20%;
@@ -56,7 +56,6 @@
     border-radius: 10px;
     cursor: pointer;
     font-weight: bold;
-    cursor: pointer;
 }
 
 .status-message {

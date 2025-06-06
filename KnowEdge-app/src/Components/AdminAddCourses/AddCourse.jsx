@@ -3,6 +3,7 @@ import './AddCourse.css';
 import SideBar from "@/Components/AdminSideBar/SideBar.jsx";
 import { db } from '@/firebase';
 import { collection, addDoc, getDocs, query, orderBy, limit } from 'firebase/firestore';
+import {Link} from "react-router-dom";
 
 const CoursesDashboard = () => {
     const [activeMenu, setActiveMenu] = useState('courses');
@@ -69,7 +70,9 @@ const CoursesDashboard = () => {
             <div className="main-content">
                 <div className="top-bar">
                     <input type="text" placeholder="Search" className="search-bar" />
-                    <div className="profile">Admin</div>
+                    <Link to="/signin" className="logout-link">
+                        Logout
+                    </Link>
                 </div>
 
                 {/* ✅ Recent Courses Display */}
