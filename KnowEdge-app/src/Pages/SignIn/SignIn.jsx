@@ -149,7 +149,11 @@ export default function SignIn() {
                             <input id="rememberMe" type="checkbox" name="remember" checked={form.remember} onChange={handleChange} />
                             <label htmlFor="rememberMe">Remember me</label>
                         </div>
-                        <a href="#" className="forgot-link">Forgot Password?</a>
+                        {/*<a href="#" className="forgot-link">Forgot Password?</a>*/}
+                        <p>
+                             <Link className="forgot-link" to="/forgot-password">Forgot password</Link>
+                        </p>
+
                     </div>
 
                     <button className="signup-btn" type="submit">Sign in</button>

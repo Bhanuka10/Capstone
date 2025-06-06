@@ -12,6 +12,7 @@ import Register from "@/Pages/Register/Register.jsx";
 import RegisterForm from "../Pages/Register-Subform/RegisterForm";
 import SignIn from "@/Pages/SignIn/SignIn.jsx";
 import Content from "../Pages/Content/Content";
+import ForgotPassword from "@/Components/ForgetPassword/ForgetPassword.jsx";
 
 const router = createBrowserRouter([
 
@@ -30,6 +31,11 @@ const router = createBrowserRouter([
   {
     path: "/registerForm",
     element: <RegisterForm />
+  },
+
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword />
   },
   
   // //Uncomment this to run Home page
