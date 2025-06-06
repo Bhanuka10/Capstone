@@ -77,6 +77,28 @@ const Feedback = () => {
 
           <button type="submit" className="feedback-button">Post Comment</button>
         </form>
+
+        <h2 className="feedback-title">User Feedback</h2>
+        <div className="feedback-scroll-wrapper">
+          <div className="feedback-scroll">
+            {/* Example feedback items */}
+            <div className="feedback-item">Great app! - User A</div>
+            <div className="feedback-item">Very helpful! - User B</div>
+            <div className="feedback-item">Loved the UI! - User C</div>
+            {/* Add more feedback dynamically */}
+          </div>
+        </div>
+
+        <h2 className="feedback-title">Comments Section</h2>
+        <div className="comment-scroll-wrapper">
+          <div className="comment-scroll">
+            {/* Example comments */}
+            <div className="comment-item">This is a great feature! - User X</div>
+            <div className="comment-item">I love the design! - User Y</div>
+            <div className="comment-item">Very intuitive! - User Z</div>
+            {/* Add more comments dynamically */}
+          </div>
+        </div>
       </div>
   );
 };
