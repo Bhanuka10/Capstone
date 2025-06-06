@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import './Navbar.css';
 import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom'; // <-- add useNavigate
+import { fetchPlaylistVideos, detectCategory } from '../../Utils/apiUtils'; // <-- import your API functions
 
 const Navbar = () => {
     const [menu, setMenu] = useState('menu');
@@ -11,20 +12,25 @@ const Navbar = () => {
     const dropdownRef = useRef(null);
     const navigate = useNavigate(); // <-- initialize useNavigate
 
-    const handleSearch = () => {
+    const handleSearch = async () => {
         if (searchQuery.trim() !== '') {
-            const mockData = [
-                'Web Development',
-                'Data Science',
-                'Artificial Intelligence',
-                'Game Development',
-                'Mobile Development',
-                'Technology',
-            ];
-            const results = mockData.filter((item) =>
-                item.toLowerCase().includes(searchQuery.toLowerCase())
-            );
-            setSearchResults(results);
+            const filterKeywords = searchQuery.toLowerCase().split(' ');
+            const category = detectCategory(searchQuery); // Detect category based on search query
+
+            if (category) {
+                const videos = await fetchPlaylistVideos(category, filterKeywords);
+
+                if (videos.length > 0) {
+                    setSearchResults(videos.map(video => ({
+                        title: video.title,
+                        url: video.url
+                    })));
+                } else {
+                    setSearchResults([{ title: `No videos found for "${searchQuery}".`, url: '#' }]);
+                }
+            } else {
+                setSearchResults([{ title: `No relevant category detected for "${searchQuery}".`, url: '#' }]);
+            }
         } else {
             setSearchResults([]);
         }
