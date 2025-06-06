@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import "./feedback.css"; // Make sure the path is correct!
-import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
+import "./feedback.css";
+import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const auth = getAuth();
@@ -9,17 +9,35 @@ const db = getFirestore();
 const Feedback = () => {
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
-  const [image, setImage] = useState(null);
+  const [profileImage, setProfileImage] = useState(null); // avatarURL from Firestore
 
-  const handleImageChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setImage(URL.createObjectURL(e.target.files[0]));
-    }
-  };
+  const user = auth.currentUser;
+  const userId = user?.uid;
+
+  // 🔁 Fetch user profile data from Firestore
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      if (userId) {
+        try {
+          const docRef = doc(db, "users", userId);
+          const docSnap = await getDoc(docRef);
+
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            setProfileImage(data.avatarURL || null); // Use default avatar if needed
+            setName(data.fullname || "Anonymous");
+          }
+        } catch (error) {
+          console.error("Error fetching user profile for feedback:", error);
+        }
+      }
+    };
+
+    fetchUserProfile();
+  }, [userId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = auth.currentUser;
     if (!user) {
       alert("User not authenticated.");
       return;
@@ -29,13 +47,12 @@ const Feedback = () => {
       await addDoc(collection(db, "feedback"), {
         name,
         text: comment,
-        image,
+        image: profileImage,
         timestamp: serverTimestamp(),
       });
       alert("Feedback saved successfully!");
       setName("");
       setComment("");
-      setImage(null);
     } catch (error) {
       console.error("Error saving feedback:", error);
       alert("Failed to save feedback.");
@@ -43,47 +60,24 @@ const Feedback = () => {
   };
 
   return (
-    <div className="feedback-container">
-      <h2 className="feedback-title">Leave a Comment</h2>
-      <form onSubmit={handleSubmit} className="feedback-form">
-        <div>
-          <label htmlFor="name" className="feedback-label">Name</label>
-          <input
-            type="text"
-            id="name"
-            className="feedback-input"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Your Name"
-          />
-        </div>
-        <div>
-          <label htmlFor="comment" className="feedback-label">Comment</label>
-          <textarea
-            id="comment"
-            rows="4"
-            className="feedback-textarea"
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            placeholder="Write your comment..."
-          ></textarea>
-        </div>
-        <div>
-          <label htmlFor="image" className="feedback-label">Add an profile photo (optional)</label>
-          <input
-            type="file"
-            id="image"
-            accept="image/*"
-            className="feedback-file"
-            onChange={handleImageChange}
-          />
-          {image && (
-            <img src={image} alt="Preview" className="feedback-image-preview" />
-          )}
-        </div>
-        <button type="submit" className="feedback-button">Post Comment</button>
-      </form>
-    </div>
+      <div className="feedback-container">
+        <h2 className="feedback-title">Leave a Comment</h2>
+        <form onSubmit={handleSubmit} className="feedback-form">
+          <div>
+            <label htmlFor="comment" className="feedback-label">Comment</label>
+            <textarea
+                id="comment"
+                rows="4"
+                className="feedback-textarea"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                placeholder="Write your comment..."
+            ></textarea>
+          </div>
+
+          <button type="submit" className="feedback-button">Post Comment</button>
+        </form>
+      </div>
   );
 };
 
