@@ -1,39 +1,37 @@
-import React, { useEffect, useState } from 'react'
-import './MyProfileHeader.css'
-import userimage from '../../Images/Maria.jpg'
-import { doc, getDoc } from 'firebase/firestore'
-import { db } from '../../firebase'
-// If you're using Firebase Auth:
-import { getAuth } from 'firebase/auth'
+import React, { useEffect, useState } from 'react';
+import './MyProfileHeader.css';
+import { doc, getDoc } from 'firebase/firestore';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { db } from '../../firebase';
 
 const MyProfileHeader = () => {
-    const [userData, setUserData] = useState(null)
-
-    // Get the logged-in user's UID
-    const auth = getAuth()
-    const user = auth.currentUser
-    const userId = user?.uid || "demo-user-id" // fallback if not logged in
+    const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const docRef = doc(db, "users", userId)
-                const docSnap = await getDoc(docRef)
-
-                if (docSnap.exists()) {
-                    setUserData(docSnap.data())
-                } else {
-                    console.log("No such document!")
+        const auth = getAuth();
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const userId = user.uid;
+                try {
+                    const docRef = doc(db, "users", userId);
+                    const docSnap = await getDoc(docRef);
+                    if (docSnap.exists()) {
+                        setUserData(docSnap.data());
+                    } else {
+                        console.log("No such document!");
+                    }
+                } catch (error) {
+                    console.error("Error fetching user data:", error);
                 }
-            } catch (error) {
-                console.error("Error fetching user data:", error)
+            } else {
+                console.log("User not authenticated");
             }
-        }
+            setLoading(false);
+        });
 
-        if (userId) {
-            fetchUserData()
-        }
-    }, [userId])
+        return () => unsubscribe(); // cleanup
+    }, []);
 
     const handleScrollToChatBot = () => {
         const chatBotElement = document.querySelector('.cha');
@@ -41,6 +39,8 @@ const MyProfileHeader = () => {
             chatBotElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     };
+
+    if (loading) return <p>Loading...</p>;
 
     return (
         <div className='profile-container'>
@@ -71,14 +71,9 @@ const MyProfileHeader = () => {
                     <p><strong>Field of Study:</strong> {userData?.fieldOfStudy}</p>
                     <p><strong>Skill Level:</strong> {userData?.skillLevel}</p>
                 </div>
-                
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default MyProfileHeader
-
-
-
-
+export default MyProfileHeader;
