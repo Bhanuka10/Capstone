@@ -38,10 +38,7 @@ const Navbar = () => {
 
     const handleScrollToAbout = () => {
         setMenu("About");
-        const aboutSection = document.getElementById("About");
-        if (aboutSection) {
-            aboutSection.scrollIntoView({ behavior: 'smooth' });
-        }
+        navigate('/home', { state: { scrollTo: 'About' } }); // Must match the id in About.jsx
     };
 
     const toggleDropdown = () => {
