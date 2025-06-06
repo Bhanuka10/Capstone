@@ -16,6 +16,7 @@ import {
   AI_PLAYLIST_IDS,
   MOBILE_DEV_PLAYLIST_IDS
 } from '../../Config/playlistData';
+import { fetchPlaylistVideos, detectCategory } from '../../Utils/apiUtils';
 
 const API_KEYS = [
   'AIzaSyD-SJkFXqteSzaQPVUSqo5Lq3CaQh2j5pU',
