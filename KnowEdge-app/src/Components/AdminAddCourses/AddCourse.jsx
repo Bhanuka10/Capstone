@@ -4,6 +4,7 @@ import SideBar from "@/Components/AdminSideBar/SideBar.jsx";
 import { db } from '@/firebase';
 import { collection, addDoc, getDocs, query, orderBy, limit } from 'firebase/firestore';
 import {Link} from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const CoursesDashboard = () => {
     const [activeMenu, setActiveMenu] = useState('courses');
@@ -63,13 +64,41 @@ const CoursesDashboard = () => {
         setLoading(false);
     };
 
+    const [searchTerm, setSearchTerm] = useState('');
+    const navigate = useNavigate();
+
+    const handleSearchKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            const term = searchTerm.toLowerCase().trim();
+
+            if (term.includes('dashboard')) {
+                navigate('/dashboard');
+            } else if (term.includes('course')) {
+                navigate('/add-course');
+            } else if (term.includes('feedback')) {
+                navigate('/feedback');
+            } else {
+                alert('Page not found');
+            }
+
+            setSearchTerm(''); // optional: clear the search
+        }
+    }
+
     return (
         <div className="course-container">
             <SideBar activeMenu={activeMenu} onMenuClick={setActiveMenu} />
 
             <div className="main-content">
                 <div className="top-bar">
-                    <input type="text" placeholder="Search" className="search-bar" />
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        className="search-bar"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onKeyDown={handleSearchKeyDown}
+                    />
                     <Link to="/signin" className="logout-link">
                         Logout
                     </Link>
