@@ -1,19 +1,104 @@
-.feedback-section h2{
-    position:relative;
-    left:-440px;
+/*.feedback-section h2{*/
+/*    position:relative;*/
+/*    left:-440px;*/
+/*}*/
+
+
+/*.feedback-table {*/
+/*    background: #fff;*/
+/*    border-radius: 15px;*/
+/*    overflow: hidden;*/
+/*    max-height: 600px;*/
+/*    overflow-y: auto;*/
+/*    font-family: sans-serif;*/
+/*    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+/*.feedback-table-header,*/
+/*.feedback-table-row {*/
+/*    display: flex;*/
+/*    border-bottom: 1px solid #eee;*/
+/*    padding: 10px 15px;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.table-header {*/
+/*    background-color: #e0f7f5;*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*.cell {*/
+/*    padding: 5px 10px;*/
+/*}*/
+
+/*.email-cell {*/
+/*    flex: 1;*/
+/*    max-width: 150px;*/
+/*    word-break: break-word;*/
+/*}*/
+
+/*.message-cell {*/
+/*    flex: 2;*/
+/*    max-width: 600px;*/
+/*    transition: max-width 0.3s ease;*/
+/*    overflow: hidden;*/
+/*    white-space: nowrap;*/
+/*    text-overflow: ellipsis;*/
+/*}*/
+
+/*.message-cell.expanded {*/
+/*    white-space: normal;*/
+/*    overflow: visible;*/
+/*    text-overflow: initial;*/
+/*}*/
+
+/*.action-cell {*/
+/*    flex: 0 0 80px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*}*/
+
+/*.view-btn {*/
+/*    background-color: #ccc;*/
+/*    border: none;*/
+/*    border-radius: 8px;*/
+/*    padding: 6px 15px;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.view-btn:hover {*/
+/*    background-color: #bbb;*/
+/*}*/
+
+.admin-feedback-container {
+    display: flex;
+    width:100vw;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(270deg, rgba(120, 255, 214, 0.65) 0%, rgba(0, 121, 145, 0.92) 100%);
+    margin: -8px;
 }
 
+/* Section Title */
+.feedback-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
 
+/* Main Feedback Table Container */
 .feedback-table {
     background: #fff;
-    border-radius: 15px;
+    border-radius: 12px;
     overflow: hidden;
     max-height: 600px;
     overflow-y: auto;
-    font-family: sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
+/* Header & Row Styling */
 .feedback-table-header,
 .feedback-table-row {
     display: flex;
@@ -22,50 +107,130 @@
     align-items: center;
 }
 
-.table-header {
-    background-color: #e0f7f5;
+/* Sticky Header */
+.feedback-table-header {
+    background-color: #f0fdfc;
     font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }
 
+/* Cell Base */
 .cell {
     padding: 5px 10px;
+    display: flex;
+    align-items: center;
 }
 
-.email-cell {
-    flex: 1;
-    max-width: 150px;
-    word-break: break-word;
+/* Column Widths */
+.image-cell {
+    flex: 0 0 60px;
+    justify-content: center;
+    color: #333;
+}
+
+.name-cell {
+    flex: 0 0 150px;
+    /*font-weight: 500;*/
+    color: #333;
 }
 
 .message-cell {
     flex: 2;
     max-width: 600px;
-    transition: max-width 0.3s ease;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    transition: max-width 0.3s ease;
+    color: #333;
 }
 
+/* Message Expansion */
 .message-cell.expanded {
     white-space: normal;
     overflow: visible;
     text-overflow: initial;
 }
 
+/* Action Buttons Cell */
 .action-cell {
-    flex: 0 0 80px;
+    flex: 0 0 150px;
     display: flex;
     justify-content: center;
+    gap: 8px;
 }
 
+/* Avatar Image */
+.feedback-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+/* View Button */
 .view-btn {
     background-color: #ccc;
     border: none;
-    border-radius: 8px;
-    padding: 6px 15px;
+    border-radius: 6px;
+    padding: 6px 12px;
     cursor: pointer;
+    font-size: 14px;
 }
 
 .view-btn:hover {
     background-color: #bbb;
+}
+
+/* Delete Button */
+.delete-btn {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Scrollbar Styling (optional) */
+.feedback-table::-webkit-scrollbar {
+    width: 8px;
+}
+
+.feedback-table::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+/*!* Responsive Design *!*/
+@media screen and (max-width: 768px) {
+    .feedback-table-header,
+    .feedback-table-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cell {
+        width: 100%;
+        padding: 8px 10px;
+    }
+
+    .action-cell {
+        justify-content: flex-start;
+    }
+
+    .message-cell {
+        max-width: 100%;
+    }
+
+    .image-cell {
+        margin-bottom: 10px;
+    }
 }
