@@ -86,3 +86,37 @@
   background-color: #2563eb; /* Darker blue */
   box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
 }
+
+/* Add horizontal scrolling animation */
+.feedback-scroll-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.feedback-scroll {
+  display: flex;
+  gap: 16px;
+  animation: scroll-horizontal 20s linear infinite;
+  white-space: nowrap; /* Ensure items are in a single line */
+}
+
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.feedback-item {
+  flex: 0 0 auto;
+  min-width: 200px;
+  background-color: #f3f4f6;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: inline-block; /* Ensure items are inline */
+}
