@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import './dashboard.css';
-import { FaHome } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+
+
 
 import { FaUser, FaBook, FaTrashAlt } from 'react-icons/fa';
 import SideBar from '../AdminSideBar/SideBar';
@@ -81,13 +83,43 @@ const Dashboard = () => {
         };
     }, []);
 
+
+    const [searchTerm, setSearchTerm] = useState('');
+    const navigate = useNavigate();
+
+    const handleSearchKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            const term = searchTerm.toLowerCase().trim();
+
+            if (term.includes('dashboard')) {
+                navigate('/dashboard');
+            } else if (term.includes('course')) {
+                navigate('/add-course');
+            } else if (term.includes('feedback')) {
+                navigate('/feedback');
+            } else {
+                alert('Page not found');
+            }
+
+            setSearchTerm(''); // optional: clear the search
+        }
+    }
+
     return (
         <div className="dashboard-container">
             <SideBar activeMenu={activeMenu} onMenuClick={handleMenuClick} />
 
             <div className="main-content">
                 <div className="top-bar">
-                    <input type="text" placeholder="Search" className="search-bar" />
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        className="search-bar"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onKeyDown={handleSearchKeyDown}
+                    />
+
                     <Link to="/signin" className="logout-link">
                         Logout
                     </Link>
