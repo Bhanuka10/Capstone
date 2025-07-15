@@ -209,3 +209,21 @@ input[type="number"] {
   }
 } */
 
+
+/* Force dropdown select and option styling for better readability */
+input-block select,
+.select-wrapper select {
+  background-color: #14596b; /* match input block background */
+  color: #fff;               /* white text */
+  border: none;
+  padding: 12px 10px;
+  border-radius: 12px;
+}
+
+/* For dropdown options */
+select option {
+  background-color: #14596b;
+  color: #fff;
+}
+
+
