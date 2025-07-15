@@ -70,7 +70,7 @@ export default function RegisterForm() {
       <div className="register-main">
         <div className="register-card">
           <div className="logo-row">
-            <span>Expert Path</span>
+            <span>SKILL FORGE</span>
           </div>
           <div className="register-title">Complete your registration </div>
           {/* Form */}
