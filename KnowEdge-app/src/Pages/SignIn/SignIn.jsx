@@ -129,7 +129,7 @@ export default function SignIn() {
                 <div className="logo-row"></div>
                 <div style={{ marginBottom: 22 }}>
                     <div style={{ color: "#fff", fontSize: 16, fontWeight: 400 }}>Welcome to</div>
-                    <div style={{ color: "#9ee493", fontWeight: 600, fontSize: 18, letterSpacing: 1 }}>Expert Path</div>
+                    <div style={{ color: "#9ee493", fontWeight: 600, fontSize: 18, letterSpacing: 1 }}>SKILL FORGE</div>
                 </div>
                 <div className="register-subtitle">Let's get started!</div>
 
@@ -149,11 +149,7 @@ export default function SignIn() {
                             <input id="rememberMe" type="checkbox" name="remember" checked={form.remember} onChange={handleChange} />
                             <label htmlFor="rememberMe">Remember me</label>
                         </div>
-                        {/*<a href="#" className="forgot-link">Forgot Password?</a>*/}
-                        <p>
-                             <Link className="forgot-link" to="/forgot-password">Forgot password</Link>
-                        </p>
-
+                        <a href="#" className="forgot-link">Forgot Password?</a>
                     </div>
 
                     <button className="signup-btn" type="submit">Sign in</button>
