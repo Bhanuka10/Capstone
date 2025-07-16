@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import "./SignIn.css";
-
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import { doc, setDoc } from "firebase/firestore";
-
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
 import robert from '../../assets/robert.png';
 import black_user_icon from '../../assets/black_user_icon.png';
 import key_icon from '../../assets/key_icon.png';
