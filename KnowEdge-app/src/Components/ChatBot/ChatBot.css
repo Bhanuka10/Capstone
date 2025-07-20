@@ -13,10 +13,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 22px;
+    font-size: 25px;
     padding: 20px;
     padding-bottom: 0px;
-    color: #585858;
+    color: #868585;
 }
 
 .main .nav img {
