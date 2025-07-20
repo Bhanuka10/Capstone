@@ -14,6 +14,7 @@ const CoursesDashboard = () => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
     const [recentCourses, setRecentCourses] = useState([]);
+    const [category, setCategory] = useState('');
 
     useEffect(() => {
         document.body.style.margin = '0';
@@ -48,6 +49,7 @@ const CoursesDashboard = () => {
                 title,
                 videoUrl,
                 courseType,
+                category,
                 createdAt: new Date()
             });
 
@@ -112,6 +114,7 @@ const CoursesDashboard = () => {
                             <span>Title</span>
                             <span>Video URL</span>
                             <span>Type</span>
+                            <span>Category</span>
                         </div>
                         {recentCourses.map((course) => (
                             <div className="table-row" key={course.id}>
@@ -120,6 +123,7 @@ const CoursesDashboard = () => {
                                 <span style={{ color: course.courseType === 'free' ? 'green' : 'blue' }}>
                                     {course.courseType}
                                 </span>
+                                <span>{course.category || 'N/A'}</span>
                             </div>
                         ))}
                     </div>
@@ -168,7 +172,14 @@ const CoursesDashboard = () => {
                                 Paid
                             </label>
                         </div>
-
+                        <label>Course Category:</label>
+                        <select value={category} onChange={(e) => setCategory(e.target.value)} required>
+                            <option value="">--Select Category--</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Data Science">Data Science</option>
+                            <option value="Design">Design</option>
+                            <option value="Mobile Development">Mobile Development</option>
+                        </select>
                         <button type="submit" disabled={loading}>
                             {loading ? 'Adding...' : 'Add Course'}
                         </button>
