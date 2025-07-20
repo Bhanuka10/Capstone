@@ -368,7 +368,7 @@ ${text}
   return (
     <div className="main">
       <div className="nav">
-        <p>Gemini</p>
+        <p>Know</p>
         <img src={assets.user_icon} alt="User" />
       </div>
 

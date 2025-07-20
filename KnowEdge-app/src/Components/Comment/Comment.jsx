@@ -21,21 +21,27 @@ const Comment = () => {
     fetchFeedback();
   }, []);
 
+  const loopedFeedbackData = [...feedbackData, ...feedbackData];
+
   return (
     <div className='comment'>
       <div className='banner'><h1>Feedback</h1></div>
       <div className='scroll-container'>
-        {feedbackData.map((feedback, index) => (
-          <div className='comment-first-box' key={index}>
-            <div className='id'>
-              <img src={feedback.image} alt={feedback.name} />
-              <h2>{feedback.name}</h2>
-            </div>
-            <div className='comment-text'>
-              <p>"{feedback.text}"</p>
-            </div>
+        <div className='scroll-wrapper'>
+          <div className='scroll-content'>
+            {loopedFeedbackData.map((feedback, index) => (
+              <div className='comment-first-box' key={index}>
+                <div className='id'>
+                  <img src={feedback.image} alt={feedback.name} />
+                  <h2>{feedback.name}</h2>
+                </div>
+                <div className='comment-text'>
+                  <p>"{feedback.text}"</p>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
       <div className='after-scroll'></div>
     </div>
