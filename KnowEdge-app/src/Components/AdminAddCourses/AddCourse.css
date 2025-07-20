@@ -45,7 +45,7 @@
 
 .course-form button {
     position: absolute;
-    top:690px;
+    top:810px;
     Right: 2.5%;
     margin-top: 1.5rem;
     width: 20%;
@@ -105,3 +105,21 @@
 .table-row:hover {
     background-color: #f9f9f9;
 }
+
+.course-form select {
+    width: 30%;
+    padding: 10px;
+    margin-top: 0.4rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #333;
+}
+
+.course-form select:focus {
+    outline: none;
+    border-color: #049a74;
+    box-shadow: 0 0 5px rgba(4, 154, 116, 0.5);
+}
+
